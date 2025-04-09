@@ -26,5 +26,3 @@ class Plato(models.Model):
 #Es un método que podemos modifica para que se muestre el objeto de cierta forma.
     def __str__(self):
         return self.nombre
-
-class Pedido(models.Model):
