@@ -14,10 +14,13 @@ class NumMesa(models.TextChoices):
     MESA4 = 'MESA4', 'Mesa4'
     MESA5 = 'MESA5', 'Mesa5'
 
+
+
 class Plato(models.Model):
     nombre = models.CharField(max_length=50)
     descripcion = models.TextField()
     precio = models.DecimalField(max_digits=5, decimal_places=2)
+    imagen = models.CharField(max_length=2000)
     tipo_plato = models.CharField(
         max_length=50,
         choices=TipoPlato.choices,
@@ -27,4 +30,17 @@ class Plato(models.Model):
     def __str__(self):
         return self.nombre
 
+class Pedido_linea(models.Model):
+    #on_delete=models.DO_NOTHING nos dice que si el plato del que depende el pedido es eliminado, entonces no haga nada.
+    plato = models.ForeignKey(Plato, on_delete=models.DO_NOTHING)
+    cantidad = models.IntegerField()
+    precio_compra = models.DecimalField(max_digits=5, decimal_places=2)
+
+    def __str__(self):
+        return str(self.plato.nombre) + " " + str(self.cantidad)  + " " + str(self.precio_compra)
+
 class Pedido(models.Model):
+    codigo = models.CharField(max_length=100, blank=True, null=False)
+    fecha = models.DateField(null=False)
+
+
