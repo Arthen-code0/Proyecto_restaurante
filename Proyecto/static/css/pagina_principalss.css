@@ -1,0 +1,17 @@
+*{
+    min-width: 0;
+    min-height: 0;
+    box-sizing: border-box;
+    font-family: 'Georgia', serif;
+}
+body{
+    background-color: black;
+    font-size: 14px;
+}
+.botones{
+    color:#FFFF;
+    font-weight: bold;
+}
+.botones:hover{
+    color: brown;
+}
