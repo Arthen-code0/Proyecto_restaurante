@@ -2,16 +2,28 @@
     min-width: 0;
     min-height: 0;
     box-sizing: border-box;
-    font-family: 'Georgia', serif;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    color: #FFFFFF;
 }
 body{
-    background-color: black;
+    background-color: antiquewhite;
     font-size: 14px;
 }
-.botones{
-    color:#FFFF;
-    font-weight: bold;
+nav{
+    background-color: #FFEBF3;
+    background-image: url("../img/sakura.png");
 }
-.botones:hover{
-    color: brown;
+.botones{
+  transition: 0.3s;
+}
+.redondes{
+    background-color: #E0B5C6;
+    border-radius: 90px;
+    margin-left: 15px;
+}
+
+nav{
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  min-height: 60px;
 }
