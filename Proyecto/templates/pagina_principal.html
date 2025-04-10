@@ -8,7 +8,7 @@
     <title>Umami House</title>
 </head>
     <body>
-       <nav class="navbar p-md-1">
+       <nav class="navbar px-2">
 
          <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -28,24 +28,24 @@
     </div>
 
         <figure class="navbar-brand m-0">
-            <img class="rounded-circle m-0" src="../static/img/Umami_house_2-removebg-preview.png" width="150" height="150" alt="Logo Umami House"/>
+            <img class="m-0" src="../static/img/Umami_house_2-removebg-preview.png" width="120" height="120" alt="Logo Umami House"/>
         </figure>
 
         <div class="d-md-flex align-items-center">
         <div class="redondes">
-          <a class="botones text-decoration-none p-2 d-flex align-items-center" href="">
+          <a class="botones text-decoration-none p-1 d-flex align-items-center" href="">
             <img src="../static/img/cita.png" width="24" height="24" class="me-2" alt="Icono reservar">
             <p class="mb-0">Reservar</p>
           </a>
             </div>
             <div class="redondes">
-          <a class="botones text-decoration-none p-2 d-flex align-items-center" href="">
+          <a class="botones text-decoration-none p-1 d-flex align-items-center" href="">
             <img src="../static/img/bolsa-de-la-compra.png" width="24" height="24" class="me-2" alt="Icono pedido">
             <p class="mb-0">Hacer pedido</p>
           </a>
             </div>
             <div class="redondes">
-          <a class="botones text-decoration-none p-2 d-flex align-items-center" href="">
+          <a class="botones text-decoration-none p-1 d-flex align-items-center" href="">
             <img src="../static/img/usuario.png" width="24" height="24" class="me-2" alt="Icono cuenta">
             <p class="mb-0">Mi cuenta</p>
           </a>
@@ -60,21 +60,47 @@
            </div>
        </header>
 
-        <main>
+        <main class="p-4">
             <div class="texto">
-            <h1>Conoce nuestra carta</h1>
+            <h1 class="fs-1 mt-5 bold fw-bold">Conoce nuestra carta</h1>
             </div>
             <div>
-                <p class="negros">En UMAMI HOUSE siempre encontraras una opción que te sorprenderá,de la mano de ingredientes de máxima calidad , como atún, salmón,langostinos,aguacate, setas o verduras en tempura.
+                <p class="negros p-1 fs-4 mt-4">En UMAMI HOUSE siempre encontraras una opción que te sorprenderá,de la mano de ingredientes de máxima calidad , como atún, salmón,langostinos,aguacate, setas o verduras en tempura.
                     Con una amplia carta que incluye medio centenar de tipos de sushi diferentes, cada comensal da con su comida favorita. Porque la hay para los más atrevidos y los más tradicionales, para los más sanos y para aquellos que prefieren un poco más de salsa.
                     Y si nos permites una pequeña recomendación… Atrévete con nuestros increíbles Flamed Rolls, nuestra experiencia en mayúsculas:
                     sushi flambeado frente a tu mesa que te dejará con la boca abierta.
                 </p>
             </div>
+            <div class="buttonbox">
+                 <button class="button btn btn-dark p-3 rounded-pill mt-3" type="submit">Ver menú</button>
+            </div>
+
+             <!--Carrousel extraido de bootstrap-->
+            <div id="carouselExample" class="carousel slide p-4 px-2">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="../static/img/comida%20japonesa.jpeg" class="d-block w-100" width="400" height="400" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="../static/img/comida%20japonesa%20(1).jpeg" class="d-block w-100" width="400" height="400" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="../static/img/comida%20japonesa%20(2).jpeg" class="d-block w-100" width="400" height="400" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
         </main>
 
         <footer>
-
+            
         </footer>
     </body>
 </html>
