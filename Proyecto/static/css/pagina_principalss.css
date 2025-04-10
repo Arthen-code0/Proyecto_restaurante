@@ -3,27 +3,60 @@
     min-height: 0;
     box-sizing: border-box;
     font-family: "Segoe UI", system-ui, sans-serif;
-    color: #FFFFFF;
+    color: white;
 }
 body{
-    background-color: antiquewhite;
-    font-size: 14px;
+    font-size: 12px;
 }
-nav{
-    background-color: #FFEBF3;
-    background-image: url("../img/sakura.png");
-}
-.botones{
-  transition: 0.3s;
-}
-.redondes{
-    background-color: #E0B5C6;
-    border-radius: 90px;
-    margin-left: 15px;
-}
+/*NAVBAR*/
 
 nav{
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  min-height: 60px;
+  background-color: #FFEBF3;
+  background-image: url("../img/sakura.png");
+}
+
+/*Para los botones que sean redondos*/
+.redondes {
+  border-radius: 50px;
+  background-color: #E0B5C6;
+  padding: 4px 8px;
+  justify-content: space-between;
+}
+
+
+/*HEADER*/
+.imagenfuera {
+    width: 100%;
+    height: 70vh;
+    position: relative;
+    overflow: hidden;
+}
+.imagen{
+    object-fit: cover; /* La imagen cubre todo el contenedor */
+    width: 100%;
+    height: 100%;
+    filter: blur(2px);
+}
+.textoimg{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color:white;
+    font-size: 4rem;
+    font-weight: bold;
+    text-shadow: 3px 3px 15px rgb(0,0,0,1.5);
+    text-align: center;
+}
+
+/*MAIN*/
+
+.texto{
+    color:black;
+}
+
+.negros{
+    color:black;
 }
