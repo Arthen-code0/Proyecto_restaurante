@@ -17,6 +17,7 @@
            </div>
        </header>
 
+        <!--Texto varios-->
         <main class="p-4 mt-5">
             <div class="texto">
             <h1 class="fs-1 fw-bold p-2">Conoce nuestra carta</h1>
@@ -56,42 +57,6 @@
               </div>
         </main>
 
-      <footer class="container-fluid ">
-        <div class="container">
-            <div class="row text-center text-start p-4">
-                <!-- Columna: Nuestros hoteles -->
-                <div class="col-12 col-md-4 mb-3">
-                    <p class="sobre-p fw-bold">Umami House</p>
-                    <ul class="list-unstyled">
-                        <li>La mejor experiencia de sushi de toda la ciudad.</li>
-                    </ul>
-                </div>
-
-                <!-- Columna: Sobre nosotros -->
-                <div class="col-12 col-md-4 mb-3">
-                    <p class="sobre-p fw-bold">Horarios</p>
-                    <ul class="list-unstyled">
-                        <li>Lunes a Viernes:</li>
-                        <li>12:00 - 23:00</li>
-                        <li>Sábados y Domingos:</li>
-                        <li>13:00 - 00:00</li>
-                    </ul>
-                </div>
-
-                <!-- Columna: ¿Dudas? Contáctanos -->
-                <div class="col-12 col-md-4 mb-3">
-                    <p class="sobre-p fw-bold">Contáctanos</p>
-                    <ul class="list-unstyled">
-                        <li>Calle Principal 123, Ciudad Código Postal 28001</li>
-                        <li>Teléfono: (+34) 123456789</li>
-                        <li>Email:info@umamihouse.com </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-          <img src="{% static 'img/facebook.png'%}" width="" height="">
-          <img src="../static/img/logotipo-de-instagram.png" width="" height="">
-          <img src="../static/img/">
-    </footer>
+    {% include "footer.html" %}
     </body>
 </html>
