@@ -9,51 +9,7 @@
     <title>Umami House</title>
 </head>
     <body>
-       <nav class="navbar px-2">
-
-         <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="../static/img/menu.png" width="24" height="24" class="me-2" alt="Icono Menu Despegable">
-      </button>
-
-       <ul class="dropdown-menu mi-dropdown">
-            <li><button class="dropdown-item" type="button">Carta</button></li>
-            <li><button class="dropdown-item" type="button">Hacer pedido</button></li>
-            <li><button class="dropdown-item" type="button">Tu carrito</button></li>
-       </ul>
-
-       <div class="form-check form-switch mt-2">
-            <input class="form-check-input custom-switch" type="checkbox" role="switch" id="switchCheckChecked" checked>
-      </div>
-
-    </div>
-
-        <figure class="navbar-brand m-0">
-            <img class="m-0" src="../static/img/Umami_house_2-removebg-preview.png" width="120" height="120" alt="Logo Umami House"/>
-        </figure>
-
-        <div class="d-md-flex align-items-center">
-        <div class="redondes">
-          <a class="botones text-decoration-none p-1 d-flex align-items-center" href="">
-            <img src="../static/img/cita.png" width="24" height="24" class="me-2" alt="Icono reservar">
-            <p class="mb-0">Reservar</p>
-          </a>
-            </div>
-            <div class="redondes">
-          <a class="botones text-decoration-none p-1 d-flex align-items-center" href="">
-            <img src="../static/img/bolsa-de-la-compra.png" width="24" height="24" class="me-2" alt="Icono pedido">
-            <p class="mb-0">Hacer pedido</p>
-          </a>
-            </div>
-            <div class="redondes">
-          <a class="botones text-decoration-none p-1 d-flex align-items-center" href="">
-            <img src="../static/img/usuario.png" width="24" height="24" class="me-2" alt="Icono cuenta">
-            <p class="mb-0">Mi cuenta</p>
-          </a>
-            </div>
-        </div>
-        </nav>
-
+        {% include "navbar.html" %}
        <header class="imagenfuera">
            <div>
                 <img src="../static/img/recetas-de-comida-japonesa-super-faciles-para-hacer-en-casa.webp" class="imagen">
@@ -61,12 +17,12 @@
            </div>
        </header>
 
-        <main class="p-4">
+        <main class="p-4 mt-5">
             <div class="texto">
-            <h1 class="fs-1 mt-5 bold fw-bold">Conoce nuestra carta</h1>
+            <h1 class="fs-1 fw-bold p-2">Conoce nuestra carta</h1>
             </div>
-            <div>
-                <p class="negros p-1 fs-4 mt-4">En UMAMI HOUSE siempre encontraras una opción que te sorprenderá,de la mano de ingredientes de máxima calidad , como atún, salmón,langostinos,aguacate, setas o verduras en tempura.
+            <div class="negros1 p-1" >
+                <p class="negros text-center px-4 fs-5">En UMAMI HOUSE siempre encontraras una opción que te sorprenderá,de la mano de ingredientes de máxima calidad , como atún, salmón,langostinos,aguacate, setas o verduras en tempura.
                     Con una amplia carta que incluye medio centenar de tipos de sushi diferentes, cada comensal da con su comida favorita. Porque la hay para los más atrevidos y los más tradicionales, para los más sanos y para aquellos que prefieren un poco más de salsa.
                     Y si nos permites una pequeña recomendación… Atrévete con nuestros increíbles Flamed Rolls, nuestra experiencia en mayúsculas:
                     sushi flambeado frente a tu mesa que te dejará con la boca abierta.
@@ -100,8 +56,42 @@
               </div>
         </main>
 
-        <footer>
-            
-        </footer>
+      <footer class="container-fluid ">
+        <div class="container">
+            <div class="row text-center text-start p-4">
+                <!-- Columna: Nuestros hoteles -->
+                <div class="col-12 col-md-4 mb-3">
+                    <p class="sobre-p fw-bold">Umami House</p>
+                    <ul class="list-unstyled">
+                        <li>La mejor experiencia de sushi de toda la ciudad.</li>
+                    </ul>
+                </div>
+
+                <!-- Columna: Sobre nosotros -->
+                <div class="col-12 col-md-4 mb-3">
+                    <p class="sobre-p fw-bold">Horarios</p>
+                    <ul class="list-unstyled">
+                        <li>Lunes a Viernes:</li>
+                        <li>12:00 - 23:00</li>
+                        <li>Sábados y Domingos:</li>
+                        <li>13:00 - 00:00</li>
+                    </ul>
+                </div>
+
+                <!-- Columna: ¿Dudas? Contáctanos -->
+                <div class="col-12 col-md-4 mb-3">
+                    <p class="sobre-p fw-bold">Contáctanos</p>
+                    <ul class="list-unstyled">
+                        <li>Calle Principal 123, Ciudad Código Postal 28001</li>
+                        <li>Teléfono: (+34) 123456789</li>
+                        <li>Email:info@umamihouse.com </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+          <img src="{% static 'img/facebook.png'%}" width="" height="">
+          <img src="../static/img/logotipo-de-instagram.png" width="" height="">
+          <img src="../static/img/">
+    </footer>
     </body>
 </html>
