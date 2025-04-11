@@ -1,0 +1,51 @@
+{% load static %}
+
+{% block header %}
+
+
+
+<nav class="navbar px-2">
+
+         <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="../static/img/menu.png" width="24" height="24" class="me-2" alt="Icono Menu Despegable">
+      </button>
+
+       <ul class="dropdown-menu mi-dropdown">
+            <li><button class="dropdown-item" type="button">Carta</button></li>
+            <li><button class="dropdown-item" type="button">Hacer pedido</button></li>
+            <li><button class="dropdown-item" type="button">Tu carrito</button></li>
+       </ul>
+
+       <div class="form-check form-switch mt-2">
+            <input class="form-check-input custom-switch" type="checkbox" role="switch" id="switchCheckChecked" checked>
+      </div>
+
+    </div>
+
+        <figure class="navbar-brand m-0">
+            <img class="m-0" src="../static/img/Umami_house_2-removebg-preview.png" width="120" height="120" alt="Logo Umami House"/>
+        </figure>
+
+        <div class="d-md-flex align-items-center">
+        <div class="redondes">
+          <a class="botones text-decoration-none p-1 d-flex align-items-center" href="">
+            <img src="../static/img/cita.png" width="24" height="24" class="me-2" alt="Icono reservar">
+            <p class="mb-0">Reservar</p>
+          </a>
+            </div>
+            <div class="redondes">
+          <a class="botones text-decoration-none p-1 d-flex align-items-center" href="">
+            <img src="../static/img/bolsa-de-la-compra.png" width="24" height="24" class="me-2" alt="Icono pedido">
+            <p class="mb-0">Hacer pedido</p>
+          </a>
+            </div>
+            <div class="redondes">
+          <a class="botones text-decoration-none p-1 d-flex align-items-center" href="">
+            <img src="../static/img/usuario.png" width="24" height="24" class="me-2" alt="Icono cuenta">
+            <p class="mb-0">Mi cuenta</p>
+          </a>
+            </div>
+        </div>
+        </nav>
+{% endblock %}

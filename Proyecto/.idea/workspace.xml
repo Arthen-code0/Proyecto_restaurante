@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="59320d09-1611-484b-8163-1128f92aaa28" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/templates/navbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/619745ff-1f3f-4376-82a5-4a386683ffed.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/619745ff-1f3f-4376-82a5-4a386683ffed.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/pagina_menu.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/pagina_menu.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/pagina_menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pagina_menu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/umamihouseapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/umamihouseapp/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,6 +144,11 @@
       <workItem from="1744207724757" duration="5286000" />
       <workItem from="1744216750636" duration="472000" />
       <workItem from="1744219786161" duration="4715000" />
+      <workItem from="1744306167141" duration="2000" />
+      <workItem from="1744307447961" duration="1116000" />
+      <workItem from="1744376735018" duration="1235000" />
+      <workItem from="1744378594435" duration="38000" />
+      <workItem from="1744378934899" duration="764000" />
     </task>
     <servers />
   </component>
