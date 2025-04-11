@@ -1,3 +1,35 @@
-*{
-    background-color:black ;
+/* comienzo titulo menu*/
+.cabecera_menu {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.presentacion {
+    flex-direction: column;
+    justify-content: left;
+}
+
+.caja_boton_carrito {
+    justify-content: right;
+    flex-direction: row-reverse;
+}
+
+.boton_carrito {
+    display: flex;
+    justify-content: center;
+    background-color: #E0B5C6;
+    border-radius: 100%;
+    border: none;
+    padding: 30px;
+}
+
+/* fin titulo menu*/
+
+/* comienzo barra navegacion menu*/
+
+.barra_navegacion {
+    display: flex;
+    
 }
