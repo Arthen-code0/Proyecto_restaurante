@@ -11,6 +11,7 @@
     <body>
        <nav class="navbar px-2">
 
+           <!--Menú desplegable extraído de boostrap-->
          <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         <img src="../static/img/menu.png" width="24" height="24" class="me-2" alt="Icono Menu Despegable">
@@ -25,13 +26,14 @@
        <div class="form-check form-switch mt-2">
             <input class="form-check-input custom-switch" type="checkbox" role="switch" id="switchCheckChecked" checked>
       </div>
-
     </div>
 
+            <!--LOGO-->
         <figure class="navbar-brand m-0">
             <img class="m-0" src="../static/img/Umami_house_2-removebg-preview.png" width="120" height="120" alt="Logo Umami House"/>
         </figure>
 
+           <!--Botones NAVBAR-->
         <div class="d-md-flex align-items-center">
         <div class="redondes">
           <a class="botones text-decoration-none p-1 d-flex align-items-center" href="">
@@ -54,6 +56,7 @@
         </div>
         </nav>
 
+        <!--Imagen con texto-->
        <header class="imagenfuera">
            <div>
                 <img src="../static/img/recetas-de-comida-japonesa-super-faciles-para-hacer-en-casa.webp" class="imagen">
@@ -61,6 +64,7 @@
            </div>
        </header>
 
+        <!--Texto varios-->
         <main class="p-4 mt-5">
             <div class="texto">
             <h1 class="fs-1 fw-bold p-2">Conoce nuestra carta</h1>
@@ -100,42 +104,6 @@
               </div>
         </main>
 
-      <footer class="container-fluid ">
-        <div class="container">
-            <div class="row text-center text-start p-4">
-                <!-- Columna: Nuestros hoteles -->
-                <div class="col-12 col-md-4 mb-3">
-                    <p class="sobre-p fw-bold">Umami House</p>
-                    <ul class="list-unstyled">
-                        <li>La mejor experiencia de sushi de toda la ciudad.</li>
-                    </ul>
-                </div>
-
-                <!-- Columna: Sobre nosotros -->
-                <div class="col-12 col-md-4 mb-3">
-                    <p class="sobre-p fw-bold">Horarios</p>
-                    <ul class="list-unstyled">
-                        <li>Lunes a Viernes:</li>
-                        <li>12:00 - 23:00</li>
-                        <li>Sábados y Domingos:</li>
-                        <li>13:00 - 00:00</li>
-                    </ul>
-                </div>
-
-                <!-- Columna: ¿Dudas? Contáctanos -->
-                <div class="col-12 col-md-4 mb-3">
-                    <p class="sobre-p fw-bold">Contáctanos</p>
-                    <ul class="list-unstyled">
-                        <li>Calle Principal 123, Ciudad Código Postal 28001</li>
-                        <li>Teléfono: (+34) 123456789</li>
-                        <li>Email:info@umamihouse.com </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-          <img src="{% static 'img/facebook.png'%}" width="" height="">
-          <img src="../static/img/logotipo-de-instagram.png" width="" height="">
-          <img src="../static/img/">
-    </footer>
+    {%include "footer.html" %}
     </body>
 </html>
