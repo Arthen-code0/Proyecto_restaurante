@@ -83,7 +83,6 @@ class Cliente(models.Model):
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=150)
     fecha_nacimiento = models.DateField(null=False)
-    dni = models.CharField(max_length=9)
     mail = models.EmailField(max_length=150)
     imagen_url= models.CharField(max_length=1000)
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, default=None)
@@ -95,7 +94,7 @@ class Cliente(models.Model):
 class Cocinero(models.Model):
     nombreCompleto = models.CharField(max_length=500)
     fecha_nacimiento = models.DateField(null=False)
-    dni = models.CharField(max_length=9)
+    #dni = models.CharField(max_length=9)
     mail = models.EmailField(max_length=150)
     imagen_url = models.CharField(max_length=1000)
     user = models.OneToOneField(User, null=True, on_delete=models.DO_NOTHING)
@@ -107,7 +106,7 @@ class Cocinero(models.Model):
 class Camarero(models.Model):
     nombreCompleto = models.CharField(max_length=500)
     fecha_nacimiento = models.DateField(null=False)
-    dni = models.CharField(max_length=9)
+    #dni = models.CharField(max_length=9)
     mail = models.EmailField(max_length=150)
     imagen_url = models.CharField(max_length=1000)
     user = models.OneToOneField(User, null=True, on_delete=models.DO_NOTHING)
