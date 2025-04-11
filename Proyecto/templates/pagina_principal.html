@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -60,12 +61,12 @@
            </div>
        </header>
 
-        <main class="p-4">
+        <main class="p-4 mt-5">
             <div class="texto">
-            <h1 class="fs-1 mt-5 bold fw-bold">Conoce nuestra carta</h1>
+            <h1 class="fs-1 fw-bold p-2">Conoce nuestra carta</h1>
             </div>
-            <div>
-                <p class="negros p-1 fs-4 mt-4">En UMAMI HOUSE siempre encontraras una opción que te sorprenderá,de la mano de ingredientes de máxima calidad , como atún, salmón,langostinos,aguacate, setas o verduras en tempura.
+            <div class="negros1 p-1" >
+                <p class="negros text-center px-4 fs-5">En UMAMI HOUSE siempre encontraras una opción que te sorprenderá,de la mano de ingredientes de máxima calidad , como atún, salmón,langostinos,aguacate, setas o verduras en tempura.
                     Con una amplia carta que incluye medio centenar de tipos de sushi diferentes, cada comensal da con su comida favorita. Porque la hay para los más atrevidos y los más tradicionales, para los más sanos y para aquellos que prefieren un poco más de salsa.
                     Y si nos permites una pequeña recomendación… Atrévete con nuestros increíbles Flamed Rolls, nuestra experiencia en mayúsculas:
                     sushi flambeado frente a tu mesa que te dejará con la boca abierta.
@@ -99,8 +100,42 @@
               </div>
         </main>
 
-        <footer>
-            
-        </footer>
+      <footer class="container-fluid ">
+        <div class="container">
+            <div class="row text-center text-start p-4">
+                <!-- Columna: Nuestros hoteles -->
+                <div class="col-12 col-md-4 mb-3">
+                    <p class="sobre-p fw-bold">Umami House</p>
+                    <ul class="list-unstyled">
+                        <li>La mejor experiencia de sushi de toda la ciudad.</li>
+                    </ul>
+                </div>
+
+                <!-- Columna: Sobre nosotros -->
+                <div class="col-12 col-md-4 mb-3">
+                    <p class="sobre-p fw-bold">Horarios</p>
+                    <ul class="list-unstyled">
+                        <li>Lunes a Viernes:</li>
+                        <li>12:00 - 23:00</li>
+                        <li>Sábados y Domingos:</li>
+                        <li>13:00 - 00:00</li>
+                    </ul>
+                </div>
+
+                <!-- Columna: ¿Dudas? Contáctanos -->
+                <div class="col-12 col-md-4 mb-3">
+                    <p class="sobre-p fw-bold">Contáctanos</p>
+                    <ul class="list-unstyled">
+                        <li>Calle Principal 123, Ciudad Código Postal 28001</li>
+                        <li>Teléfono: (+34) 123456789</li>
+                        <li>Email:info@umamihouse.com </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+          <img src="{% static 'img/facebook.png'%}" width="" height="">
+          <img src="../static/img/logotipo-de-instagram.png" width="" height="">
+          <img src="../static/img/">
+    </footer>
     </body>
 </html>
