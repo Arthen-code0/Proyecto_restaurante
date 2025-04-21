@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="59320d09-1611-484b-8163-1128f92aaa28" name="Changes" comment="" />
+    <list default="true" id="59320d09-1611-484b-8163-1128f92aaa28" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,9 +64,9 @@
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "django.template.preview.state": "SHOW_EDITOR",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "RamaSelui",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/jluis/Desktop/Proyecto_restaurante/Proyecto/UmamiHouseApp",
+    "last_opened_file_path": "C:/Users/jluis/Desktop/Proyecto_restaurante",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -145,6 +147,8 @@
       <workItem from="1744378594435" duration="38000" />
       <workItem from="1744378934899" duration="764000" />
       <workItem from="1744391832219" duration="62000" />
+      <workItem from="1744392721947" duration="135000" />
+      <workItem from="1745081780049" duration="38000" />
     </task>
     <servers />
   </component>

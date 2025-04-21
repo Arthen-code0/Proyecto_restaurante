@@ -5,15 +5,9 @@
       <footer class="container-fluid ">
         <div class="container">
             <div class="row text-center text-start p-4">
-                <!-- Columna: Nuestros hoteles -->
-                <div class="col-12 col-md-4 mb-3">
-                    <p class="sobre-p fw-bold">Umami House</p>
-                    <ul class="list-unstyled">
-                        <li>La mejor experiencia de sushi de toda la ciudad.</li>
-                    </ul>
-                </div>
 
-                <!-- Columna: Sobre nosotros -->
+                <!-- Columna: Nuestros hoteles -->
+
                 <div class="col-12 col-md-4 mb-3">
                     <p class="sobre-p fw-bold">Horarios</p>
                     <ul class="list-unstyled">
@@ -24,9 +18,10 @@
                     </ul>
                 </div>
 
-                <!-- Columna: ¿Dudas? Contáctanos -->
+                <!-- Columna: Sobre nosotros -->
+
                 <div class="col-12 col-md-4 mb-3">
-                  <p class="sobre-p fw-bold">Contáctanos</p>
+                    <p class="sobre-p fw-bold">Contáctanos</p>
                   <ul class="list-unstyled">
                     <li class="d-flex align-items-start mb-2">
                       <img src="{% static 'img/ubicacion.png' %}" alt="Ubicación" width="20" class="me-2">
@@ -42,10 +37,17 @@
                     </li>
                   </ul>
                 </div>
+
+                <!-- Columna: ¿Dudas? Contáctanos -->
+
+                <div class="col-12 col-md-4 mb-3">
+                    <p class="sobre-p fw-bold">Nuestras Redes</p>
+                    <img src="{% static 'img/facebook.png'%}" width="40" height="40">
+                    <img src="{% static 'img/icons8-instagram-50.png' %}" width="40" height="40" class="m-2">
+                    <img src="{% static 'img/medios-de-comunicacion-social.png' %}" width="40" height="40" class="m-2">
+                </div>
             </div>
         </div>
-          <img src="{% static 'img/facebook.png'%}" width="40" height="40">
-          <img src="{% static 'img/icons8-instagram-50.png' %}" width="40" height="40" class="m-2">
-          <img src="{% static 'img/medios-de-comunicacion-social.png' %}" width="40" height="40" class="m-2">
+
     </footer>
 {% endblock %}
