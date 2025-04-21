@@ -5,3 +5,6 @@ def pagina_principal(request):
 
 def pagina_menu(request):
     return render(request, 'pagina_menu.html')
+
+def registrar_usuario(request):
+    return render(request, 'registrarse.html')
