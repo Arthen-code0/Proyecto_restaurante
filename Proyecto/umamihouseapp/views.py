@@ -8,5 +8,6 @@ def pagina_menu(request):
 
 def registrar_usuario(request):
     return render(request, 'registrarse.html')
+
 def inicio_de_sesion(request):
     return render(request, 'inicio_de_sesion.html')

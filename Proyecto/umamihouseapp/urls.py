@@ -6,6 +6,6 @@ urlpatterns = [
     path('', pagina_principal, name='home'),
     path('menu/', pagina_menu, name='menu'),
     path('registro/', registrar_usuario, name='registrar_usuario'),
-    path('inicio_sesion/', inicio_de_sesion, name='inicio_de_sesion'),
+    path('inicio_de_sesion/', inicio_de_sesion, name='inicio_de_sesion'),
 
 ]

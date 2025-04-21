@@ -191,22 +191,19 @@ footer{
     color: black;
     padding: 30px;
     border-radius: 10px;
-      border: 2pt solid #B17A90;
+    border: 2pt solid #B17A90;
     max-width: 650px;
     margin: 100px auto;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
   }
 
-.btn-custom {
+.btn{
     background-color: #E0B5C6;
     color: #fff;
     border-radius: 20px;
+    text-align: center;
   }
-
-.btn-custom:hover {
-    background-color: #B17A90;
-}
 
 .login-container a {
     color: #B17A90;
@@ -215,4 +212,26 @@ footer{
 
   .login-container a:hover {
     text-decoration: underline;
+  }
+
+/*ESTA PARTE ES LA DE INICIO DE SESION*/
+.form-container {
+    background-color: whitesmoke;
+    color: black;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2pt solid #B17A90;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    max-width: 600px;
+    margin: 50px auto;
+  }
+  .form-title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .caract{
+      color: gray;
+  }
+  .registro{
+      color: #B17A90;
   }

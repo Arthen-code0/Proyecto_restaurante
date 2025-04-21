@@ -1,10 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+{% load static %}
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Menu</title>
+    <link rel="stylesheet" href="{% static 'css/pagina_principalss.css' %}">
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
 </head>
 <body>
+{% include "navbar.html" %}
+    <header>
+        <div class="form-container">
+            <h2 class="form-title">Crea tu cuenta</h2>
+            <form>
+              <!--Información personal-->
+              <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+              </div>
+              <div class="mb-3">
+                <label for="apellido" class="form-label">Apellido</label>
+                <input type="text" class="form-control" id="apellido" placeholder="Apellido">
+              </div>
+              <div class="mb-3">
+                <label for="contrasena" class="form-label">Contraseña</label>
+                <input type="Contraseá" class="form-control" id="Contraseña" placeholder="Contraseña">
+                  <p class="caract">La contraseña debe tener al menos 6 caracteres</p>
+              </div>
+              <div class="mb-3">
+                <label for="contrasena" class="form-label">Confirmar contraseña</label>
+                <input type="contrasena" class="form-control" id="contrasena" placeholder="Confirmar contraseña">
+              </div>
 
+            <!-- Botón de inicio de sesión -->
+                <div class="text-center">
+                <button type="submit" class="btn mt-2">Regístrate</button>
+                </div>
+            </form>
+            <!-- Enlace para crear cuenta -->
+            <p class="text-center mt-2">¿Todavía no tienes cuenta? <a href="" class="registro text-decoration-none"> Registrate aquí</a></p>
+            </form>
+        </div>
+        </header>
+{% include "footer.html" %}
 </body>
 </html>
