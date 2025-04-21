@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,7 +14,7 @@
         {% include "navbar.html" %}
        <header class="imagenfuera">
            <div>
-                <img src="../static/img/recetas-de-comida-japonesa-super-faciles-para-hacer-en-casa.webp" class="imagen">
+                <img src="{% static 'img/imagen_principal.jpg' %}" class="imagen">
            <div class="textoimg">Disfruta del inesperado placer del sushi</div>
            </div>
        </header>
@@ -51,13 +52,13 @@
           <div class="carousel-inner">
 
             <div class="carousel-item active img-fluid scroll_imagenes">
-              <img src="../static/img/imagen%20carrousel%201.png" class="d-block w-100" alt="imagen_1_carrousel">
+              <img src="{% static 'img/imagen_carrousel_1.jpg' %}" class="d-block w-100" alt="imagen_1_carrousel">
             </div>
             <div class="carousel-item img-fluid scroll_imagenes">
-              <img src="../static/img/imagen%20carrousel%202.png" class="d-block w-100" alt="imagen_2_carrousel">
+              <img src="{% static 'img/imagen_carrousel_2.jpg' %}" class="d-block w-100" alt="imagen_2_carrousel">
             </div>
             <div class="carousel-item img-fluid scroll_imagenes">
-              <img src="../static/img/imagen%20carrousel%203.png" class="d-block w-100 " alt="imagen_3_carrousel">
+              <img src="{% static 'img/imagen_carrousel_3.jpg' %}" class="d-block w-100 " alt="imagen_3_carrousel">
 
             </div>
 
