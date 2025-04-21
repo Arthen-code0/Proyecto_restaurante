@@ -91,12 +91,31 @@ footer{
 
 /*ESTA PARTE ES DEL REGISTRO*/
   .login-container {
-    background-color: rgba(16, 41, 45, 0.95);
-    color: #ffffff;
+    background-color: whitesmoke;
+    color: black;
     padding: 30px;
     border-radius: 10px;
-    max-width: 400px;
+    max-width: 600px;
     margin: 100px auto;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
+  }
+
+    .btn-custom {
+    background-color: #E0B5C6;
+    color: #fff;
+    border-radius: 20px;
+  }
+
+  .btn-custom:hover {
+    background-color: #B17A90;
+  }
+
+  .login-container a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .login-container a:hover {
+    text-decoration: underline;
   }
