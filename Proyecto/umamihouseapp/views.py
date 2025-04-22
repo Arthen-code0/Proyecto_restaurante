@@ -18,3 +18,6 @@ def inicio_de_sesion(request):
 
 def crear_plato(request):
     return render(request, 'crear_plato.html')
+
+def formulario_pago(request):
+    return render(request, 'formulario_pago.html')

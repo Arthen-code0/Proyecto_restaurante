@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+    <link rel="stylesheet" href="{% static 'css/pagina_principalss.css' %}">
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+{% include "navbar.html" %}
+<header>
+    <div class="form-container">
+        <h2 class="form-title">Ubicación de entrega</h2>
+        <form>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="codigo_postal" class="form-label">Código Postal:</label>
+                    <input type="text" class="form-control" id="codigo_postal">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="escalera" class="form-label">Escalera:</label>
+                    <input type="text" class="form-control" id="escalera">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="portal" class="form-label">Portal:</label>
+                    <input type="text" class="form-control" id="portal">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="puerta" class="form-label">Puerta:</label>
+                    <input type="text" class="form-control" id="puerta">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="calle" class="form-label">Calle:</label>
+                <input type="text" class="form-control" id="calle">
+            </div>
+            <div class="mb-3">
+                <label for="telefono" class="form-label">Teléfono:</label>
+                <input type="text" class="form-control" id="telefono">
+            </div>
+
+            <h2 class="form-title mt-4">Método de pago</h2>
+            <div class="mb-3">
+                <label for="nombre_tarjeta" class="form-label">Nombre de la tarjeta:</label>
+                <input type="text" class="form-control" id="nombre_tarjeta">
+            </div>
+            <div class="mb-3">
+                <label for="numero_tarjeta" class="form-label">Número de la tarjeta:</label>
+                <input type="text" class="form-control" id="numero_tarjeta">
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="vencimiento" class="form-label">Fecha de vencimiento:</label>
+                    <input type="text" class="form-control" id="vencimiento">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="cvv" class="form-label">CVV:</label>
+                    <input type="text" class="form-control" id="cvv">
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-dark mt-3">Hacer pedido</button>
+            </div>
+        </form>
+    </div>
+</header>
+{% include "footer.html" %}
+</body>
+</html>
