@@ -11,3 +11,6 @@ def registrar_usuario(request):
 
 def inicio_de_sesion(request):
     return render(request, 'inicio_de_sesion.html')
+
+def tu_pedido(request):
+    return render(request, 'tu_pedido.html')
