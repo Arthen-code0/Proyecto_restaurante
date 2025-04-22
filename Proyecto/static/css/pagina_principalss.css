@@ -1,30 +1,32 @@
 /*Estilo general*/
 
-*{
+* {
     min-width: 0;
     min-height: 0;
     box-sizing: border-box;
     font-family: "Segoe UI", system-ui, sans-serif;
 }
-body{
+
+body {
     font-size: 12px;
 }
 
 /*NAVBAR*/
-nav{
-  padding-bottom: 0.0rem !important;
-  background-color: #FFEBF3;
-  background-image: url("../img/sakura.png");
+nav {
+    padding-bottom: 0.0rem !important;
+    background-color: #FFEBF3;
+    background-image: url("../img/sakura.png");
 }
 
 /*Botones Redondos*/
 .redondes {
-  border-radius: 50px;
-  background-color: #E0B5C6;
-  padding: 4px 8px;
-  justify-content: space-between;
+    border-radius: 50px;
+    background-color: #E0B5C6;
+    padding: 4px 8px;
+    justify-content: space-between;
 }
-.redondes:hover{
+
+.redondes:hover {
     background-color: #B17A90;
     transition: 0.5s;
 }
@@ -36,13 +38,15 @@ nav{
     position: relative;
     overflow: hidden;
 }
-.imagen{
+
+.imagen {
     object-fit: cover; /* La imagen cubre todo el contenedor */
     width: 100%;
     filter: blur(1px);
     background-color: rgba(0, 0, 0, 0.307);
 }
-.textoimg{
+
+.textoimg {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -50,21 +54,22 @@ nav{
     color: white;
     font-size: 5rem;
     font-weight: bold;
-    text-shadow: 3px 3px 15px rgb(0,0,0,1.5);
+    text-shadow: 3px 3px 15px rgb(0, 0, 0, 1.5);
     text-align: center;
 }
 
 
 /*MAIN*/
-main{
+main {
     padding-top: 20px;
 }
-.texto{
-    color:black;
+
+.texto {
+    color: black;
     text-align: center;
 }
 
-.negros{
+.negros {
     color: black;
     font-size: 18px;
     margin-top: 1rem;
@@ -73,21 +78,24 @@ main{
     margin-bottom: 2rem;
 }
 
-.buttonbox{
+.buttonbox {
     text-align: center;
 }
-.button{
+
+.button {
     background-color: #E0B5C6;
     border: none;
 }
 
-.sobre-p{
-    color:black;
+.sobre-p {
+    color: black;
 }
-footer{
+
+footer {
     background-color: #E7C3D5;
     font-size: 14px;
 }
+
 /*PÁGINA MENÚ*/
 
 /* comienzo titulo menu */
@@ -186,7 +194,7 @@ footer{
 }
 
 /*ESTA PARTE ES DEL REGISTRO*/
-  .login-container {
+.login-container {
     background-color: whitesmoke;
     color: black;
     padding: 30px;
@@ -196,23 +204,23 @@ footer{
     margin: 100px auto;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
-  }
+}
 
-.btn{
+.btn {
     background-color: #E0B5C6;
     color: #fff;
     border-radius: 20px;
     text-align: center;
-  }
+}
 
 .login-container a {
     color: #B17A90;
     text-decoration: none;
 }
 
-  .login-container a:hover {
+.login-container a:hover {
     text-decoration: underline;
-  }
+}
 
 /*ESTA PARTE ES LA DE INICIO DE SESION*/
 .form-container {
@@ -224,14 +232,17 @@ footer{
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
     max-width: 600px;
     margin: 50px auto;
-  }
-  .form-title {
+}
+
+.form-title {
     text-align: center;
     margin-bottom: 20px;
-  }
-  .caract{
-      color: gray;
-  }
-  .registro{
-      color: #B17A90;
-  }
+}
+
+.caract {
+    color: gray;
+}
+
+.registro {
+    color: #B17A90;
+}

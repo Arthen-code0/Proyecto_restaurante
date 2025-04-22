@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Crear plato</title>
+    <link rel="stylesheet" href="{% static 'css/pagina_principalss.css' %}">
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+{% include "navbar.html" %}
+<header>
+    <div class="form-container">
+        <h2 class="form-title">NUEVO PRODUCTO</h2>
+        <form>
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+            </div>
+            <div class="mb-3">
+                <label for="descripcion" class="form-label">Descripción</label>
+                <input type="text" class="form-control" id="descripcion" placeholder="Descripcion">
+            </div>
+            <div class="mb-3">
+                <label for="Precio" class="form-label">Precio</label>
+                <input type="number" class="form-control" id="precio" placeholder="Precio">
+            </div>
+            <div class="mb-3">
+                <label for="tipo_producto" class="form-label">Tipo de producto</label>
+                <select class="form-control" id="tipo_producto">
+                    <option value="" disabled selected>Selecciona un tipo de producto</option>
+                    <option value="ENTRANTE">Entrante</option>
+                    <option value="SUSHI">Sushi</option>
+                    <option value="PLATO_PRINCIPAL">Plato principal</option>
+                    <option value="POSTRE">Postre</option>
+                    <option value="BEBIDA">Bebida</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="imagen" class="form-label">Imagen</label>
+                <input type="image" class="form-control" id="imagen" placeholder="imagen">
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn mt-2">Agregar</button>
+            </div>
+        </form>
+    </div>
+</header>
+{% include "footer.html" %}
+</body>
+</html>

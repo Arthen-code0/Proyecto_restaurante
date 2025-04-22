@@ -1,57 +1,62 @@
 <!DOCTYPE html>
-    <html lang="es">
-        {% load static %}
-        <head>
-            <meta charset="UTF-8">
-                <title>Menu</title>
-                <link rel="stylesheet" href="../static/css/pagina_principalss.css">
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-        </head>
-        <body>
-            {% load static %}
+<html lang="es">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+    <link rel="stylesheet" href="../static/css/pagina_principalss.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+{% load static %}
 
-            {% include "navbar.html" %}
-            <div class="cabecera_menu">
-                <div class="presentacion">
-                    <h1>Nuestra Carta</h1>
-                    <p>Descubre nuestra selección de auténtica cocina japonesa</p>
-                </div>
+{% include "navbar.html" %}
+<div class="cabecera_menu">
+    <div class="presentacion">
+        <h1>Nuestra Carta</h1>
+        <p>Descubre nuestra selección de auténtica cocina japonesa</p>
+    </div>
 
-                <div class="caja_boton_carrito">
-                    <button class="boton_carrito"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart icono_carro" viewBox="0 0 16 16">
-                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
-                    </svg></button>
-                </div>
-            </div>
+    <div class="caja_boton_carrito">
+        <button class="boton_carrito">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                 class="bi bi-cart icono_carro" viewBox="0 0 16 16">
+                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+            </svg>
+        </button>
+    </div>
+</div>
 
 
+<div class="caja_barra_navegacion">
+    <div class="barra_navegacion">
+        <button class="botones_barra_navegacion">Todos</button>
+        <button class="botones_barra_navegacion">Destacados</button>
+        <button class="botones_barra_navegacion">Entrantes</button>
+        <button class="botones_barra_navegacion">Sushi</button>
+        <button class="botones_barra_navegacion">Platos Principales</button>
+        <button class="botones_barra_navegacion">Postres</button>
+        <button class="botones_barra_navegacion">Bebidas</button>
+    </div>
+</div>
 
-            <div class="caja_barra_navegacion">
-                <div class="barra_navegacion">
-                    <button class="botones_barra_navegacion">Todos</button>
-                    <button class="botones_barra_navegacion">Destacados</button>
-                    <button class="botones_barra_navegacion">Entrantes</button>
-                    <button class="botones_barra_navegacion">Sushi</button>
-                    <button class="botones_barra_navegacion">Platos Principales</button>
-                    <button class="botones_barra_navegacion">Postres</button>
-                    <button class="botones_barra_navegacion">Bebidas</button>
-                </div>
-            </div>
+<div class="caja_contenido_comida">
+    <div class="imagen_contenido_comida">
 
-            <div class="caja_contenido_comida">
-                <div class="imagen_contenido_comida">
+    </div>
+    <div class="informacion_comida">
+        <div class="titulo_comida"></div>
+        <div class="boton_comida"></div>
+    </div>
+    <div>
+        <h5>precio</h5>
+    </div>
+</div>
+{% include "footer.html" %}
 
-                </div>
-                <div class="informacion_comida">
-                    <div class="titulo_comida"></div>
-                    <div class="boton_comida"></div>
-                </div>
-                <div>
-                    <h5>precio</h5>
-                </div>
-            </div>
-            {% include "footer.html" %}
-
-        </body>
-    </html>
+</body>
+</html>
