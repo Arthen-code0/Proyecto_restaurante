@@ -39,7 +39,8 @@ nav{
 .imagen{
     object-fit: cover; /* La imagen cubre todo el contenedor */
     width: 100%;
-    filter: blur(1px);
+    height: 650px;
+    filter: blur(4px);
     background-color: rgba(0, 0, 0, 0.307);
 }
 .textoimg{
@@ -50,12 +51,89 @@ nav{
     color: white;
     font-size: 5rem;
     font-weight: bold;
-    text-shadow: 3px 3px 15px rgb(0,0,0,1.5);
+    text-shadow: 15px 3px 3px 15px rgb(0,0,0,1.5);
     text-align: center;
 }
 
+/*Menu desplegable izquierdo*/
+
+.button_menu_desplegable {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 3rem !important;
+    height: 3rem !important;
+    background: transparent !important;
+    gap: .65rem !important;
+    border: none !important;
+    cursor: pointer !important;
+}
+
+.button_menu_desplegable > div {
+    background: black !important;
+    height: 2px !important;
+    width: 100% !important;
+    border-radius: 5px !important;
+    transition: all .5s !important;
+    transform-origin: left !important;
+}
+
+.button_menu_desplegable:hover  div:first-child {
+    transform: rotate(45deg) !important;
+}
+
+.button_menu_desplegable:hover  div:nth-child(2) {
+    opacity: 0 !important;
+}
+
+.button_menu_desplegable:hover  div:last-child {
+    transform: rotate(-45deg) !important;
+}
+
+/*Switch de cambio de color de pagina*/
+
+/*.container-btn-mode{
+  position: absolute;
+  top:20px;
+  right: 30px;
+  cursor: pointer;
+  z-index: 2;
+  font-size:0;
+}
+.btn-mode{
+  display: inline-block;
+  width: 50px;
+  height: 30px;
+  border:2px solid black;
+  transition: background-color .5s;
+}
+.btn-mode i {
+  display: block;
+  font-size: 17px;
+  text-align: center;
+  line-height: 30px;
+}
+.btn-mode.sun{
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-right: 1px solid transparent;
+}
+.btn-mode.moon{
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.active{
+  background-color:black;
+  color:#ffcd5c !important;
+}*/
+
+.boton_menu{
+    background-color: #E0B5C6 !important;
+    color: white !important;
+    width: 13% !important;
+}
 
 /*MAIN*/
+
 main{
     padding-top: 20px;
 }
@@ -84,13 +162,18 @@ main{
 .sobre-p{
     color:black;
 }
+
 footer{
     background-color: #E7C3D5;
     font-size: 14px;
 }
+
+.iconos_footer {
+    filter: invert(1);
+}
 /*PÁGINA MENÚ*/
 
-/* comienzo titulo menu */
+/*Comienzo titulo menu */
 .cabecera_menu {
     display: flex;
     flex-direction: row;
@@ -139,6 +222,12 @@ footer{
     color: white;
 }
 
+.contenedor_carrousel {
+    width: 65vw;
+    margin: 8% auto;
+}
+
+
 /* fin titulo menu */
 
 /* comienzo barra navegacion menu */
@@ -176,8 +265,6 @@ footer{
     transform: translateY(-3px);
     cursor: pointer;
 }
-
-/* Fin barra navegacion menu */
 
 /* Comienzo contenido menu */
 
@@ -239,7 +326,7 @@ footer{
   /*ESTA PARTE ES DE TU PEDIDO*/
 
 .login-container1{
-        background-color: whitesmoke;
+    background-color: whitesmoke;
     color: black;
     padding: 30px;
     border-radius: 10px;
