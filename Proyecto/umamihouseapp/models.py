@@ -1,4 +1,5 @@
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
+from django.contrib.auth.models import PermissionsMixin
 from django.db import models
 
 #Los Models.TextChoices son una especie de ENUM que nos servirán para relacionar con métodos
@@ -63,7 +64,14 @@ class UserManager(BaseUserManager):
         return self.create_user(email, password, **extra_fields)
 
 #Esta clase crea usuarios
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
+    ROLES= (
+        ('admin', 'Administrador'),
+        ('cliente', 'Cliente' ),
+        ('cocinero', 'Cocinero'),
+        ('camarero', 'Camarero'),
+    )
+
     nombreUsuario = models.CharField(max_length=150, unique=True)
     email = models.EmailField(unique=True)
     rol = models.CharField(max_length=50, choices=Rol.choices, default=Rol.CLIENTE)
@@ -76,7 +84,7 @@ class User(AbstractBaseUser):
     REQUIRED_FIELDS = ['password', 'email']
 
     def __str__(self):
-        return self.nombreUsuario
+        return self.email + "-" + self.nombreUsuario + ":" + self.rol
 
 #Esta clase crea clientes
 class Cliente(models.Model):
