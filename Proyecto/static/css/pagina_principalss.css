@@ -8,6 +8,9 @@
 }
 body{
     font-size: 12px;
+    background-color: white;
+    color: black;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 /*NAVBAR*/
@@ -98,43 +101,6 @@ nav{
 .button_menu_desplegable:hover  div:last-child {
     transform: rotate(-45deg) !important;
 }
-
-/*Switch de cambio de color de pagina*/
-
-/*.container-btn-mode{
-  position: absolute;
-  top:20px;
-  right: 30px;
-  cursor: pointer;
-  z-index: 2;
-  font-size:0;
-}
-.btn-mode{
-  display: inline-block;
-  width: 50px;
-  height: 30px;
-  border:2px solid black;
-  transition: background-color .5s;
-}
-.btn-mode i {
-  display: block;
-  font-size: 17px;
-  text-align: center;
-  line-height: 30px;
-}
-.btn-mode.sun{
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  border-right: 1px solid transparent;
-}
-.btn-mode.moon{
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-}
-.active{
-  background-color:black;
-  color:#ffcd5c !important;
-}*/
 
 .boton_menu{
     background-color: #E0B5C6 !important;
@@ -346,3 +312,7 @@ footer{
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
+
+/*Boton de cambio de tema*/
+
+/* Estilos para el tema claro */
