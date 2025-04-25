@@ -1,0 +1,17 @@
+*{
+    min-width: 0;
+    min-height: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+nav{
+    background-color: #eadee6;
+    background-image: url("../img/sakura_petalos2.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 400px;
+
+}
+

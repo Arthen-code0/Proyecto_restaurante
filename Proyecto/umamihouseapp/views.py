@@ -17,5 +17,9 @@ def crear_plato(request):
 
 def formulario_pago(request):
     return render(request, 'formulario_pago.html')
+
 def tu_pedido(request):
     return render(request, 'tu_pedido.html')
+
+def navbarmobiles(request):
+    return render(request, 'navbarmoviles.html')
