@@ -26,19 +26,6 @@ nav {
     padding-bottom: 0.0rem !important;
 }
 
-/*Botones Redondos*/
-.redondes {
-    border-radius: 50px;
-    background-color: #E0B5C6;
-    padding: 4px 8px;
-    justify-content: space-between;
-}
-
-.redondes:hover {
-    background-color: #B17A90;
-    transition: 0.5s;
-}
-
 .navbar-claro {
     background-color: #fde0f9;
     background-image: url("../img/sakura_petalos2.png");
@@ -58,6 +45,31 @@ nav {
     height: auto;
 
 }
+
+/*Botones Redondos*/
+.redondes {
+    border-radius: 50px;
+    background-color: #E0B5C6;
+    padding: 4px 8px;
+    justify-content: space-between;
+}
+.redondes-oscuro {
+    border-radius: 50px;
+    background-color: #D7C66B;
+    padding: 4px 8px;
+    justify-content: space-between;
+}
+
+.redondes:hover {
+    background-color: #B17A90;
+    transition: 0.5s;
+}
+.redondes-oscuro:hover {
+    background-color: #ae9e44;
+    transition: 0.5s;
+}
+
+
 
 /*HEADER*/
 .imagenfuera {
@@ -138,12 +150,12 @@ main {
 }
 
 .texto {
-    color: black;
+
     text-align: center;
 }
 
 .negros {
-    color: black;
+
     font-size: 18px;
     margin-top: 1rem;
     margin-left: 1rem;
@@ -155,22 +167,30 @@ main {
     text-align: center;
 }
 
-.button {
+.button-menu{
     background-color: #E0B5C6;
     border: none;
 }
 
-.sobre-p {
-    color: black;
+.button-menu-oscuro{
+    background-color: #D7C66B !important;
+    border: none;
 }
 
-footer {
+
+.footer-claro {
     background-color: #E7C3D5;
     font-size: 14px;
 }
 
 .iconos_footer {
     filter: invert(1);
+}
+
+.footer-oscuro {
+    background-color: #2E2D45 !important;
+    font-size: 14px;
+    color: white;
 }
 
 /*PÁGINA MENÚ*/
