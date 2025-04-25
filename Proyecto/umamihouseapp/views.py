@@ -23,3 +23,6 @@ def tu_pedido(request):
 
 def navbarmobiles(request):
     return render(request, 'navbarmoviles.html')
+
+def mesas(request):
+    return render(request, 'mesas.html')
