@@ -1,5 +1,6 @@
 from django.urls import path
-from umamihouseapp.views import pagina_principal, pagina_menu, registrar_usuario, inicio_de_sesion, crear_plato, formulario_pago, tu_pedido
+from umamihouseapp.views import pagina_principal, pagina_menu, registrar_usuario, inicio_de_sesion, crear_plato, \
+    formulario_pago, tu_pedido, navbarmobiles
 
 urlpatterns = [
     path('home', pagina_principal, name='home'),
@@ -10,5 +11,7 @@ urlpatterns = [
     path('crear_plato/', crear_plato, name='crear_plato'),
     path('formulario_pago/', formulario_pago, name='formulario_pago'),
     path('tu_pedido/', tu_pedido, name='tu_pedido'),
+    path('navbarmobiles/', navbarmobiles, name='navbarmobiles'),
+
 
 ]
