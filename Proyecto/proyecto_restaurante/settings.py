@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'proyecto_restaurante.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.oracle',
+        'NAME': 'XE',
+        'USER': 'C##PROYECTO_RESTAURANTE',
+        'PASSWORD': '123456',
+        'HOST': 'LOCALHOST',
+        'PORT': '1521',
     }
 }
 

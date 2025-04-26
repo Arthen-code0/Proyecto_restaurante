@@ -1,8 +1,10 @@
 
-/* comienzo titulo menu */
+/* Comienzo titulo menu */
+
 .cabecera_menu {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     width: 100%;
     justify-content: space-between;
 }
@@ -48,9 +50,9 @@
     color: white;
 }
 
-/* fin titulo menu */
+/* Fin titulo menu */
 
-/* comienzo barra navegacion menu */
+/* Comienzo barra navegacion menu */
 
 .caja_barra_navegacion {
     display: flex;
@@ -94,5 +96,23 @@
     margin-left: 5%;
 }
 
+/*Contenedores menu*/
+
+.imagen-ajustada {
+    height: 270px;
+    object-fit: cover;
+}
+
+.card {
+    margin-bottom: 30px;
+}
+
+.btn_custom {
+    background-color: #E0B5C6 !important;
+    color: #fff;
+    border-radius: 20px;
+    text-align: center;
+    border: none !important;
+}
 
 
