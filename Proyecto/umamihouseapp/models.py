@@ -2,16 +2,18 @@ from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
 
-#Los Models.TextChoices son una especie de ENUM que nos servirán para relacionar con métodos
+
+# Los Models.TextChoices son una especie de ENUM que nos servirán para relacionar con métodos
 class TipoPlato(models.TextChoices):
     ENTRANTE = 'ENTRANTE', 'Entrante'
     SUSHI = 'SUSHI', 'Sushi'
     PLATO_PRINCIPAL = 'PLATO_PRINCIPAL', 'Plato_principal'
-    POSTRE= 'POSTRE', 'Postre'
-    BEBIDA= 'BEBIDA', 'Bebida'
+    POSTRE = 'POSTRE', 'Postre'
+    BEBIDA = 'BEBIDA', 'Bebida'
 
-#NumMesa aun no tiene función porque tengo que pensar como hacer el modelo para que los camareros asignen mesas y hagan pedidos,
-#perdo supongo que nos serivirá pronto
+
+# NumMesa aun no tiene función porque tengo que pensar como hacer el modelo para que los camareros asignen mesas y hagan pedidos,
+# perdo supongo que nos serivirá pronto
 class NumMesa(models.TextChoices):
     MESA1 = 'MESA1', 'Mesa1'
     MESA2 = 'MESA2', 'Mesa2'
@@ -19,14 +21,16 @@ class NumMesa(models.TextChoices):
     MESA4 = 'MESA4', 'Mesa4'
     MESA5 = 'MESA5', 'Mesa5'
 
-#Rol es para definir el rol del usuario a crear
+
+# Rol es para definir el rol del usuario a crear
 class Rol(models.TextChoices):
     ADMIN = 'ADMIN', 'Administrador'
     COCINERO = 'COCINERO', 'Cocinero'
     CAMARERO = 'CAMARERO', 'Camarero'
     CLIENTE = 'CLIENTE', 'Cliente'
 
-#Modelo para la creación de platos, se relaciona con el modelo TipoPlato.
+
+# Modelo para la creación de platos, se relaciona con el modelo TipoPlato.
 class Plato(models.Model):
     nombre = models.CharField(max_length=50)
     descripcion = models.TextField()
@@ -37,11 +41,12 @@ class Plato(models.Model):
         choices=TipoPlato.choices,
         default=TipoPlato.ENTRANTE)
 
-#el return nos muestra lo que le pasemos de nuestro método (creo que no hacía falta explicar)
+    # el return nos muestra lo que le pasemos de nuestro método (creo que no hacía falta explicar)
     def __str__(self):
         return self.nombre
 
-#Esta clase es un controlador para crear usuarios y superusuarios
+
+# Esta clase es un controlador para crear usuarios y superusuarios
 class UserManager(BaseUserManager):
     def create_user(self, email, nombre, rol, password=None):
         if not email:
@@ -59,11 +64,12 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-#Esta clase crea usuarios
+
+# Esta clase crea usuarios
 class User(AbstractBaseUser, PermissionsMixin):
-    ROLES= (
+    ROLES = (
         ('admin', 'Administrador'),
-        ('cliente', 'Cliente' ),
+        ('cliente', 'Cliente'),
         ('cocinero', 'Cocinero'),
         ('camarero', 'Camarero'),
     )
@@ -81,23 +87,25 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email + "-" + self.nombreUsuario + ":" + self.rol
 
-#Esta clase crea clientes
+
+# Esta clase crea clientes
 class Cliente(models.Model):
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=150)
     fecha_nacimiento = models.DateField(null=False)
     mail = models.EmailField(max_length=150)
-    imagen_url= models.CharField(max_length=1000)
+    imagen_url = models.CharField(max_length=1000)
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, default=None)
 
     def __str__(self):
         return str(self.id) + " " + self.nombre + "," + self.apellido
 
+
 # Esta clase crea cocineros
 class Cocinero(models.Model):
     nombreCompleto = models.CharField(max_length=500)
     fecha_nacimiento = models.DateField(null=False)
-    #dni = models.CharField(max_length=9)
+    # dni = models.CharField(max_length=9)
     mail = models.EmailField(max_length=150)
     imagen_url = models.CharField(max_length=1000)
     user = models.OneToOneField(User, null=True, on_delete=models.DO_NOTHING)
@@ -105,11 +113,12 @@ class Cocinero(models.Model):
     def __str__(self):
         return str(self.id) + " " + self.nombreCompleto
 
-#Esta clase crea camareros
+
+# Esta clase crea camareros
 class Camarero(models.Model):
     nombreCompleto = models.CharField(max_length=500)
     fecha_nacimiento = models.DateField(null=False)
-    #dni = models.CharField(max_length=9)
+    # dni = models.CharField(max_length=9)
     mail = models.EmailField(max_length=150)
     imagen_url = models.CharField(max_length=1000)
     user = models.OneToOneField(User, null=True, on_delete=models.DO_NOTHING)
@@ -118,17 +127,18 @@ class Camarero(models.Model):
         return str(self.id) + " " + self.nombreCompleto
 
 
-#Esta clase crea la lineas de los pedidos online, es decir, una linea que contenga el plato que has pedido, con la cantidad y el precio.
+# Esta clase crea la lineas de los pedidos online, es decir, una linea que contenga el plato que has pedido, con la cantidad y el precio.
 class pedidoLinea(models.Model):
-    #on_delete=models.DO_NOTHING nos dice que si el plato del que depende el pedido es eliminado, entonces no haga nada.
+    # on_delete=models.DO_NOTHING nos dice que si el plato del que depende el pedido es eliminado, entonces no haga nada.
     plato = models.ForeignKey(Plato, on_delete=models.DO_NOTHING)
     cantidad = models.IntegerField()
     precio_compra = models.DecimalField(max_digits=5, decimal_places=2)
 
     def __str__(self):
-        return str(self.plato.nombre) + " " + str(self.cantidad)  + " " + str(self.precio_compra)
+        return str(self.plato.nombre) + " " + str(self.cantidad) + " " + str(self.precio_compra)
 
-#Esta clase crea el pedido completo partiendo de las lineas anteriores
+
+# Esta clase crea el pedido completo partiendo de las lineas anteriores
 class Pedido(models.Model):
     codigo = models.CharField(max_length=100, blank=True, null=False)
     fecha = models.DateField(null=False)

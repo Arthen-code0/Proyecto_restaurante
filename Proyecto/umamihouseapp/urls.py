@@ -14,5 +14,4 @@ urlpatterns = [
     path('navbarmobiles/', navbarmobiles, name='navbarmobiles'),
     path('mesas/', mesas, name='mesas'),
 
-
 ]

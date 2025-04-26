@@ -14,7 +14,7 @@
     transition: background-color 0.3s, color 0.3s;
 }
 
-.body-oscuro{
+.body-oscuro {
     font-size: 12px;
     background-color: #403E4C;
     color: white;
@@ -53,6 +53,7 @@ nav {
     padding: 4px 8px;
     justify-content: space-between;
 }
+
 .redondes-oscuro {
     border-radius: 50px;
     background-color: #D7C66B;
@@ -64,11 +65,11 @@ nav {
     background-color: #B17A90;
     transition: 0.5s;
 }
+
 .redondes-oscuro:hover {
     background-color: #ae9e44;
     transition: 0.5s;
 }
-
 
 
 /*HEADER*/
@@ -167,12 +168,12 @@ main {
     text-align: center;
 }
 
-.button-menu{
+.button-menu {
     background-color: #E0B5C6;
     border: none;
 }
 
-.button-menu-oscuro{
+.button-menu-oscuro {
     background-color: #D7C66B !important;
     border: none;
 }

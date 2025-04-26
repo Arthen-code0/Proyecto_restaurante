@@ -7,8 +7,8 @@ class RegistroForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
 
     class Meta:
-
         model = User
+
     fields = ['email', 'nombre', 'rol', 'password']
 
 

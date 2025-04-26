@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'django-insecure-^yj@ulazvy-+m6o_16+!j%j2mn#d(0^hr3%+t_(%bh^p%_4g=_
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -71,18 +69,24 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'proyecto_restaurante.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.oracle',
+#        'NAME': 'XE',
+#        'USER': 'C##PROYECTO_RESTAURANTE',
+#        'PASSWORD': '123456',
+#        'HOST': 'LOCALHOST',
+#        'PORT': '1521',
+#    }
+#}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.oracle',
-        'NAME': 'XE',
-        'USER': 'C##PROYECTO_RESTAURANTE',
-        'PASSWORD': '123456',
-        'HOST': 'LOCALHOST',
-        'PORT': '1521',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -105,7 +109,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -117,10 +120,10 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 import os
+
 STATIC_URL = "/static/"
 
 STATICFILES_DIRS = [
@@ -131,5 +134,3 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
