@@ -1,0 +1,72 @@
+/*Estilo general*/
+
+* {
+    min-width: 0;
+    min-height: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+.body-claro {
+    font-size: 12px;
+    background-color: white;
+    color: black;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.body-oscuro {
+    font-size: 12px;
+    background-color: #403E4C;
+    color: white;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/*NAVBAR*/
+nav {
+    padding-bottom: 0.0rem !important;
+}
+
+.navbar-claro {
+    background-color: #fde0f9;
+    background-image: url("../img/sakura_petalos2.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: auto;
+
+}
+
+.navbar-oscuro {
+    background-color: #2E2D45;
+    background-image: url("../img/sakura_petalos2.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: auto;
+
+}
+
+/*Botones Redondos*/
+.redondes {
+    border-radius: 50px;
+    background-color: #E0B5C6;
+    padding: 4px 8px;
+    justify-content: space-between;
+}
+
+.redondes-oscuro {
+    border-radius: 50px;
+    background-color: #D7C66B;
+    padding: 4px 8px;
+    justify-content: space-between;
+}
+
+.redondes:hover {
+    background-color: #B17A90;
+    transition: 0.5s;
+}
+
+.redondes-oscuro:hover {
+    background-color: #ae9e44;
+    transition: 0.5s;
+}
