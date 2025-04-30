@@ -42,7 +42,7 @@
         <!-- Logo -->
         <figure class="navbar-brand m-0">
             <img id="logo-claro" class="logo-navbar" src="{% static 'img/Umami_house_logo.png' %}" height="150"
-                 alt="Logo claro"/>
+                 alt="Logo claro" onclick="location.href='{% url 'home' %}'"/>
             <img id="logo-oscuro" class="logo-navbar" src="{% static 'img/Umami_house_logo_dark.png' %}" height="150"
                  alt="Logo oscuro" style="display: none;"/>
         </figure>
@@ -51,7 +51,7 @@
         <div class="d-md-flex align-items-center">
             <div id="btn-navbar" class="redondes m-1">
                 <a class="botones text-decoration-none p-1 d-flex align-items-center" onclick="location.href='{% url 'inicio_de_sesion' %}'">
-                    <img src="../static/img/usuario.png" width="24" height="24" class="me-2" alt="Icono cuenta">
+                    <img src="{% static 'img/usuario.png' %}" width="24" height="24" class="me-2" alt="Icono cuenta">
                     <p class="mb-1 fs-6 text-white">Mi cuenta</p>
                 </a>
             </div>
