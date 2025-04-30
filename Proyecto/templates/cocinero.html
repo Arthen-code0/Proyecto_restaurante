@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/moviles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <title>Cocinero</title>
+</head>
+<body>
+{% include "navbar.html" %}
+<header>
+    <h1 class="px-4 pt-4">Cocinero</h1>
+    <h5 class="px-4">Paco del Rocio</h5>
+
+    <!-- Centrarlo todo -->
+    <div class="container-fluid ">
+        <div class="container">
+            <div class="row text-center text-start p-4">
+                <!-- Cosas centrar -->
+                <div class="col-12 col-md-4 mb-3 mx-auto text-center">
+                    <p class="sobre-p fw-bold"></p>
+                    <ul class="list-unstyled">
+                        <li class="fs-4">Mesa 1</li>
+                        <li class="fs-4">Tardanza · 54 Minutos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+
+<main class="p-4">
+
+    <!-- Tarjeta contenedora -->
+    <div class="container bg-light p-4 rounded shadow-sm mb-4">
+        <div class="row align-items-start">
+
+            <!-- Imagen a la izquierda -->
+            <div class="col-12 col-md-3 mb-3 mb-md-0">
+                <img src="{% static 'img/imagen_carrousel_3.jpg' %}" alt="Plato Edamame" class="img-fluid rounded">
+            </div>
+
+            <!-- Texto en el centro -->
+            <div class="col-12 col-md-8">
+                <h3 class="fs-5 fw-bold text-black">Origami</h3>
+                <p class="text-muted small mb-1">Category • $$ • 1.2 miles away</p>
+                <p class="text-secondary small">Supporting line text lorem ipsum dolor sit amet, consectetur.</p>
+            </div>
+
+            <!-- Imagen "X" (cerrar) a la derecha arriba -->
+            <div class="col-12 col-md-1 text-end">
+                <img src="{% static 'img/cheque.png' %}" alt="Cerrar" width="20" class="img-fluid">
+                <img src="{% static 'img/marca-x.png' %}" alt="Cerrar" width="20" class="img-fluid">
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Tarjeta contenedora -->
+    <div class="container bg-light p-4 rounded shadow-sm mb-4">
+        <div class="row align-items-start">
+
+            <!-- Imagen a la izquierda -->
+            <div class="col-12 col-md-3 mb-3 mb-md-0">
+                <img src="{% static 'img/imagen_carrousel_3.jpg' %}" alt="Plato Edamame" class="img-fluid rounded">
+            </div>
+
+            <!-- Texto en el centro -->
+            <div class="col-12 col-md-8">
+                <h3 class="fs-5 fw-bold text-black">Origami</h3>
+                <p class="text-muted small mb-1">Category • $$ • 1.2 miles away</p>
+                <p class="text-secondary small">Supporting line text lorem ipsum dolor sit amet, consectetur.</p>
+            </div>
+
+            <!-- Imagen "X" (cerrar) a la derecha arriba -->
+            <div class="col-12 col-md-1 text-end">
+                <img src="{% static 'img/cheque.png' %}" alt="Cerrar" width="20" class="img-fluid">
+                <img src="{% static 'img/marca-x.png' %}" alt="Cerrar" width="20" class="img-fluid">
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Tarjeta contenedora -->
+    <div class="container bg-light p-4 rounded shadow-sm mb-4">
+        <div class="row align-items-start">
+
+            <!-- Imagen a la izquierda -->
+            <div class="col-12 col-md-3 mb-3 mb-md-0">
+                <img src="{% static 'img/imagen_carrousel_3.jpg' %}" alt="Plato Edamame" class="img-fluid rounded">
+            </div>
+
+            <!-- Texto en el centro -->
+            <div class="col-12 col-md-8">
+                <h3 class="fs-5 fw-bold text-black">Origami</h3>
+                <p class="text-muted small mb-1">Category • $$ • 1.2 miles away</p>
+                <p class="text-secondary small">Supporting line text lorem ipsum dolor sit amet, consectetur.</p>
+            </div>
+
+            <!-- Imagen "X" (cerrar) a la derecha arriba -->
+            <div class="col-12 col-md-1 text-end">
+                <img src="{% static 'img/cheque.png' %}" alt="Cerrar" width="20" class="img-fluid">
+                <img src="{% static 'img/marca-x.png' %}" alt="Cerrar" width="20" class="img-fluid">
+            </div>
+        </div>
+    </div>
+
+    <div class="buttonbox">
+        <button id="btn-menu" class="button-menu btn p-3 rounded-pill mt-4 fs-5 boton_menu" onclick="location.href='{% url 'menu' %}'" type="button">Pedido listo
+        </button>
+    </div>
+</main>
+</body>
+
