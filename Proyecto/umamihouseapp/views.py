@@ -28,8 +28,11 @@ def tu_pedido(request):
     return render(request, 'tu_pedido.html')
 
 
-def navbarmobiles(request):
-    return render(request, 'navbarmoviles.html')
+def camarero(request):
+    return render(request, 'camarero.html')
+
+def cocinero(request):
+    return render(request, 'cocinero.html')
 
 
 def mesas(request):
