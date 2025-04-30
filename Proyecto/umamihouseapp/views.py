@@ -10,11 +10,11 @@ def pagina_menu(request):
 
 
 def registrar_usuario(request):
-    return render(request, 'registrarse.html')
+    return render(request, 'registro.html')
 
 
 def inicio_de_sesion(request):
-    return render(request, 'inicio_de_sesion.html')
+    return render(request, 'inicio_sesion.html')
 
 
 def crear_plato(request):
