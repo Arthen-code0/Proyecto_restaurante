@@ -40,6 +40,7 @@ def inicio_de_sesion(request):
                 form = LoginForm()
                 return render(request, 'registro.html', {'form': form})
 
+#HAY QUE HACER EL BOTON DE CERRAR SESION EN LOGIN 
 def logout_usuario(request):
     logout(request)
     return redirect('login')
