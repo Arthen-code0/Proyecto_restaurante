@@ -4,16 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     {% load django_bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
     <link rel="stylesheet" href="{% static 'css/pagina_principal.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <link rel="icon" href="{% static 'img/Umami_house_logo.png' %}" type="image/x-icon">
     <title>Umami House</title>
 </head>
 <body id="body" class="body-claro">
-{% include "navbar.html" %}
 <header class="imagenfuera">
+    {% include "navbar.html" %}
     <div>
         <img src="{% static 'img/sushi_principal.jfif' %}" class="imagen image-fluid" alt="imagen_principal">
         <div class="textoimg">Disfruta del inesperado placer del sushi</div>
