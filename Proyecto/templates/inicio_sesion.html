@@ -7,6 +7,7 @@
     {% bootstrap_css %}
     {% bootstrap_javascript %}
     <link rel="stylesheet" href="{% static 'css/pagina_principal.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <link rel="icon" href="{% static 'img/Umami_house_logo.png' %}" type="image/x-icon">
     <title>Menu</title>
 </head>
@@ -15,16 +16,17 @@
 <div class="login-container">
     <h2>Inicia sesión</h2>
     <p>Inicia sesión y disfruta de las ventajas de Umami House</p>
-    <form>
+    <form method="post">
+        {% csrf_token %}
         <!-- Campo de email -->
         <div class="mb-3">
             <label for="email" class="form-label">E-mail</label>
-            <input type="email" class="form-control" id="email" placeholder="E-mail">
+            {{ form.username }}
         </div>
         <!-- Campo de contraseña -->
         <div class="mb-3">
             <label for="password" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="password" placeholder="Contraseña">
+            {{ form.password }}
         </div>
         <!-- Botón de inicio de sesión -->
         <button type="submit" class="btn btn-custom px-4 py-2">Iniciar sesión</button>

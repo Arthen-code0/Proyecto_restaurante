@@ -7,6 +7,7 @@
     {% bootstrap_css %}
     {% bootstrap_javascript %}
     <link rel="stylesheet" href="{% static 'css/pagina_principal.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <link rel="icon" href="{% static 'img/Umami_house_logo.png' %}" type="image/x-icon">
     <title>Registro</title>
 </head>
@@ -15,24 +16,25 @@
 <header>
     <div class="form-container">
         <h2 class="form-title">Crea tu cuenta</h2>
-        <form>
+        <form method="post">
+            {% csrf_token %}
             <!--Información personal-->
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+                {{ form.nombre }}
             </div>
             <div class="mb-3">
                 <label for="apellido" class="form-label">Apellido</label>
-                <input type="text" class="form-control" id="apellido" placeholder="Apellido">
+                {{ form.apellido }}
             </div>
             <div class="mb-3">
-                <label for="contrasena" class="form-label">Contraseña</label>
-                <input type="Contraseá" class="form-control" id="Contraseña" placeholder="Contraseña">
+                <label for="email" class="form-label">Email</label>
+                {{ form.email }}
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                {{ form.password }}
                 <p class="caract">La contraseña debe tener al menos 6 caracteres</p>
-            </div>
-            <div class="mb-3">
-                <label for="contrasena" class="form-label">Confirmar contraseña</label>
-                <input type="contrasena" class="form-control" id="contrasena" placeholder="Confirmar contraseña">
             </div>
 
             <!-- Botón de inicio de sesión -->
@@ -41,9 +43,8 @@
             </div>
         </form>
         <!-- Enlace para crear cuenta -->
-        <p class="text-center mt-2">¿Ya tienes cuenta? <a onclick="location.href='{% url 'inicio_de_sesion' %}'" class="registro text-decoration-none">
+        <p class="text-center mt-2">¿Ya tienes cuenta? <a onclick="location.href='{% url 'login_usuario' %}'" class="registro text-decoration-none">
             Inicia sesión aquí</a></p>
-        </form>
     </div>
 </header>
 {% include "footer.html" %}
