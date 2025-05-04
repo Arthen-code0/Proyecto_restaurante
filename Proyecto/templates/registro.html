@@ -8,12 +8,12 @@
     {% bootstrap_javascript %}
     <link rel="stylesheet" href="{% static 'css/pagina_principal.css' %}">
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/registro_y_inicio de sesion.css' %}">
     <link rel="icon" href="{% static 'img/Umami_house_logo.png' %}" type="image/x-icon">
     <title>Registro</title>
 </head>
 <body>
 {% include "navbar.html" %}
-{
 <header>
     <div class="form-container">
         <h2 class="form-title">Crea tu cuenta</h2>
@@ -29,16 +29,28 @@
                        {% if form.nombre.value %}value="{{ form.nombre.value }}"{% endif %}>
             </div>
             <div class="mb-3">
-                <label for="apellido" class="form-label">Apellido</label>
-                {{ form.apellido }}
+                <label for="{{ form.apellido.id_for_label }}" class="form-label">Apellido</label>
+                <input type="text"
+                       name="{{ form.apellido.name }}"
+                       id="{{ form.apellido.id_for_label }}"
+                       class="form-control"
+                       {% if form.apellido.value %}value="{{ form.apellido.value }}"{% endif %}>
             </div>
             <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                {{ form.email }}
+                <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
+                <input type="email"
+                       name="{{ form.email.name }}"
+                       id="{{ form.email.id_for_label }}"
+                       class="form-control"
+                       {% if form.email.value %}value="{{ form.email.value }}"{% endif %}>
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label">Contraseña</label>
-                {{ form.password }}
+                <label for="{{ form.password.id_for_label }}" class="form-label">Contraseña</label>
+                <input type="password"
+                       name="{{ form.password.name }}"
+                       id="{{ form.password.id_for_label }}"
+                       class="form-control"
+                       {% if form.password.value %}value="{{ form.password.value }}"{% endif %}>
                 <p class="caract">La contraseña debe tener al menos 6 caracteres</p>
             </div>
 
@@ -48,8 +60,7 @@
             </div>
         </form>
         <!-- Enlace para crear cuenta -->
-        <p class="text-center mt-2">¿Ya tienes cuenta? <a onclick="location.href='{% url 'login_usuario' %}'"
-                                                          class="registro text-decoration-none">
+        <p class="text-center mt-2">¿Ya tienes cuenta? <a onclick="location.href='{% url 'login_usuario' %}'" class="registro text-decoration-none">
             Inicia sesión aquí</a></p>
     </div>
 </header>
