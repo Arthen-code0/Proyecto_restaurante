@@ -13,6 +13,7 @@
 </head>
 <body>
 {% include "navbar.html" %}
+{
 <header>
     <div class="form-container">
         <h2 class="form-title">Crea tu cuenta</h2>
@@ -20,8 +21,12 @@
             {% csrf_token %}
             <!--Información personal-->
             <div class="mb-3">
-                <label for="nombre" class="form-label">Nombre</label>
-                {{ form.nombre }}
+                <label for="{{ form.nombre.id_for_label }}" class="form-label">Nombre</label>
+                <input type="text"
+                       name="{{ form.nombre.name }}"
+                       id="{{ form.nombre.id_for_label }}"
+                       class="form-control"
+                       {% if form.nombre.value %}value="{{ form.nombre.value }}"{% endif %}>
             </div>
             <div class="mb-3">
                 <label for="apellido" class="form-label">Apellido</label>
@@ -43,7 +48,8 @@
             </div>
         </form>
         <!-- Enlace para crear cuenta -->
-        <p class="text-center mt-2">¿Ya tienes cuenta? <a onclick="location.href='{% url 'login_usuario' %}'" class="registro text-decoration-none">
+        <p class="text-center mt-2">¿Ya tienes cuenta? <a onclick="location.href='{% url 'login_usuario' %}'"
+                                                          class="registro text-decoration-none">
             Inicia sesión aquí</a></p>
     </div>
 </header>
