@@ -13,10 +13,9 @@ def registrar_usuario(request):
     if request.method == 'POST':
         form = RegistroForm(request.POST)
         if form.is_valid():
-            usuario = form.save(commit=False)
-            usuario.set_password(form.cleaned_data['password'])
-            usuario.save()
-            return redirect('login')
+            user = form.save()
+            login(request, user)
+            return redirect('pagina_principal')
     else:
         form = RegistroForm()
     return render(request, 'registro.html', {'form': form})

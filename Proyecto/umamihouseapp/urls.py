@@ -12,5 +12,4 @@ urlpatterns = [
     path('tu_pedido/', tu_pedido, name='tu_pedido'),
     path('navbarmobiles/', navbarmobiles, name='navbarmobiles'),
     path('mesas/', mesas, name='mesas'),
-
 ]
