@@ -116,6 +116,7 @@ class Empleado(models.Model):
 
 
 class PedidoLinea(models.Model):
+    pedido= models.ForeignKey(Pedido, on_delete=models.CASCADE)
     plato = models.ForeignKey(Plato, on_delete=models.DO_NOTHING)
     cantidad = models.IntegerField()
     precio_compra = models.DecimalField(max_digits=5, decimal_places=2)
@@ -126,9 +127,8 @@ class PedidoLinea(models.Model):
 
 class Pedido(models.Model):
     codigo = models.CharField(max_length=100, blank=True, null=False)
-    fecha = models.DateField(null=False)
-    cliente = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    Pedido_linea = models.ManyToManyField(PedidoLinea)
+    fecha = models.DateTimeField()
+    cliente = models.ForeignKey('User', on_delete=models.DO_NOTHING, related_name='pedidos')
 
     def __str__(self):
         return str(self.codigo) + " " + str(self.fecha) + " " + str(self.cliente.nombreUsuario)
