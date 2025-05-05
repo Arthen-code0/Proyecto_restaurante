@@ -4,7 +4,6 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
         {% load django_bootstrap5 %}
         {% bootstrap_css %}
         {% bootstrap_javascript %}
@@ -50,7 +49,7 @@
         <!-- Botón cuenta -->
         <div class="d-md-flex align-items-center">
             <div id="btn-navbar" class="redondes m-1">
-                <a class="botones text-decoration-none p-1 d-flex align-items-center" onclick="location.href='{% url 'inicio_de_sesion' %}'">
+                <a class="botones text-decoration-none p-1 d-flex align-items-center" onclick="location.href='{% url 'login_usuario' %}'">
                     <img src="{% static 'img/usuario.png' %}" width="24" height="24" class="me-2" alt="Icono cuenta">
                     <p class="mb-1 fs-6 text-white">Mi cuenta</p>
                 </a>

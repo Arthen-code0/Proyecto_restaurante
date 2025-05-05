@@ -4,12 +4,16 @@ from .models import User
 
 
 class RegistroForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
+    nombre = forms.CharField(max_length=100)
+    apellido = forms.CharField(max_length=100)
+    email = forms.EmailField(label="Correo")
+    password = forms.CharField(widget=forms.PasswordInput())
+    rol = forms.CharField(max_length=50)
+
 
     class Meta:
         model = User
-
-    fields = ['email', 'nombre', 'rol', 'password']
+        fields = ['email', 'nombre', 'rol', 'password', 'apellido']
 
 
 class LoginForm(AuthenticationForm):
