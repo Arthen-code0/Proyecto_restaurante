@@ -35,10 +35,11 @@
 .login-container input:focus {
     border-color: #B17A90;
     outline: none;
-    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 /* Estilo para el botón */
+
 .btn-custom {
     background-color: #B17A90;
     color: white;
@@ -50,4 +51,28 @@
 
 .btn-custom:hover {
     background-color: #B17A90;
+}
+
+/* Alinea los labels a la izquierda y añade margen si es necesario */
+
+.form-label {
+    text-align: left !important;
+    display: block;
+    margin-left: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-select {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+    cursor: pointer;
+}
+
+.form-text {
+    display: block;
+    margin-top: 0.25rem;
+    color: #6c757d;
 }
