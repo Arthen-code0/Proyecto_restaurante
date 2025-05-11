@@ -130,3 +130,6 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#La URL para se redireccione para iniciar sesion en paginas donde lo sea OBLIGATORIO para el usuario
+LOGIN_URL = '/inicio_sesion/'

@@ -1,12 +1,24 @@
 import datetime
 
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, redirect
 from pycparser.ply.yacc import Production
 
 from .form import RegistroForm, LoginForm
 from .models import User
 
+#Para el usuario administrador
+def es_admin(user):
+    return user.is_authenticated and user.role == 'admin'
+
+#Para el usuario camarero
+def es_camarero(user):
+    return user.is_authenticated and user.role == 'camarero'
+
+#Para el usuario cocinero
+def es_cocinero(user):
+    return user.is_authenticated and user.role == 'cocinero'
 
 def pagina_principal(request):
     return render(request, 'pagina_principal.html')
@@ -40,20 +52,32 @@ def login_usuario(request):
         form = LoginForm()
     return render(request, 'inicio_sesion.html', {'form': form})
 
+@user_passes_test(es_admin)
 def crear_plato(request):
     return render(request, 'crear_plato.html')
+
+@user_passes_test(es_admin)
+def modificar_menu(request):
+    return render(request, 'modificar_menu.html')
 
 def formulario_pago(request):
     return render(request, 'formulario_pago.html')
 
+@login_required
 def tu_pedido(request):
     return render(request, 'tu_pedido.html')
 
-def navbarmobiles(request):
-    return render(request, 'navbarmoviles.html')
-
+@user_passes_test(es_camarero)
 def mesas(request):
     return render(request, 'mesas.html')
+
+@user_passes_test(es_cocinero)
+def cocinero(request):
+    return render(request, 'cocinero.html')
+
+@user_passes_test(es_camarero)
+def camarero(request):
+    return render(request, 'camarero.html')
 
 #def add_carrito(request, id):
 #    carrito = request.session.get('carrito', 0)
