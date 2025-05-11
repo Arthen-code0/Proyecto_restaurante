@@ -114,6 +114,13 @@ class Empleado(models.Model):
     def __str__(self):
         return str(self.id) + " " + self.nombreCompleto
 
+class Pedido(models.Model):
+    codigo = models.CharField(max_length=100, blank=True, null=False)
+    fecha = models.DateTimeField()
+    cliente = models.ForeignKey('User', on_delete=models.DO_NOTHING, related_name='pedidos')
+
+    def __str__(self):
+        return str(self.codigo) + " " + str(self.fecha) + " " + str(self.cliente.nombreUsuario)
 
 class PedidoLinea(models.Model):
     pedido= models.ForeignKey(Pedido, on_delete=models.CASCADE)
@@ -123,12 +130,3 @@ class PedidoLinea(models.Model):
 
     def __str__(self):
         return str(self.plato.nombre) + " " + str(self.cantidad) + " " + str(self.precio_compra)
-
-
-class Pedido(models.Model):
-    codigo = models.CharField(max_length=100, blank=True, null=False)
-    fecha = models.DateTimeField()
-    cliente = models.ForeignKey('User', on_delete=models.DO_NOTHING, related_name='pedidos')
-
-    def __str__(self):
-        return str(self.codigo) + " " + str(self.fecha) + " " + str(self.cliente.nombreUsuario)
