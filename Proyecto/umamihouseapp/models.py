@@ -115,16 +115,6 @@ class Empleado(models.Model):
         return str(self.id) + " " + self.nombreCompleto
 
 
-class PedidoLinea(models.Model):
-    pedido= models.ForeignKey(Pedido, on_delete=models.CASCADE)
-    plato = models.ForeignKey(Plato, on_delete=models.DO_NOTHING)
-    cantidad = models.IntegerField()
-    precio_compra = models.DecimalField(max_digits=5, decimal_places=2)
-
-    def __str__(self):
-        return str(self.plato.nombre) + " " + str(self.cantidad) + " " + str(self.precio_compra)
-
-
 class Pedido(models.Model):
     codigo = models.CharField(max_length=100, blank=True, null=False)
     fecha = models.DateTimeField()
@@ -132,3 +122,13 @@ class Pedido(models.Model):
 
     def __str__(self):
         return str(self.codigo) + " " + str(self.fecha) + " " + str(self.cliente.nombreUsuario)
+
+
+class PedidoLinea(models.Model):
+    pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
+    plato = models.ForeignKey(Plato, on_delete=models.DO_NOTHING)
+    cantidad = models.IntegerField()
+    precio_compra = models.DecimalField(max_digits=5, decimal_places=2)
+
+    def __str__(self):
+        return str(self.plato.nombre) + " " + str(self.cantidad) + " " + str(self.precio_compra)

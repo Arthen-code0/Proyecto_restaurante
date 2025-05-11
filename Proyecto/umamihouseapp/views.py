@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from pycparser.ply.yacc import Production
 
 from .form import RegistroForm, LoginForm
-from .models import User, Pedido
+from .models import User
 
 
 def pagina_principal(request):
