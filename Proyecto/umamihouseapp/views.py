@@ -67,7 +67,7 @@ def formulario_pago(request):
 def tu_pedido(request):
     return render(request, 'tu_pedido.html')
 
-@user_passes_test(es_camarero)
+
 def mesas(request):
     return render(request, 'mesas.html')
 
