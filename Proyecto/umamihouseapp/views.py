@@ -1,4 +1,5 @@
 import datetime
+from collections import defaultdict
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -6,7 +7,8 @@ from django.shortcuts import render, redirect
 from pycparser.ply.yacc import Production
 
 from .form import RegistroForm, LoginForm
-from .models import User
+from .models import User, Plato
+
 
 #Para el usuario administrador
 def es_admin(user):
@@ -22,9 +24,6 @@ def es_cocinero(user):
 
 def pagina_principal(request):
     return render(request, 'pagina_principal.html')
-
-def pagina_menu(request):
-    return render(request, 'pagina_menu.html')
 
 def registrar_usuario(request):
     if request.method == 'POST':
@@ -67,7 +66,6 @@ def formulario_pago(request):
 def tu_pedido(request):
     return render(request, 'tu_pedido.html')
 
-
 def mesas(request):
     return render(request, 'mesas.html')
 
@@ -78,6 +76,10 @@ def cocinero(request):
 @user_passes_test(es_camarero)
 def camarero(request):
     return render(request, 'camarero.html')
+
+def pagina_menu(request):
+    platos = Plato.objects.all()
+    return render(request, 'pagina_menu.html', {'platos': platos})
 
 #def add_carrito(request, id):
 #    carrito = request.session.get('carrito', 0)
