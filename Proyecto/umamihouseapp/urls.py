@@ -10,6 +10,9 @@ urlpatterns = [
     path('crear_plato/', crear_plato, name='crear_plato'),
     path('formulario_pago/', formulario_pago, name='formulario_pago'),
     path('tu_pedido/', tu_pedido, name='tu_pedido'),
-    path('navbarmobiles/', navbarmobiles, name='navbarmobiles'),
+    path('modificar_menu/', modificar_menu, name='modificar_menu'),
     path('mesas/', mesas, name='mesas'),
+    path('cocinero/', cocinero, name='cocinero'),
+    path('camarero/', camarero, name='camarero'),
+
 ]
