@@ -17,8 +17,9 @@
 <header>
     <div class="form-container">
         <h2 class="form-title">Crea tu cuenta</h2>
-        <form method="post">
+        <form method="POST">
             {% csrf_token %}
+
             <!--Información personal-->
             {% load widget_tweaks %}
             <div class="mb-3">
@@ -54,6 +55,22 @@
                        {% if form.password.value %}value="{{ form.password.value }}"{% endif %}>
                 <p class="caract">La contraseña debe tener al menos 6 caracteres</p>
             </div>
+            <div class="mb-3">
+                <label for="{{ form.telefono.id_for_label }}" class="form-label">Telefono</label>
+                <input type="tel"
+                       name="{{ form.telefono.name }}"
+                       id="{{ form.telefono.id_for_label }}"
+                class="form-control"
+                {% if form.telefono.value %}value="{{ form.telefono.value }}"{% endif %}>
+            </div>
+            <div class="mb-3">
+                <label for="{{ form.fecha_nacimiento.id_for_label }}" class="form-label">Fecha de Nacimiento</label>
+                <input type="date"
+                       name="{{ form.fecha_nacimiento.name }}"
+                       id="{{ form.fecha_nacimiento.id_for_label }}"
+                       class="form-control"
+                       {% if form.fecha_nacimiento.value %}value="{{ form.fecha_nacimiento.value }}"{% endif %}>
+            </div>
 
             <!-- Botón de inicio de sesión -->
             <div class="text-center">
@@ -61,8 +78,9 @@
             </div>
         </form>
         <!-- Enlace para crear cuenta -->
-        <p class="text-center mt-2">¿Ya tienes cuenta? <a onclick="location.href='{% url 'login_usuario' %}'" class="registro text-decoration-none">
-            Inicia sesión aquí</a></p>
+        <p class="text-center mt-2">¿Ya tienes cuenta? <a onclick="location.href='{% url 'login_usuario' %}'"
+                                                          class="registro text-decoration-none">Inicia sesión aquí</a>
+        </p>
     </div>
 </header>
 {% include "footer.html" %}
