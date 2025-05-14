@@ -86,6 +86,10 @@ def pagina_menu(request):
     platos = Plato.objects.all()
     return render(request, 'pagina_menu.html', {'platos': platos})
 
+def Pagina_usuario(request):
+    User = request.user
+    return render(request, 'pagina_usuario.html', {'User': User})
+
 #def add_carrito(request, id):
 #    carrito = request.session.get('carrito', 0)
 #    carrito = request.session.get(str(id), 0)
