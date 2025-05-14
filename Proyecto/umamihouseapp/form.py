@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
-from .models import User
+from .models import User, Plato
+
 
 class RegistroForm(forms.ModelForm):
     nombre = forms.CharField(max_length=100)
@@ -15,3 +16,8 @@ class RegistroForm(forms.ModelForm):
 
 class LoginForm(AuthenticationForm):
     username = forms.EmailField(label="Correo")
+
+class PlatoForm(forms.ModelForm):
+    class Meta:
+        model = Plato
+        fields = '__all__'

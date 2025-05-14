@@ -20,8 +20,6 @@
     <form method="post">
         {% csrf_token %}
 
-        <!-- Campo de email -->
-
         {% load widget_tweaks %}
 
         <div class="mb-3">
@@ -38,6 +36,7 @@
     <!-- Enlace para crear cuenta -->
     <p class="text-center mt-2">¿Todavía no tienes cuenta? <a onclick="location.href='{% url 'registrar_usuario' %}'" class="registro text-decoration-none"> Registrate aquí</a>
     </p>
+
 </div>
 {% include "footer.html" %}
 </body>
