@@ -2,6 +2,8 @@ from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from oracledb import defaults
+
 
 
 class TipoPlato(models.TextChoices):
@@ -69,14 +71,18 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
-    nombreUsuario = models.CharField(_('nombre de usuario'), max_length=100)
     rol = models.CharField(max_length=50, choices=Rol.choices, default=Rol.CLIENTE)
     is_active = models.BooleanField(_('active'), default=True)
     is_staff = models.BooleanField(_('staff status'), default=False)
-
-    # Renombrados
     nombre = models.CharField(_('nombre'), max_length=100, blank=True)
     apellido = models.CharField(_('apellido'), max_length=100, blank=True)
+    telefono = models.CharField(_('telefono'), max_length=100, blank=True)
+    fecha_nacimiento = models.DateField(_('fecha_nacimiento'), null=True)
+    rol = models.CharField(
+        max_length = 10,
+        choices = Rol.choices,
+        default = Rol.CLIENTE,
+    )
 
     objects = UserManager()
 

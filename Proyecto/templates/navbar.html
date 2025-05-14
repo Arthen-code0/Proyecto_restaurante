@@ -12,8 +12,8 @@
     <title>Umami House</title>
 </head>
 {% endblock %}
-{% block css %}
 
+{% block css %}
 <nav id="navbar" class="navbar px-2 navbar-claro">
     <div class="d-flex align-items-center">
         <!-- Menú desplegable -->
@@ -71,18 +71,35 @@
              alt="Logo oscuro" style="display: none;"/>
     </figure>
 
-    <!-- Botón cuenta -->
+    <!-- Botón cuenta (MODIFICADO PARA LOGOUT) -->
     <div class="d-md-flex align-items-center">
-        <div id="btn-navbar" class="redondes m-1">
-            <a class="botones text-decoration-none p-1 d-flex align-items-center"
-               onclick="location.href='{% url 'login_usuario' %}'">
-                <img src="{% static 'img/usuario.png' %}" width="24" height="24" class="me-2" alt="Icono cuenta">
-                <p class="mb-1 fs-6 text-white">Mi cuenta</p>
-            </a>
-        </div>
+        {% if user.is_authenticated %}
+            <!-- Botón Cerrar Sesión (visible cuando hay usuario logueado) -->
+            <div id="btn-navbar" class="redondes m-1">
+                <a class="botones text-decoration-none p-1 d-flex align-items-center"
+                   href="{% url 'logout' %}"
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <img src="{% static 'img/usuario.png' %}" width="24" height="24" class="me-2" alt="Icono cuenta">
+                    <p class="mb-1 fs-6 text-white">Cerrar sesión</p>
+                </a>
+                <form id="logout-form" action="{% url 'logout' %}" method="POST" style="display: none;">
+                    {% csrf_token %}
+                </form>
+            </div>
+        {% else %}
+            <!-- Botón Mi Cuenta (visible cuando NO hay usuario logueado) -->
+            <div id="btn-navbar" class="redondes m-1">
+                <a class="botones text-decoration-none p-1 d-flex align-items-center"
+                   onclick="location.href='{% url 'login_usuario' %}'">
+                    <img src="{% static 'img/usuario.png' %}" width="24" height="24" class="me-2" alt="Icono cuenta">
+                    <p class="mb-1 fs-6 text-white">Mi cuenta</p>
+                </a>
+            </div>
+        {% endif %}
     </div>
 </nav>
 
+<!-- Scripts (se mantienen igual) -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>
@@ -114,16 +131,12 @@
 
         function setDarkMode(enabled) {
             if (enabled) {
-
                 body.classList.remove('body-claro');
                 body.classList.add('body-oscuro');
-
                 navbar.classList.remove('navbar-claro');
                 navbar.classList.add('navbar-oscuro');
-
                 logoClaro.style.display = 'none';
                 logoOscuro.style.display = 'block';
-
                 div.classList.remove('redondes');
                 div.classList.add('redondes-oscuro');
 
@@ -136,22 +149,16 @@
                     botonMenu.classList.add('button-menu-oscuro');
                 }
 
-
                 iconos_footer.forEach(icono => {
-                    icono.style.filter = 'none'; // No invertir en modo oscuro
+                    icono.style.filter = 'none';
                 });
-
             } else {
-
                 body.classList.remove('body-oscuro');
                 body.classList.add('body-claro');
-
                 navbar.classList.remove('navbar-oscuro');
                 navbar.classList.add('navbar-claro');
-
                 logoClaro.style.display = 'block';
                 logoOscuro.style.display = 'none';
-
                 div.classList.remove('redondes-oscuro');
                 div.classList.add('redondes');
 
@@ -171,5 +178,4 @@
         }
     });
 </script>
-
 {% endblock %}

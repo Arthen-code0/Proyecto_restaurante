@@ -1,3 +1,4 @@
+from django.contrib.auth import views
 from django.urls import path
 from umamihouseapp.views import *
 
@@ -14,4 +15,7 @@ urlpatterns = [
     path('mesas/', mesas, name='mesas'),
     path('cocinero/', cocinero, name='cocinero'),
     path('camarero/', camarero, name='camarero'),
+
+    # redireccion una vez que el usuario se ha deslogueado
+    path('logout/', cerrar_sesion, name='logout')
 ]
