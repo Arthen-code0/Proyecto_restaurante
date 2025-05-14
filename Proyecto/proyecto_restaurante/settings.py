@@ -133,3 +133,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #La URL para se redireccione para iniciar sesion en paginas donde lo sea OBLIGATORIO para el usuario
 LOGIN_URL = '/inicio_sesion/'
+
+#La URL para que se redireccione una vez que el usuario ha sido deslogueado
+LOGOUT_REDIRECT_URL = 'home'

@@ -4,7 +4,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, redirect
 from pycparser.ply.yacc import Production
-
 from .forms import RegistroForm, LoginForm
 from .models import User, Plato
 
@@ -38,7 +37,6 @@ def registrar_usuario(request):
         form = RegistroForm()
     return render(request, 'registro.html', {'form': form})
 
-
 def login_usuario(request):
     if request.method == 'POST':
         form = LoginForm(request, data=request.POST)
@@ -52,6 +50,11 @@ def login_usuario(request):
     else:
         form = LoginForm()
     return render(request, 'inicio_sesion.html', {'form': form})
+
+#Deslogueo del usuario
+def cerrar_sesion(request):
+    logout(request)
+    return redirect('home')
 
 @user_passes_test(es_admin)
 def crear_plato(request):
