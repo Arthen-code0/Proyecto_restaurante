@@ -54,7 +54,7 @@ def login_usuario(request):
 #Deslogueo del usuario
 def cerrar_sesion(request):
     logout(request)
-    return redirect('home')
+    return redirect('login_usuario')
 
 @user_passes_test(es_admin)
 def crear_plato(request):
