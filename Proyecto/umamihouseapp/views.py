@@ -130,7 +130,25 @@ def eliminar_plato(request, pk):
         return redirect('pagina_menu')
     return render(request, 'eliminar_producto.html', {'plato': plato})
 
+def editar_usuario(request, user_id):
+    usuario = get_object_or_404(User, id=user_id)
+    if request.method == 'POST':
+        form = RegistroForm(request.POST, instance=usuario)
+        if form.is_valid():
+            form.save()
+            return redirect('ver_usuarios')
+    else:
+        form = RegistroForm(instance=usuario)
+    return render(request, 'editar_usuario.html', {'form': form})
 
+def eliminar_usuario(request, user_id):
+    usuario = get_object_or_404(User, id=user_id)
+    usuario.delete()
+    return redirect('ver_usuarios')
+
+def vista_usuarios(request):
+    users = User.objects.all()
+    return render (request, 'Ver_usuarios.html', {'Users': users})
 
 
 #def add_carrito(request, id):

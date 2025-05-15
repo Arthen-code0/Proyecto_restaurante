@@ -22,4 +22,9 @@ urlpatterns = [
 
 
     # PRODUCTOS Modificar, Eliminar y Agregar
+
+    #Usuarios, modificar y eliminar
+    path('ver_usuarios/', vista_usuarios, name='ver_usuarios'),
+    path('editar_usuario/<int:user_id>/', editar_usuario, name='editar_usuario'),
+    path('eliminar_usuario/<int:user_id>/', eliminar_usuario, name='eliminar_usuario'),
 ]

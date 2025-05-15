@@ -4,7 +4,7 @@ body {
     font-family: sans-serif;
 }
 
-.redondes{
+.redondo{
     border-radius: 2rem ;
     background-color: #eac3d6;
     padding: 10px 20px;
@@ -12,7 +12,7 @@ body {
     font-weight: bold;
 }
 
-.table-container{
+.table_container{
     background-color: #eac3d6;
     border-radius: 2rem;
     padding: 10px 30px;
@@ -21,8 +21,8 @@ body {
     position: relative;
 }
 
-.table td, table th{
-    vertical-aling: middle;
+.table td, .table th{
+    vertical-align: middle;
     color: white;
 }
 
