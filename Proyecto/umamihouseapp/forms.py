@@ -23,3 +23,8 @@ class RegistroForm(forms.ModelForm):
 
 class LoginForm(AuthenticationForm):
     username = forms.EmailField(label="Correo")
+
+class UsuarioForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['nombre', 'apellido', 'email', 'password', 'fecha_nacimiento', 'telefono', 'rol']

@@ -2,9 +2,9 @@ import datetime
 from collections import defaultdict
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from pycparser.ply.yacc import Production
-from .forms import RegistroForm, LoginForm
+from .forms import RegistroForm, LoginForm, UsuarioForm
 from .models import User, Plato
 
 
@@ -93,6 +93,24 @@ def Pagina_usuario(request):
 def Ver_Usuarios(request):
     Users = User.objects.all()
     return render(request, 'ver_usuarios.html', {'Users': Users})
+
+def editar_usuario(request, user_id):
+    usuario = get_object_or_404(User, id=user_id)
+
+    if request.method == 'POST':
+        form = UsuarioForm(request.POST, instance=usuario)
+        if form.is_valid():
+            form.save()
+            return redirect('ver_usuarios')
+    else:
+        form = UsuarioForm(instance=usuario)
+
+    return render(request, 'editar_usuario.html', {'form': form})
+
+def eliminar_usuario(request, user_id):
+    usuario = get_object_or_404(User, id=user_id)
+    usuario.delete()
+    return redirect('ver_usuarios')
 
 #def add_carrito(request, id):
 #    carrito = request.session.get('carrito', 0)

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -34,7 +35,7 @@
         </table>
         <div class="actio-icons">
             <a href="{% url 'editar_usuario' User.id %}" title="Editar"><i class="bi bi-pencil"></i></a>
-            <a href="{% url 'eliminar_usuarios' User.id %}" title="Eliminar"
+            <a href="{% url 'eliminar_usuario' User.id %}" title="Eliminar"
                onclick="return confirm('¿Seguro que quieres eliminar este usuario?');"><i class="bi bi-trash"></i></a>
         </div>
     </div>
