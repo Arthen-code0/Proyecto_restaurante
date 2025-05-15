@@ -26,4 +26,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('umamihouseapp.urls')),
     path('proyecto_restaurante/', include('umamihouseapp.urls')),
+    path('umamihouseapp/', include('umamihouseapp.urls')),
 ]

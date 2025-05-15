@@ -137,3 +137,7 @@ class PedidoLinea(models.Model):
 
     def __str__(self):
         return str(self.plato.nombre) + " " + str(self.cantidad) + " " + str(self.precio_compra)
+
+
+#FORMULARIOS PLATOS
+

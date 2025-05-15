@@ -1,24 +1,34 @@
 import datetime
 from collections import defaultdict
+from gc import get_objects
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.shortcuts import render, redirect
+from django.core.exceptions import PermissionDenied
+from django.shortcuts import render, redirect, get_object_or_404
 from pycparser.ply.yacc import Production
-from .forms import RegistroForm, LoginForm
+from .forms import RegistroForm, LoginForm, PlatoForm
 from .models import User, Plato
 
 
 #Para el usuario administrador
 def es_admin(user):
-    return user.is_authenticated and user.role == 'admin'
+    if not user.is_authenticated or not user.rol == 'ADMIN':
+        raise PermissionDenied
+    return True
+
 
 #Para el usuario camarero
 def es_camarero(user):
-    return user.is_authenticated and user.role == 'camarero'
+    if not user.is_authenticated or not user.rol == 'CAMARERO':
+        raise PermissionDenied
+    return True
 
 #Para el usuario cocinero
 def es_cocinero(user):
-    return user.is_authenticated and user.role == 'cocinero'
+    if not user.is_authenticated or not user.rol == 'COCINERO':
+        raise PermissionDenied
+    return True
 
 def pagina_principal(request):
     return render(request, 'pagina_principal.html')
@@ -56,13 +66,14 @@ def cerrar_sesion(request):
     logout(request)
     return redirect('home')
 
-@user_passes_test(es_admin)
+#@user_passes_test(es_admin)
 def crear_plato(request):
     return render(request, 'crear_plato.html')
 
-@user_passes_test(es_admin)
+#@user_passes_test(es_admin)
 def modificar_menu(request):
-    return render(request, 'modificar_menu.html')
+    platos = Plato.objects.all()
+    return render(request, 'modificar_menu.html', {'platos': platos})
 
 def formulario_pago(request):
     return render(request, 'formulario_pago.html')
@@ -85,6 +96,42 @@ def camarero(request):
 def pagina_menu(request):
     platos = Plato.objects.all()
     return render(request, 'pagina_menu.html', {'platos': platos})
+
+
+#Modificar, Eliminar y Agregar para la carta desde la vista de un administrador
+
+def agregar_plato(request):
+    if request.method == 'POST':
+        form = PlatoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('menu')  # Asegúrate que 'menu' es el nombre correcto de la URL
+    else:
+        form = PlatoForm()
+    return render(request, 'crear_plato.html', {'form': form})
+
+
+def editar_plato(request, pk):
+    plato = get_object_or_404(Plato, pk=pk)
+    if request.method == 'POST':
+        form = PlatoForm(request.POST, instance=plato)
+        if form.is_valid():
+            form.save()
+            return redirect('menu')
+    else:
+        form = PlatoForm(instance=plato)
+    return render(request, 'crear_plato.html', {'form': form})
+
+
+def eliminar_plato(request, pk):
+    plato = get_object_or_404(Plato, pk=pk)
+    if request.method == 'POST':
+        plato.delete()
+        return redirect('pagina_menu')
+    return render(request, 'eliminar_producto.html', {'plato': plato})
+
+
+
 
 #def add_carrito(request, id):
 #    carrito = request.session.get('carrito', 0)
