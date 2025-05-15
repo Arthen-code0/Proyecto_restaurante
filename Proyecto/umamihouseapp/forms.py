@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from .models import *
 
+
 class RegistroForm(forms.ModelForm):
     nombre = forms.CharField(max_length=100)
     apellido = forms.CharField(max_length=100)
@@ -21,5 +22,12 @@ class RegistroForm(forms.ModelForm):
         model = User
         fields = ['email', 'nombre', 'password', 'apellido', 'telefono', 'fecha_nacimiento']
 
+
 class LoginForm(AuthenticationForm):
     username = forms.EmailField(label="Correo")
+
+
+class PlatoForm(forms.ModelForm):
+    class Meta:
+        model = Plato
+        fields = ['nombre', 'descripcion', 'precio', 'imagen','tipo_plato']
