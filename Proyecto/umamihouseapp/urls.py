@@ -1,5 +1,5 @@
 from django.contrib.auth import views
-from django.urls import path
+from django.urls import path, include
 from umamihouseapp.views import *
 
 urlpatterns = [
@@ -19,5 +19,13 @@ urlpatterns = [
 
     # redireccion una vez que el usuario se ha deslogueado
     path('logout/', cerrar_sesion, name='logout'),
-    path('pagina_usuario/', Pagina_usuario, name='pagina_usuario'),
+
+
+
+    # PRODUCTOS Modificar, Eliminar y Agregar
+
+    #Usuarios, modificar y eliminar
+    path('ver_usuarios/', vista_usuarios, name='ver_usuarios'),
+    path('editar_usuario/<int:user_id>/', editar_usuario, name='editar_usuario'),
+    path('eliminar_usuario/<int:user_id>/', eliminar_usuario, name='eliminar_usuario'),
 ]
