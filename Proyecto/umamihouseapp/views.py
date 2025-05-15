@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect, get_object_or_404
 from pycparser.ply.yacc import Production
-from .forms import RegistroForm, LoginForm, PlatoForm
+from .forms import RegistroForm, LoginForm, PlatoForm, UsuarioForm
 from .models import User, Plato
 
 
@@ -133,12 +133,12 @@ def eliminar_plato(request, pk):
 def editar_usuario(request, user_id):
     usuario = get_object_or_404(User, id=user_id)
     if request.method == 'POST':
-        form = RegistroForm(request.POST, instance=usuario)
+        form = UsuarioForm(request.POST, instance=usuario)
         if form.is_valid():
             form.save()
             return redirect('ver_usuarios')
     else:
-        form = RegistroForm(instance=usuario)
+        form = UsuarioForm(instance=usuario)
     return render(request, 'editar_usuario.html', {'form': form})
 
 def eliminar_usuario(request, user_id):
