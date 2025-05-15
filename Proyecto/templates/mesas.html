@@ -11,15 +11,30 @@
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <link rel="icon" href="{% static 'img/Umami_house_logo.png' %}" type="image/x-icon">
-    <title>Camarero</title>
+    <title>Mesas</title>
 </head>
 <body>
 {% include "navbar.html" %}
-<header>
-    <h1 class="text-center p-5">MESAS</h1>
-</header>
-<main>
+<div class="container text-center mt-5">
+    <h1 class="mb-4">Mesas</h1>
+    <div class="row justify-content-center g-4">
+        {% for mesa in mesas %}
+        <div class="col-md-2">
+            <div class="card">
+                <div class="card-img-top bg-secondary" style="height: 150px;"></div>
+                <div class="card-body">
+                    <h5 class="card-title">Mesa {{ mesa.numero }}</h5>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {% for estado in estados%}
+                        <button type="submit" class="btn btn-dark">Ingresar</button>
+                    </form>
 
+                </div>
+            </div>
+        </div>
+    </div>
 
-</main>
+</div>
+
 </body>
