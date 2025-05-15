@@ -16,5 +16,8 @@ urlpatterns = [
     path('mesas/', mesas, name='mesas'),
     path('cocinero/', cocinero, name='cocinero'),
     path('camarero/', camarero, name='camarero'),
-    path('logout/', cerrar_sesion, name='logout')
+
+    # redireccion una vez que el usuario se ha deslogueado
+    path('logout/', cerrar_sesion, name='logout'),
+    path('pagina_usuario/', Pagina_usuario, name='pagina_usuario'),
 ]

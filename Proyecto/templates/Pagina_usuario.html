@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Información de usuario</title>
+    <link rel="stylesheet" href="{% static 'css/info_usuario.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="icon" href="{% static 'img/Umami_house_logo.png' %}" type="image/x-icon">
+</head>
+<body class="bg-light">
+<header>
+    {% include "navbar.html" %}
+</header>
+<div class="container text-center mt-5">
+    <h2 class="titulo">Información de usuario</h2>
+    <div class="d-flex justify-content-center align-items-center mt-4 flex-wrap user-info-container">
+        <div class="ms-4 info-items">
+            <div class="info-box">
+                <span class="label">Nombre:</span>
+                <strong class="value">{{ User.nombre }}</strong>
+            </div>
+            <div class="info-box">
+                <span class="label">Apellido:</span>
+                <strong class="value">{{ User.apellido }}</strong>
+            </div>
+            <div class="info-box">
+                <span class="label">Email:</span>
+                <strong class="value">{{ User.email }}</strong>
+            </div>
+            <div class="info-box">
+                <span class="label">Teléfono:</span>
+                <strong class="value">{{ User.telefono }}</strong>
+            </div>
+            <div class="info-box">
+                <span class="label">Fecha de nacimiento:</span>
+                <strong class="value">{{ User.fecha_nacimiento }}</strong>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
