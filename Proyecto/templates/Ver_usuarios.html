@@ -13,19 +13,22 @@
 </head>
 <body>
 {% include "navbar.html" %}
-<div class="d-flex justify-content-center flex-wrap mt-4">
-    <div class="redondo">Nombre</div>
-    <div class="redondo">Apellidos</div>
-    <div class="redondo">Email</div>
-    <div class="redondo">Nacimiento</div>
-    <div class="redondo">Teléfono</div>
-    <div class="redondo">Rol</div>
-</div>
 
-{% for User in Users %}
-
-    <div class="responsive-table__container">
-        <table class="table table-borderless mb-0">
+<div class="container mt-4">
+    <table class="table table-hover table-bordered text-center align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Email</th>
+                <th>Nacimiento</th>
+                <th>Teléfono</th>
+                <th>Rol</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for User in Users %}
             <tr>
                 <td>{{ User.nombre }}</td>
                 <td>{{ User.apellido }}</td>
@@ -33,14 +36,20 @@
                 <td>{{ User.fecha_nacimiento }}</td>
                 <td>{{ User.telefono }}</td>
                 <td>{{ User.rol }}</td>
+                <td>
+                    <a href="{% url 'editar_usuario' User.id %}" class="text-warning me-2" title="Editar">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                    <a href="{% url 'eliminar_usuario' User.id %}" class="text-danger" title="Eliminar"
+                       onclick="return confirm('¿Seguro que quieres eliminar este usuario?');">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                </td>
             </tr>
-        </table>
-        <div class="actio-icons">
-            <a href="{% url 'editar_usuario' User.id %}" title="Editar"><i class="bi bi-pencil"></i></a>
-            <a href="{% url 'eliminar_usuario' User.id %}" title="Eliminar"
-               onclick="return confirm('¿Seguro que quieres eliminar este usuario?');"><i class="bi bi-trash"></i></a>
-        </div>
-    </div>
-{% endfor %}
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
 </body>
 </html>

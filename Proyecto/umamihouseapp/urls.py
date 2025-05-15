@@ -23,4 +23,9 @@ urlpatterns = [
     path('agregar_plato/', crear_plato, name='crear_plato'),
     path('agregar_plato/<int:user_id>/', editar_plato, name='editar_plato'),
     path('eliminar_plato/<int:user_id>/', eliminar_plato, name='eliminar_plato'),
+
+    #Usuarios, modificar y eliminar
+    path('ver_usuarios/', vista_usuarios, name='ver_usuarios'),
+    path('editar_usuario/<int:user_id>/', editar_usuario, name='editar_usuario'),
+    path('eliminar_usuario/<int:user_id>/', eliminar_usuario, name='eliminar_usuario'),
 ]

@@ -71,7 +71,6 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
-    rol = models.CharField(max_length=50, choices=Rol.choices, default=Rol.CLIENTE)
     is_active = models.BooleanField(_('active'), default=True)
     is_staff = models.BooleanField(_('staff status'), default=False)
     nombre = models.CharField(_('nombre'), max_length=100, blank=True)
@@ -87,7 +86,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['nombreUsuario', 'rol']
+    REQUIRED_FIELDS = ['nombre', 'rol']
 
     def __str__(self):
         return f"{self.email} - {self.nombreUsuario} ({self.rol})"

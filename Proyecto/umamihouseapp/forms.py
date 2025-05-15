@@ -39,3 +39,18 @@ class PlatoForm(forms.ModelForm):
             'imagen': forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Imagen'}),
             'tipo_plato': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Tipo de plato'}),
         }
+
+#Formulario de usuario para modicarlos
+
+class UsuarioForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['nombre', 'apellido', 'email', 'telefono', 'fecha_nacimiento', 'rol']
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre'}),
+            'apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Apellido'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
+            'telefono': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Teléfono'}),
+            'fecha_nacimiento': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Fecha de nacimiento', 'type': 'date'}),
+            'rol': forms.Select(attrs={'class': 'form-control'}),
+        }
