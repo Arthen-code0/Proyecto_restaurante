@@ -37,7 +37,8 @@ class Plato(models.Model):
     tipo_plato = models.CharField(
         max_length=50,
         choices=TipoPlato.choices,
-        default=TipoPlato.ENTRANTE)
+        default=TipoPlato.ENTRANTE,
+    )
 
     def __str__(self):
         return self.nombre
