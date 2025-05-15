@@ -19,4 +19,5 @@ urlpatterns = [
     # redireccion una vez que el usuario se ha deslogueado
     path('logout/', cerrar_sesion, name='logout'),
     path('pagina_usuario/', Pagina_usuario, name='pagina_usuario'),
+    path('ver_usuarios/', Ver_Usuarios, name='ver_usuarios')
 ]

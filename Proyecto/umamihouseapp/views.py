@@ -90,6 +90,10 @@ def Pagina_usuario(request):
     User = request.user
     return render(request, 'pagina_usuario.html', {'User': User})
 
+def Ver_Usuarios(request):
+    Users = User.objects.all()
+    return render(request, 'ver_usuarios.html', {'Users': Users})
+
 #def add_carrito(request, id):
 #    carrito = request.session.get('carrito', 0)
 #    carrito = request.session.get(str(id), 0)
