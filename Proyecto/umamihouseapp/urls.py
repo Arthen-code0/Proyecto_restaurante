@@ -10,17 +10,14 @@ urlpatterns = [
     path('registro/', registrar_usuario, name='registrar_usuario'),
     path('inicio_sesion/', login_usuario, name='login_usuario'),
     path('crear_plato/', crear_plato, name='crear_plato'),
-    path('formulario_pago/', formulario_pago, name='formulario_pago'),
+    path('formulario-pago/<int:pedido_id>/', formulario_pago, name='formulario_pago'),
     path('tu_pedido/', tu_pedido, name='tu_pedido'),
     path('modificar_menu/', modificar_menu, name='modificar_menu'),
     path('mesas/', mesas, name='mesas'),
     path('cocinero/', cocinero, name='cocinero'),
     path('camarero/', camarero, name='camarero'),
-
-    # redireccion una vez que el usuario se ha deslogueado
     path('logout/', cerrar_sesion, name='logout'),
-
-
+    path('crear-pedido/', crear_pedido, name='crear_pedido'),
 
     # PRODUCTOS Modificar, Eliminar y Agregar
 

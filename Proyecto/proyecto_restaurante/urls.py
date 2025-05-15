@@ -19,12 +19,9 @@ from django.contrib import admin
 from django.urls import path, include
 from umamihouseapp.views import *
 
-
-from umamihouseapp.views import pagina_menu
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('', include('umamihouseapp.urls')),
+    path('', include('umamihouseapp.urls')),
     path('proyecto_restaurante/', include('umamihouseapp.urls')),
     path('umamihouseapp/', include('umamihouseapp.urls')),
 ]
