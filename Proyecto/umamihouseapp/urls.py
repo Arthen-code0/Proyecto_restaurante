@@ -3,6 +3,7 @@ from django.urls import path
 from umamihouseapp.views import *
 
 urlpatterns = [
+    # URL, METODO, NOMBRE_ABREVIADO
     path('home', pagina_principal, name='home'),
     path('', pagina_principal, name='home'),
     path('menu/', pagina_menu, name='menu'),
@@ -15,7 +16,5 @@ urlpatterns = [
     path('mesas/', mesas, name='mesas'),
     path('cocinero/', cocinero, name='cocinero'),
     path('camarero/', camarero, name='camarero'),
-
-    # redireccion una vez que el usuario se ha deslogueado
     path('logout/', cerrar_sesion, name='logout')
 ]

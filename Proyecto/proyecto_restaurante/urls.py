@@ -24,6 +24,6 @@ from umamihouseapp.views import pagina_menu
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('umamihouseapp.urls')),
+    #path('', include('umamihouseapp.urls')),
     path('proyecto_restaurante/', include('umamihouseapp.urls')),
 ]
