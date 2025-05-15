@@ -27,14 +27,15 @@ class LoginForm(AuthenticationForm):
     username = forms.EmailField(label="Correo")
 
 
+# Formulario para Eliminar,Modificar y Aregar PLATO
 class PlatoForm(forms.ModelForm):
     class Meta:
         model = Plato
         fields = ['nombre', 'descripcion', 'precio', 'imagen', 'tipo_plato']
         widgets = {
             'nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre'}),
-            'descripcion': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descripción', 'rows': 3}),
-            'precio': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Precio'}),
-            'imagen': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'URL de la imagen'}),
-            'tipo_plato': forms.Select(attrs={'class': 'form-control'}),
+            'descripcion': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Descripcion'}),
+            'precio': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Precio'}),
+            'imagen': forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Imagen'}),
+            'tipo_plato': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Tipo de plato'}),
         }

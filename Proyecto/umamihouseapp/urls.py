@@ -11,7 +11,6 @@ urlpatterns = [
     path('crear_plato/', crear_plato, name='crear_plato'),
     path('formulario_pago/', formulario_pago, name='formulario_pago'),
     path('tu_pedido/', tu_pedido, name='tu_pedido'),
-    path('modificar_menu/', modificar_menu, name='modificar_menu'),
     path('mesas/', mesas, name='mesas'),
     path('cocinero/', cocinero, name='cocinero'),
     path('camarero/', camarero, name='camarero'),
@@ -19,7 +18,9 @@ urlpatterns = [
     # redireccion una vez que el usuario se ha deslogueado
     path('logout/', cerrar_sesion, name='logout'),
 
-
-
     # PRODUCTOS Modificar, Eliminar y Agregar
+    path('modificar_menu/', modificar_menu, name='modificar_menu'),
+    path('agregar_plato/', crear_plato, name='crear_plato'),
+    path('agregar_plato/<int:user_id>/', editar_plato, name='editar_plato'),
+    path('eliminar_plato/<int:user_id>/', eliminar_plato, name='eliminar_plato'),
 ]

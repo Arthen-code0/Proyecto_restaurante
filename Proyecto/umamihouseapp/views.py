@@ -102,7 +102,7 @@ def pagina_menu(request):
 
 def agregar_plato(request):
     if request.method == 'POST':
-        form = PlatoForm(request.POST)
+        form = PlatoForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('menu')  # Asegúrate que 'menu' es el nombre correcto de la URL
@@ -114,7 +114,7 @@ def agregar_plato(request):
 def editar_plato(request, pk):
     plato = get_object_or_404(Plato, pk=pk)
     if request.method == 'POST':
-        form = PlatoForm(request.POST, instance=plato)
+        form = PlatoForm(request.POST, request.FILES, instance=plato)
         if form.is_valid():
             form.save()
             return redirect('menu')
@@ -128,7 +128,7 @@ def eliminar_plato(request, pk):
     if request.method == 'POST':
         plato.delete()
         return redirect('pagina_menu')
-    return render(request, 'eliminar_producto.html', {'plato': plato})
+    return render(request, 'eliminar_producto', {'plato': plato})
 
 
 
