@@ -1,0 +1,40 @@
+body {
+    background: #ffffff;
+    color: #dcaac2;
+    font-family: sans-serif;
+}
+
+.redondes{
+    border-radius: 2rem ;
+    background-color: #eac3d6;
+    padding: 10px 20px;
+    margin: 5px;
+    font-weight: bold;
+}
+
+.table-container{
+    background-color: #eac3d6;
+    border-radius: 2rem;
+    padding: 10px 30px;
+    margin: 20px auto;
+    width: 90%;
+    position: relative;
+}
+
+.table td, table th{
+    vertical-aling: middle;
+    color: white;
+}
+
+.actio-icons {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.actio-icons a{
+    color: #000;
+    margin-left:10px;
+    font-size: 1.2rem;
+}
