@@ -15,43 +15,45 @@
 <body>
 {% include "navbar.html" %}
 <header>
+    {% load widget_tweaks %}
+    {% block content %}
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Crear Nuevo Plato</h2>
 
-<div class="form-container">
-    <h2 class="form-title">NUEVO PRODUCTO</h2>
-    <form method="POST">
-        {% csrf_token %}
+        <form method="POST">
+            {% csrf_token %}
 
-        <div class="mb-3">
-            <label for="id_nombre" class="form-label">Nombre</label>
-            {{ form.nombre }}
-        </div>
+            <div class="mb-3">
+                <label for="{{ form.nombre.id_for_label }}" class="form-label">Nombre</label>
+                {{ form.nombre|add_class:"form-control" }}
+            </div>
 
-        <div class="mb-3">
-            <label for="id_descripcion" class="form-label">Descripción</label>
-            {{ form.descripcion }}
-        </div>
+            <div class="mb-3">
+                <label for="{{ form.descripcion.id_for_label }}" class="form-label">Descripción</label>
+                {{ form.descripcion|add_class:"form-control" }}
+            </div>
 
-        <div class="mb-3">
-            <label for="id_precio" class="form-label">Precio</label>
-            {{ form.precio }}
-        </div>
+            <div class="mb-3">
+                <label for="{{ form.precio.id_for_label }}" class="form-label">Precio</label>
+                {{ form.precio|add_class:"form-control" }}
+            </div>
 
-        <div class="mb-3">
-            <label for="id_tipo_plato" class="form-label">Tipo de producto</label>
-            {{ form.tipo_plato }}
-        </div>
+            <div class="mb-3">
+                <label for="{{ form.tipo_plato.id_for_label }}" class="form-label">Tipo de producto</label>
+                {{ form.tipo_plato|add_class:"form-control" }}
+            </div>
 
-        <div class="mb-3">
-            <label for="id_imagen" class="form-label">Imagen (URL)</label>
-            {{ form.imagen }}
-        </div>
+            <div class="mb-3">
+                <label for="{{ form.imagen.id_for_label }}" class="form-label">Imagen (URL)</label>
+                {{ form.imagen|add_class:"form-control" }}
+            </div>
 
-        <div class="text-center">
-            <button type="submit" class="btn btn-dark mt-3">Crear plato</button>
-        </div>
-    </form>
-</div>
-
+            <div class="text-center">
+                <button type="submit" class="btn btn-dark mt-3">Crear Plato</button>
+            </div>
+        </form>
+    </div>
+    {% endblock %}
 </header>
 {% include "footer.html" %}
 </body>
