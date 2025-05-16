@@ -4,19 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/pagina_principal.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/registro_y_inicio_de_sesion.css' %}">
+    <link rel="icon" href="{% static 'img/Umami_house_logo.png' %}" type="image/x-icon">
     {% load widget_tweaks %}
 </head>
 <body>
-
+{% include "navbar.html" %}
 {% block content %}
-  <h2>Añadir nuevo plato</h2>
+<h2>Añadir nuevo plato</h2>
 
-  <form method="post">
+<form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Guardar Plato</button>
-  </form>
-{% endblock %}
 
+    {% if error %}
+    <div style="color: red; font-weight: bold;">{{ error }}</div>
+    {% endif %}
+
+</form>
+{% endblock %}
+{% include "footer.html" %}
 </body>
 </html>
