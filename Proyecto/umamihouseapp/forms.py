@@ -31,9 +31,10 @@ class LoginForm(AuthenticationForm):
 class PlatoForm(forms.ModelForm):
     class Meta:
         model = Plato
-        fields = '__all__'
+        fields = ['nombre', 'descripcion', 'precio', 'imagen', 'tipo_plato']
 
-#Formulario de usuario para modicarlos
+
+# Formulario de usuario para modicarlos
 
 class UsuarioForm(forms.ModelForm):
     class Meta:
@@ -44,7 +45,8 @@ class UsuarioForm(forms.ModelForm):
             'apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Apellido'}),
             'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
             'telefono': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Teléfono'}),
-            'fecha_nacimiento': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Fecha de nacimiento', 'type': 'date'}),
+            'fecha_nacimiento': forms.DateInput(
+                attrs={'class': 'form-control', 'placeholder': 'Fecha de nacimiento', 'type': 'date'}),
             'rol': forms.Select(attrs={'class': 'form-control'}),
         }
 class MesaForm(forms.ModelForm):

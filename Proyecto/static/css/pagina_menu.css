@@ -114,4 +114,112 @@
     border: none !important;
 }
 
+/* Estilos para el carrito */
+#carrito-lista {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
+    margin-bottom: 20px;
+}
 
+.item-carrito {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.item-carrito h6 {
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.item-carrito p {
+    margin-bottom: 0;
+    color: #6c757d;
+}
+
+.controles-cantidad {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.controles-cantidad button {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #E0B5C6;
+    color: white;
+    font-weight: bold;
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+.controles-cantidad button:hover {
+    background-color: #B17A90;
+    transform: translateY(-2px);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+.controles-cantidad span {
+    min-width: 20px;
+    text-align: center;
+}
+
+.btn-eliminar {
+    background-color: transparent;
+    border: none;
+    color: #E0B5C6;
+    font-size: 1.1rem;
+    margin-left: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-eliminar:hover {
+    color: #B17A90;
+    transform: scale(1.1);
+}
+
+#carrito-total {
+    border-top: 2px solid #E0B5C6;
+    padding-top: 15px;
+    margin-top: 10px;
+}
+
+#carrito-total h5 {
+    color: #333;
+    font-weight: bold;
+}
+
+#finalizar-pedido {
+    background-color: #E0B5C6 !important;
+    border: none !important;
+    border-radius: 20px !important;
+    padding: 10px 20px !important;
+    font-weight: bold !important;
+    transition: all 0.3s ease !important;
+    width: 100%;
+    margin-top: 15px;
+}
+
+#finalizar-pedido:hover {
+    background-color: #B17A90 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2) !important;
+}
+
+/* Notificación estilo toast */
+.toast-header {
+    background-color: #E0B5C6 !important;
+    color: white !important;
+}
+
+.toast-header .btn-close {
+    filter: invert(1);
+}
