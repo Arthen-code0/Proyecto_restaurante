@@ -36,8 +36,8 @@ class PlatoForm(forms.ModelForm):
             'nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre'}),
             'descripcion': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Descripcion'}),
             'precio': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Precio'}),
-            'imagen': forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Imagen'}),
-            'tipo_plato': forms.Select(attrs={'class': 'form-control'}),
+            'imagen': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Imagen'}),
+            'tipo_plato': forms.Select(attrs={'class': 'form-select'}),
         }
 
 #Formulario de usuario para modicarlos
