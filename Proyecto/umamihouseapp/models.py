@@ -119,10 +119,25 @@ class Empleado(models.Model):
     def __str__(self):
         return str(self.id) + " " + self.nombreCompleto
 
+
 class Pedido(models.Model):
+    PREPARANDO = 1
+    EN_PROCESO = 2
+    FINALIZADO = 3
+
+    ESTADO_CHOICES = [
+        (PREPARANDO, 'Preparando'),
+        (EN_PROCESO, 'En proceso'),
+        (FINALIZADO, 'Finalizado'),
+    ]
+
     codigo = models.CharField(max_length=100, blank=True, null=False)
     fecha = models.DateTimeField()
     cliente = models.ForeignKey('User', on_delete=models.DO_NOTHING, related_name='pedidos')
+    estado = models.IntegerField(
+        choices=ESTADO_CHOICES,
+        default=PREPARANDO
+    )
 
     def __str__(self):
         return str(self.codigo) + " " + str(self.fecha) + " " + str(self.cliente.nombreUsuario)
