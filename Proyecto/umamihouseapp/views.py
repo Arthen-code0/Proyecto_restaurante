@@ -1,6 +1,7 @@
 import datetime
 from collections import defaultdict
 from gc import get_objects
+from sqlite3 import IntegrityError
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -115,10 +116,19 @@ def pagina_menu(request):
 
 def crear_plato(request):
     if request.method == 'POST':
-        form = PlatoForm(request.POST, request.FILES)
+        data = request.POST.copy()
+        data.pop('id', None)
+        form = PlatoForm(data)
         if form.is_valid():
-            form.save()
-            return redirect('menu')  # Asegúrate que 'menu' es el nombre correcto de la URL
+            try:
+                form.save()
+                return redirect('menu')
+            except IntegrityError as e:
+                error_msg = str(e)
+                print("Error guardando plato:", error_msg)
+                return render(request, 'Crea_p.html', {'form': form, 'error': error_msg})
+        else:
+            print("Errores formulario:", form.errors)
     else:
         form = PlatoForm()
     return render(request, 'Crea_p.html', {'form': form})
