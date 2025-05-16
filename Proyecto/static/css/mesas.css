@@ -1,15 +1,19 @@
 .mesa-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+    justify-items: center;
     grid-gap: 1rem;
 }
 
 .mesa {
     padding: 1rem;
-    border-radius: 10px;
+    border-radius: 1rem;
+    border:1px black solid;
     text-align: center;
     font-weight: bold;
-    color: white;
+    width: 70%;
+
+
 }
 
 .DISPONIBLE{
