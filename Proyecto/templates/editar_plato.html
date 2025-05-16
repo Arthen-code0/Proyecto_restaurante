@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <title>Editar Plato</title>
+</head>
+<body>
+{% block content %}
+    <div class="container my-5">
+        <h2>Editar Plato: {{ plato.nombre }}</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <div class="d-flex justify-content-between mt-4">
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                <a href="{% url 'menu' %}" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+</body>
+</html>
