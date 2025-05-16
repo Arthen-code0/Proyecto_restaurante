@@ -29,5 +29,5 @@ urlpatterns = [
     path('editar_usuario/<int:user_id>/', editar_usuario, name='editar_usuario'),
     path('eliminar_usuario/<int:user_id>/', eliminar_usuario, name='eliminar_usuario'),
     path('mesas/', mesas, name='mesas'),
-    path('mesas/<int:mesa_id>/cambiar/', cambiar_estado, name='cambiar_estado')
+    #path('mesas/<int:mesa_id>/cambiar/', cambiar_estado, name='cambiar_estado')
 ]
