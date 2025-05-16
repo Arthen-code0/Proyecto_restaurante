@@ -13,13 +13,10 @@ class TipoPlato(models.TextChoices):
     POSTRE = 'POSTRE', 'Postre'
     BEBIDA = 'BEBIDA', 'Bebida'
 
-
-class NumMesa(models.TextChoices):
-    MESA1 = 'MESA1', 'Mesa1'
-    MESA2 = 'MESA2', 'Mesa2'
-    MESA3 = 'MESA3', 'Mesa3'
-    MESA4 = 'MESA4', 'Mesa4'
-    MESA5 = 'MESA5', 'Mesa5'
+class EstadoMesa(models.TextChoices):
+    RESERVADA = 'RESERVADA', 'Reservada'
+    OCUPADA = 'OCUPADA', 'Ocupada'
+    DISPONIBLE = 'DISPONIBLE', 'Disponible'
 
 
 class Rol(models.TextChoices):
@@ -28,6 +25,8 @@ class Rol(models.TextChoices):
     CAMARERO = 'CAMARERO', 'Camarero'
     CLIENTE = 'CLIENTE', 'Cliente'
 
+class Mesa(models.Model):
+    EstadoMesa = models.CharField(max_length=50, choices=EstadoMesa.choices, default=EstadoMesa.DISPONIBLE)
 
 class Plato(models.Model):
     nombre = models.CharField(max_length=50)

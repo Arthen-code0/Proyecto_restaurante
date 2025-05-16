@@ -47,3 +47,4 @@ class UsuarioForm(forms.ModelForm):
             'fecha_nacimiento': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Fecha de nacimiento', 'type': 'date'}),
             'rol': forms.Select(attrs={'class': 'form-control'}),
         }
+
