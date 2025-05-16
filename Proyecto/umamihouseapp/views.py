@@ -8,8 +8,14 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect, get_object_or_404
 from pycparser.ply.yacc import Production
-from .forms import RegistroForm, LoginForm, PlatoForm, UsuarioForm
-from .models import User, Plato, Mesa
+from .forms import RegistroForm, LoginForm, PlatoForm
+from .models import User, Plato, Pedido, PedidoLinea
+
+import json
+from django.http import JsonResponse
+from django.utils import timezone
+import random
+import string
 
 
 # Para el usuario administrador
@@ -83,10 +89,10 @@ def modificar_menu(request):
     platos = Plato.objects.all()
     return render(request, 'modificar_menu.html', {'platos': platos})
 
-
-def formulario_pago(request):
-    return render(request, 'formulario_pago.html')
-
+@login_required
+def formulario_pago(request, pedido_id):
+    pedido = get_object_or_404(Pedido, id=pedido_id, cliente=request.user)
+    return render(request, 'formulario_pago.html', {'pedido': pedido})
 
 @login_required
 def tu_pedido(request):
@@ -174,24 +180,48 @@ def eliminar_usuario(request, user_id):
 
 def vista_usuarios(request):
     users = User.objects.all()
-    return render(request, 'Ver_usuarios.html', {'Users': users})
+    return render (request, 'Ver_usuarios.html', {'Users': users})
 
 
-def mesas(request):
-    mesas = Mesa.objects.all()
-    return render(request, 'mesas.html', {'mesas': mesas})
-
-
-def cambiar_estado(request, mesa_id):
-    mesa = get_object_or_404(Mesa, id=mesa_id)
+@login_required
+def crear_pedido(request):
     if request.method == 'POST':
-        estado_new = request.POST.get('estado')
-        if estado_new in dict(Mesa._meta.get_field('EstadoMesa').choices):
-            mesa.EstadoMesa = estado_new
-            mesa.save()
-    return redirect('mesas')
+        try:
+            carrito = json.loads(request.POST.get('carrito', '[]'))
 
-# def add_carrito(request, id):
+            if not carrito:
+                return JsonResponse({'success': False, 'error': 'Carrito vacío'})
+
+            # Generar código aleatorio
+            codigo = 'PED-' + ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
+
+            # Crear pedido
+            pedido = Pedido.objects.create(
+                codigo=codigo,
+                fecha=timezone.now(),
+                cliente=request.user
+            )
+
+            # Crear líneas de pedido
+            for item in carrito:
+                plato = Plato.objects.get(id=item['id'])
+                PedidoLinea.objects.create(
+                    pedido=pedido,
+                    plato=plato,
+                    cantidad=item['cantidad'],
+                    precio_compra=item['precio']
+                )
+
+            # Redirigir al formulario de pago
+            return redirect('formulario_pago', pedido_id=pedido.id)
+
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)})
+
+    return JsonResponse({'success': False, 'error': 'Método no permitido'})
+
+
+#def add_carrito(request, id):
 #    carrito = request.session.get('carrito', 0)
 #    carrito = request.session.get(str(id), 0)
 #
