@@ -31,14 +31,7 @@ class LoginForm(AuthenticationForm):
 class PlatoForm(forms.ModelForm):
     class Meta:
         model = Plato
-        fields = ['nombre', 'descripcion', 'precio', 'imagen', 'tipo_plato']
-        widgets = {
-            'nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre'}),
-            'descripcion': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Descripcion'}),
-            'precio': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Precio'}),
-            'imagen': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Imagen'}),
-            'tipo_plato': forms.Select(attrs={'class': 'form-select'}),
-        }
+        fields = '__all__'
 
 #Formulario de usuario para modicarlos
 

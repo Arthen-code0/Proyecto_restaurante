@@ -100,7 +100,7 @@ def pagina_menu(request):
 
 #Modificar, Eliminar y Agregar para la carta desde la vista de un administrador
 
-def agregar_plato(request):
+def crear_plato(request):
     if request.method == 'POST':
         form = PlatoForm(request.POST, request.FILES)
         if form.is_valid():
@@ -108,7 +108,7 @@ def agregar_plato(request):
             return redirect('menu')  # Asegúrate que 'menu' es el nombre correcto de la URL
     else:
         form = PlatoForm()
-    return render(request, 'crear_plato.html', {'form': form})
+    return render(request, 'Crea_p.html', {'form': form})
 
 
 def editar_plato(request, pk):

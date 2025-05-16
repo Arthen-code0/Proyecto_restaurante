@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load widget_tweaks %}
+</head>
+<body>
+
+{% block content %}
+  <h2>Añadir nuevo plato</h2>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar Plato</button>
+  </form>
+{% endblock %}
+
+</body>
+</html>
