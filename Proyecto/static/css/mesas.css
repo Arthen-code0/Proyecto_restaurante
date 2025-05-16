@@ -1,0 +1,25 @@
+.mesa-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 1rem;
+}
+
+.mesa {
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+}
+
+.DISPONIBLE{
+    background-color: green;
+}
+
+.OCUPADA{
+    BACKGROUND-COLOR: red;
+}
+
+.RESERVADA{
+    background-color: orange;
+}

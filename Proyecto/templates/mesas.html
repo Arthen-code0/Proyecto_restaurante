@@ -7,33 +7,35 @@
     {% load django_bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
-    <link rel="stylesheet" href="{% static 'css/moviles.css' %}">
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mesas.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <link rel="icon" href="{% static 'img/Umami_house_logo.png' %}" type="image/x-icon">
     <title>Mesas</title>
 </head>
 <body>
 {% include "navbar.html" %}
-<div class="container text-center mt-5">
-    <h1 class="mb-4">Mesas</h1>
-    <div class="row justify-content-center g-4">
-        {% for mesa in mesas %}
-        <div class="col-md-2">
-            <div class="card">
-                <div class="card-img-top bg-secondary" style="height: 150px;"></div>
-                <div class="card-body">
-                    <h5 class="card-title">Mesa {{ mesa.numero }}</h5>
-                    <form method="POST">
-                        {% csrf_token %}
-                        {% for estado in estados%}
-                        <button type="submit" class="btn btn-dark">Ingresar</button>
-                    </form>
+<h1 style="text-align: center">Mesas</h1>
+<div class="mesa-grid">
+    {% for mesa in mesas %}
+        <div class="mesa {{ mesa.EstadoMesa }}">
+            Mesa {{ mesa.id }}
+            <br>
+            Estado actual: {{ mesa.EstadoMesa }}
+            <form method="POST" action="{% url 'cambiar_estado' mesa.id %}">
+                {% csrf_token %}
+                <label><input type="radio" name="estado" value="DISPONIBLE"
+                              {% if mesa.EstadoMesa == 'DISPONIBLE' %}checked{% endif %}>Disponible</label>
+                <label><input type="radio" name="estado" value="OCUPADA"
+                              {% if mesa.EstadoMesa == 'OCUPADA' %}checked{% endif %}>Ocupada</label>
+                <label><input type="radio" name="estado" value="RESERVADA"
+                              {% if mesa.EstadoMesa == 'RESERVADA' %}checked{% endif %}>Reservada</label>
+                <button type="submit">Actualizar</button>
 
-                </div>
-            </div>
+            </form>
         </div>
-    </div>
+    {% endfor %}
+</div>
 
 </div>
 

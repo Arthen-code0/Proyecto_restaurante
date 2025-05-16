@@ -28,6 +28,7 @@ class Rol(models.TextChoices):
 class Mesa(models.Model):
     EstadoMesa = models.CharField(max_length=50, choices=EstadoMesa.choices, default=EstadoMesa.DISPONIBLE)
 
+
 class Plato(models.Model):
     nombre = models.CharField(max_length=50)
     descripcion = models.TextField()

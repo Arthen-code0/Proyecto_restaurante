@@ -47,4 +47,10 @@ class UsuarioForm(forms.ModelForm):
             'fecha_nacimiento': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Fecha de nacimiento', 'type': 'date'}),
             'rol': forms.Select(attrs={'class': 'form-control'}),
         }
-
+class MesaForm(forms.ModelForm):
+    class Meta:
+        model = Mesa
+        fields = ['EstadoMesa']
+        widgets = {
+            'EstadoMesa': forms.RadioSelect(choices=EstadoMesa.choices),
+        }
