@@ -8,6 +8,8 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect, get_object_or_404
 from pycparser.ply.yacc import Production
+from .forms import RegistroForm, LoginForm, PlatoForm, UsuarioForm
+from .models import User, Plato, Mesa
 from .forms import RegistroForm, LoginForm, PlatoForm
 from .models import User, Plato, Pedido, PedidoLinea
 
@@ -182,6 +184,9 @@ def vista_usuarios(request):
     users = User.objects.all()
     return render (request, 'Ver_usuarios.html', {'Users': users})
 
+def mesas(request):
+    mesas = Mesa.objects.all()
+    return render(request, 'mesas.html', {'mesas': mesas})
 
 @login_required
 def crear_pedido(request):
@@ -219,6 +224,15 @@ def crear_pedido(request):
             return JsonResponse({'success': False, 'error': str(e)})
 
     return JsonResponse({'success': False, 'error': 'Método no permitido'})
+
+def cambiar_estado(request, mesa_id):
+    mesa = get_object_or_404(Mesa, id=mesa_id)
+    if request.method == 'POST':
+        estado_new = request.POST.get('estado')
+        if estado_new in dict(Mesa._meta.get_field('EstadoMesa').choices):
+            mesa.EstadoMesa = estado_new
+            mesa.save()
+    return redirect('mesas')
 
 
 #def add_carrito(request, id):
