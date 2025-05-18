@@ -151,14 +151,14 @@ def editar_plato(request, pk):
             return redirect('menu')
     else:
         form = PlatoForm(instance=plato)
-    return render(request, 'crear_plato.html', {'form': form})
+    return render(request, 'Crea_p.html', {'form': form})
 
 
 def eliminar_plato(request, pk):
     plato = get_object_or_404(Plato, pk=pk)
     if request.method == 'POST':
         plato.delete()
-        return redirect('pagina_menu')
+        return redirect('menu')
     return render(request, 'eliminar_producto', {'plato': plato})
 
 
