@@ -13,11 +13,10 @@
 <body>
 {% include "navbar.html" %}
 {% block content %}
-
     <form method="post">
         {% csrf_token %}
         <div class="form-container">
-            <h2 class="form-title">Añadir nuevo plato</h2>
+            <h2 class="form-title">Modificar Plato</h2>
             <p class="form-subtitle">Rellena los campos para agregar un plato al menú</p>
 
             <form method="post" enctype="multipart/form-data">
@@ -57,11 +56,6 @@
                 {% endif %}
             </form>
         </div>
-
-        {% if error %}
-            <div style="color: red; font-weight: bold;">{{ error }}</div>
-        {% endif %}
-
     </form>
 {% endblock %}
 {% include "footer.html" %}

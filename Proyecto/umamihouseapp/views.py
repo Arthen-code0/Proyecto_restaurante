@@ -134,12 +134,12 @@ def crear_plato(request):
             except IntegrityError as e:
                 error_msg = str(e)
                 print("Error guardando plato:", error_msg)
-                return render(request, 'Crea_p.html', {'form': form, 'error': error_msg})
+                return render(request, 'crear_plato.html', {'form': form, 'error': error_msg})
         else:
             print("Errores formulario:", form.errors)
     else:
         form = PlatoForm()
-    return render(request, 'Crea_p.html', {'form': form})
+    return render(request, 'crear_plato.html', {'form': form})
 
 
 def editar_plato(request, pk):
