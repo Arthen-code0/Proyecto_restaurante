@@ -32,6 +32,13 @@ class PlatoForm(forms.ModelForm):
     class Meta:
         model = Plato
         fields = ['nombre', 'descripcion', 'precio', 'imagen', 'tipo_plato']
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
+            'descripcion': forms.TextInput(attrs={'class': 'form-control'}),
+            'precio': forms.NumberInput(attrs={'class': 'form-control'}),
+            'imagen': forms.TextInput(attrs={'class': 'form-control'}),
+            'tipo_plato': forms.Select(attrs={'class': 'form-control'}),
+        }
 
 
 # Formulario de usuario para modicarlos
