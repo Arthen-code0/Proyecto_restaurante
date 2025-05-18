@@ -1,7 +1,7 @@
-from django.contrib.auth import views
+
 from django.urls import path, include
 from umamihouseapp.views import *
-
+from . import views
 urlpatterns = [
     # URL, METODO, NOMBRE_ABREVIADO
     path('home', pagina_principal, name='home'),
