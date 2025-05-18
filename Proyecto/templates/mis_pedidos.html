@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Mis pedidos</h2>
+{% if pedidos %}
+    <ul>
+        {% for pedido in pedidos %}
+        <li>
+            <strong>Código:</strong> {{pedido.id}}
+        </li>
+    </ul>
+{% endif %}
+</body>
+</html>
