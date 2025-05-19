@@ -26,7 +26,9 @@ class Rol(models.TextChoices):
     CLIENTE = 'CLIENTE', 'Cliente'
 
 class Mesa(models.Model):
-    EstadoMesa = models.CharField(max_length=50, choices=EstadoMesa.choices, default=EstadoMesa.DISPONIBLE)
+    EstadoMesa = models.CharField(
+        max_length=50, choices=EstadoMesa.choices, default=EstadoMesa.DISPONIBLE
+    )
 
 
 class Plato(models.Model):
