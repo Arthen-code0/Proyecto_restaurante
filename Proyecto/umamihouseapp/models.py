@@ -28,8 +28,7 @@ class Rol(models.TextChoices):
 
 class Mesa(models.Model):
     EstadoMesa = models.CharField(max_length=50, choices=EstadoMesa.choices, default=EstadoMesa.DISPONIBLE)
-    creado_en = models.DateTimeField(auto_now_add=True)
-    actualizado_en = models.DateTimeField(auto_now=True)
+
 
 
 class Plato(models.Model):
