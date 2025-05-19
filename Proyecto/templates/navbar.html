@@ -25,32 +25,29 @@
                     <div></div>
                 </button>
                 <ul class="dropdown-menu">
+                    <!-- Opción "Carta" visible para TODOS -->
+                    <li><a class="dropdown-item" onclick="location.href='{% url 'menu' %}'">Carta</a></li>
 
-                    {% if user.is_authenticated and not user.rol in 'CAMARERO,COCINERO' %}
-                        <li><a class="dropdown-item" onclick="location.href='{% url 'menu' %}'">Carta</a></li>
-                    {% endif %}
-
-                    {% if user.is_authenticated and not user.rol in 'CAMARERO,COCINERO' %}
-                        <li><a class="dropdown-item" onclick="location.href='{% url 'tu_pedido' %}'">Tu Carrito</a></li>
-                    {% endif %}
-
+                    <!-- Opciones para ADMIN -->
                     {% if user.is_authenticated and user.rol == 'ADMIN' %}
                         <li><a class="dropdown-item" onclick="location.href='{% url 'modificar_menu' %}'">Modificar carta</a></li>
+                        <li><a class="dropdown-item" onclick="location.href='{% url 'crear_plato' %}'">Crear plato</a></li>
                     {% endif %}
 
-                    {% if user.is_authenticated and user.rol == 'ADMIN' %}
-                        <li><a class="dropdown-item" onclick="location.href='{% url 'crear_plato' %}'">Crear plato</a>
+                    <!-- Opciones para CLIENTE -->
+                    {% if user.is_authenticated and user.rol == 'CLIENTE' %}
+                        <li><a class="dropdown-item" onclick="location.href='{% url 'tu_pedido' %}'">Tu Carrito</a></li>
+                        <li><a class="dropdown-item" onclick="location.href='{% url 'tu_pedido' %}'">Hacer Pedido</a>
                         </li>
                     {% endif %}
 
+                    <!-- Opciones para CAMARERO -->
                     {% if user.is_authenticated and user.rol == 'CAMARERO' %}
                         <li><a class="dropdown-item" onclick="location.href='{% url 'mesas' %}'">Mesas</a></li>
+                        <li><a class="dropdown-item" onclick="location.href='{% url 'tu_pedido' %}'">Camarero</a></li>
                     {% endif %}
 
-                    {% if user.is_authenticated and user.rol == 'CAMARERO' %}
-                        <li><a class="dropdown-item" onclick="location.href='{% url 'camarero' %}'">Camarero</a></li>
-                    {% endif %}
-
+                    <!-- Opciones para COCINERO -->
                     {% if user.is_authenticated and user.rol == 'COCINERO' %}
                         <li><a class="dropdown-item" onclick="location.href='{% url 'cocinero' %}'">Cocinero</a></li>
                     {% endif %}

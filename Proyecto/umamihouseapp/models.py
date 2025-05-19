@@ -5,13 +5,13 @@ from django.utils.translation import gettext_lazy as _
 from oracledb import defaults
 
 
+
 class TipoPlato(models.TextChoices):
     ENTRANTE = 'ENTRANTE', 'Entrante'
     SUSHI = 'SUSHI', 'Sushi'
     PLATO_PRINCIPAL = 'PLATO_PRINCIPAL', 'Plato_principal'
     POSTRE = 'POSTRE', 'Postre'
     BEBIDA = 'BEBIDA', 'Bebida'
-
 
 class EstadoMesa(models.TextChoices):
     RESERVADA = 'RESERVADA', 'Reservada'
@@ -25,11 +25,10 @@ class Rol(models.TextChoices):
     CAMARERO = 'CAMARERO', 'Camarero'
     CLIENTE = 'CLIENTE', 'Cliente'
 
-
 class Mesa(models.Model):
-    EstadoMesa = models.CharField(max_length=50, choices=EstadoMesa.choices, default=EstadoMesa.DISPONIBLE)
-    creado_en = models.DateTimeField(auto_now_add=True)
-    actualizado_en = models.DateTimeField(auto_now=True)
+    EstadoMesa = models.CharField(
+        max_length=50, choices=EstadoMesa.choices, default=EstadoMesa.DISPONIBLE
+    )
 
 
 class Plato(models.Model):
@@ -42,8 +41,6 @@ class Plato(models.Model):
         choices=TipoPlato.choices,
         default=TipoPlato.ENTRANTE,
     )
-   # creado_en = models.DateTimeField(auto_now_add=True)  # Fecha de creación
-    #actualizado_en = models.DateTimeField(auto_now=True)  # Última modificación
 
     def __str__(self):
         return self.nombre
@@ -84,19 +81,15 @@ class User(AbstractBaseUser, PermissionsMixin):
     telefono = models.CharField(_('telefono'), max_length=100, blank=True)
     fecha_nacimiento = models.DateField(_('fecha_nacimiento'), null=True)
     rol = models.CharField(
-        max_length=10,
-        choices=Rol.choices,
-        default=Rol.CLIENTE,
+        max_length = 10,
+        choices = Rol.choices,
+        default = Rol.CLIENTE,
     )
-
-    #creado_en = models.DateTimeField(auto_now_add=True)
-    #actualizado_en = models.DateTimeField(auto_now=True)
 
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['nombre', 'rol']
-
 
     def __str__(self):
         return f"{self.email} - {self.nombreUsuario} ({self.rol})"
@@ -114,9 +107,6 @@ class Cliente(models.Model):
     imagen_url = models.CharField(max_length=1000)
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, default=None)
 
-    #creado_en = models.DateTimeField(auto_now_add=True)
-    #actualizado_en = models.DateTimeField(auto_now=True)
-
     def __str__(self):
         return str(self.id) + " " + self.nombre + "," + self.apellido
 
@@ -128,9 +118,6 @@ class Empleado(models.Model):
     imagen_url = models.CharField(max_length=1000)
     user = models.OneToOneField(User, null=True, on_delete=models.DO_NOTHING)
     rol = models.CharField(max_length=50, choices=Rol.choices, default=Rol.COCINERO)
-
-    #creado_en = models.DateTimeField(auto_now_add=True)
-    #actualizado_en = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return str(self.id) + " " + self.nombreCompleto
@@ -155,9 +142,6 @@ class Pedido(models.Model):
         default=PREPARANDO
     )
 
-    #creado_en = models.DateTimeField(auto_now_add=True)
-    #actualizado_en = models.DateTimeField(auto_now=True)
-
     def __str__(self):
         return str(self.codigo) + " " + str(self.fecha) + " " + str(self.cliente.nombreUsuario)
 
@@ -168,10 +152,9 @@ class PedidoLinea(models.Model):
     cantidad = models.IntegerField()
     precio_compra = models.DecimalField(max_digits=5, decimal_places=2)
 
-    #creado_en = models.DateTimeField(auto_now_add=True)
-    #actualizado_en = models.DateTimeField(auto_now=True)
-
     def __str__(self):
         return str(self.plato.nombre) + " " + str(self.cantidad) + " " + str(self.precio_compra)
 
-# FORMULARIOS PLATOS
+
+#FORMULARIOS PLATOS
+
