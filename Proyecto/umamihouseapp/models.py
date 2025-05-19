@@ -3,7 +3,7 @@ from django.contrib.auth.models import PermissionsMixin
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from oracledb import defaults
-
+from django.utils import timezone; timezone.now()
 
 
 class TipoPlato(models.TextChoices):
@@ -29,6 +29,8 @@ class Mesa(models.Model):
     EstadoMesa = models.CharField(
         max_length=50, choices=EstadoMesa.choices, default=EstadoMesa.DISPONIBLE
     )
+    creado = models.DateTimeField(auto_now_add=True)
+    modificado = models.DateTimeField(auto_now=True)
 
 
 class Plato(models.Model):
@@ -41,6 +43,8 @@ class Plato(models.Model):
         choices=TipoPlato.choices,
         default=TipoPlato.ENTRANTE,
     )
+    creado = models.DateTimeField(auto_now_add=True)
+    modificado = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.nombre
@@ -85,6 +89,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         choices = Rol.choices,
         default = Rol.CLIENTE,
     )
+    creado = models.DateTimeField(auto_now_add=True)
+    modificado = models.DateTimeField(auto_now=True)
 
     objects = UserManager()
 
@@ -141,6 +147,8 @@ class Pedido(models.Model):
         choices=ESTADO_CHOICES,
         default=PREPARANDO
     )
+    creado = models.DateTimeField(auto_now_add=True)
+    modificado = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return str(self.codigo) + " " + str(self.fecha) + " " + str(self.cliente.nombreUsuario)
@@ -151,6 +159,8 @@ class PedidoLinea(models.Model):
     plato = models.ForeignKey(Plato, on_delete=models.DO_NOTHING)
     cantidad = models.IntegerField()
     precio_compra = models.DecimalField(max_digits=5, decimal_places=2)
+    creado = models.DateTimeField(auto_now_add=True)
+    modificado = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return str(self.plato.nombre) + " " + str(self.cantidad) + " " + str(self.precio_compra)
