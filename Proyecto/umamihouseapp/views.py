@@ -100,17 +100,17 @@ def formulario_pago(request, pedido_id):
 def tu_pedido(request):
     return render(request, 'tu_pedido.html')
 
-
+#@user_passes_test(es_camarero)
 def mesas(request):
     return render(request, 'mesas.html')
 
 
-@user_passes_test(es_cocinero)
+#@user_passes_test(es_cocinero)
 def cocinero(request):
     return render(request, 'cocinero.html')
 
 
-@user_passes_test(es_camarero)
+#@user_passes_test(es_camarero)
 def camarero(request):
     return render(request, 'camarero.html')
 
@@ -122,6 +122,7 @@ def pagina_menu(request):
 
 # Modificar, Eliminar y Agregar para la carta desde la vista de un administrador
 
+#@user_passes_test(es_admin)
 def crear_plato(request):
     if request.method == 'POST':
         data = request.POST.copy()
@@ -141,7 +142,7 @@ def crear_plato(request):
         form = PlatoForm()
     return render(request, 'crear_plato.html', {'form': form})
 
-
+#@user_passes_test(es_admin)
 def editar_plato(request, pk):
     plato = get_object_or_404(Plato, pk=pk)
     if request.method == 'POST':
@@ -153,7 +154,7 @@ def editar_plato(request, pk):
         form = PlatoForm(instance=plato)
     return render(request, 'Crea_p.html', {'form': form})
 
-
+#@user_passes_test(es_admin)
 def eliminar_plato(request, pk):
     plato = get_object_or_404(Plato, pk=pk)
     if request.method == 'POST':
@@ -161,7 +162,7 @@ def eliminar_plato(request, pk):
         return redirect('menu')
     return render(request, 'eliminar_producto', {'plato': plato})
 
-
+#@user_passes_test(es_admin)
 def editar_usuario(request, user_id):
     usuario = get_object_or_404(User, id=user_id)
     if request.method == 'POST':
@@ -173,17 +174,18 @@ def editar_usuario(request, user_id):
         form = UsuarioForm(instance=usuario)
     return render(request, 'editar_usuario.html', {'form': form})
 
-
+#@user_passes_test(es_admin)
 def eliminar_usuario(request, user_id):
     usuario = get_object_or_404(User, id=user_id)
     usuario.delete()
     return redirect('ver_usuarios')
 
-
+#@user_passes_test(es_admin)
 def vista_usuarios(request):
     users = User.objects.all()
     return render (request, 'Ver_usuarios.html', {'Users': users})
 
+#@user_passes_test(es_camarero)
 def mesas(request):
     mesas = Mesa.objects.all()
     return render(request, 'mesas.html', {'mesas': mesas})
