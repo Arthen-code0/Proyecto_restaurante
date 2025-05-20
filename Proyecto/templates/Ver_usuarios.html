@@ -40,10 +40,17 @@
                     <a href="{% url 'editar_usuario' User.id %}" class="text-warning me-2" title="Editar">
                         <i class="bi bi-pencil"></i>
                     </a>
-                    <a href="{% url 'eliminar_usuario' User.id %}" class="text-danger" title="Eliminar"
-                       onclick="return confirm('¿Seguro que quieres eliminar este usuario?');">º
-                        <i class="bi bi-trash"></i>
-                    </a>
+                    {% if User.alta_usuario == 1 %}
+                        <a href="{% url 'eliminar_usuario' User.id %}" class="text-danger"
+                           onclick="return confirm('¿Seguro que quieres dar de BAJA a este usuario?');">
+                            <i class="bi bi-trash" title="Dar de baja"></i>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'eliminar_usuario' User.id %}" class="text-success"
+                           onclick="return confirm('¿Seguro que quieres dar de ALTA a este usuario?');">
+                            <i class="bi bi-check-circle" title="Dar de alta"></i>
+                        </a>
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}
