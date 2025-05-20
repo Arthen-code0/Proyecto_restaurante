@@ -1,181 +1,183 @@
 {% load static %}
 
 {% block header %}
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% load django_bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-    <link rel="stylesheet" href="{% static 'css/pagina_principal.css' %}">
-    <link rel="icon" href="{% static 'img/Umami_house_logo.png' %}" type="image/x-icon">
-    <title>Umami House</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% load django_bootstrap5 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+        <link rel="stylesheet" href="{% static 'css/pagina_principal.css' %}">
+        <link rel="icon" href="{% static 'img/Umami_house_logo.png' %}" type="image/x-icon">
+        <title>Umami House</title>
+    </head>
 {% endblock %}
 
 {% block css %}
-<nav id="navbar" class="navbar px-2 navbar-claro">
-    <div class="d-flex align-items-center">
-        <!-- Menú desplegable -->
-        <div class="dropdown me-3">
-            <button class="btn btn-secondary button_menu_desplegable" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                <div></div>
-                <div></div>
-                <div></div>
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" onclick="location.href='{% url 'menu' %}'">Carta</a></li>
-                <li><a class="dropdown-item" href="#">Reserva</a></li>
+    <nav id="navbar" class="navbar px-2 navbar-claro">
+        <div class="d-flex align-items-center">
+            <!-- Menú desplegable -->
+            <div class="dropdown me-3">
+                <button class="btn btn-secondary button_menu_desplegable" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </button>
+                <ul class="dropdown-menu">
+                    <!-- Opción "Carta" visible para TODOS -->
+                    <li><a class="dropdown-item" onclick="location.href='{% url 'menu' %}'">Carta</a></li>
 
-                {% if user.is_authenticated %}
-                <li><a class="dropdown-item" href="#">Tu Carrito</a></li>
-                {% endif %}
+                    <!-- Opciones para ADMIN -->
+                    {% if user.is_authenticated and user.rol == 'ADMIN' %}
+                        <li><a class="dropdown-item" onclick="location.href='{% url 'modificar_menu' %}'">Modificar
+                            carta</a></li>
+                        <li><a class="dropdown-item" onclick="location.href='{% url 'crear_plato' %}'">Crear plato</a>
+                        </li>
+                    {% endif %}
 
-                <li><a class="dropdown-item" onclick="location.href='{% url 'tu_pedido' %}'">Hacer Pedido</a></li>
+                    <!-- Opciones para CLIENTE -->
+                    {% if user.is_authenticated and user.rol == 'CLIENTE' %}
+                        <li><a class="dropdown-item" onclick="location.href='{% url 'tu_pedido' %}'">Tu Carrito</a></li>
+                        <li><a class="dropdown-item" onclick="location.href='{% url 'tu_pedido' %}'">Hacer Pedido</a>
+                        </li>
+                    {% endif %}
 
-                {% if user.is_authenticated and user.role == 'ADMIN' %}
-                <li><a class="dropdown-item" href="#">Modificar carta</a></li>
-                {% endif %}
+                    <!-- Opciones para CAMARERO -->
+                    {% if user.is_authenticated and user.rol == 'CAMARERO' %}
+                        <li><a class="dropdown-item" onclick="location.href='{% url 'mesas' %}'">Mesas</a></li>
+                        <li><a class="dropdown-item" onclick="location.href='{% url 'tu_pedido' %}'">Camarero</a></li>
+                    {% endif %}
 
-                {% if user.is_authenticated and user.role == 'ADMIN' %}
-                <li><a class="dropdown-item" href="#">Crear plato</a></li>
-                {% endif %}
+                    <!-- Opciones para COCINERO -->
+                    {% if user.is_authenticated and user.rol == 'COCINERO' %}
+                        <li><a class="dropdown-item" onclick="location.href='{% url 'cocinero' %}'">Cocinero</a></li>
+                    {% endif %}
+                </ul>
+            </div>
 
-                {% if user.is_authenticated and user.role == 'CAMARERO' %}
-                <li><a class="dropdown-item" href="#">Mesas</a></li>
-                {% endif %}
-
-                {% if user.is_authenticated and user.role == 'CAMARERO' %}
-                <li><a class="dropdown-item" href="#">Camarero</a></li>
-                {% endif %}
-
-                {% if user.is_authenticated and user.role == 'COCINERO' %}
-                <li><a class="dropdown-item" href="#">Cocinero</a></li>
-                {% endif %}
-            </ul>
+            <!-- Switch -->
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="modeSwitch">
+                <label class="form-check-label text-white" for="modeSwitch"></label>
+            </div>
         </div>
 
-        <!-- Switch -->
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="modeSwitch">
-            <label class="form-check-label text-white" for="modeSwitch"></label>
+        <!-- Logo -->
+        <figure class="navbar-brand m-0">
+            <img id="logo-claro" class="logo-navbar" src="{% static 'img/Umami_house_logo.png' %}" height="150"
+                 alt="Logo claro" onclick="location.href='{% url 'home' %}'"/>
+            <img id="logo-oscuro" class="logo-navbar" src="{% static 'img/Umami_house_logo_dark.png' %}" height="150"
+                 alt="Logo oscuro" style="display: none;"/>
+        </figure>
+
+        <!-- Botón cuenta (MODIFICADO PARA LOGOUT) -->
+        <div class="d-md-flex align-items-center">
+            {% if user.is_authenticated %}
+                <!-- Botón Cerrar Sesión (visible cuando hay usuario logueado) -->
+                <div id="btn-navbar" class="redondes m-1">
+                    <a class="botones text-decoration-none p-1 d-flex align-items-center"
+                       href="{% url 'logout' %}"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <img src="{% static 'img/usuario.png' %}" width="24" height="24" class="me-2"
+                             alt="Icono cuenta">
+                        <p class="mb-1 fs-6 text-white">Cerrar sesión</p>
+                    </a>
+                    <form id="logout-form" action="{% url 'logout' %}" method="POST" style="display: none;">
+                        {% csrf_token %}
+                    </form>
+                </div>
+            {% else %}
+                <!-- Botón Mi Cuenta (visible cuando NO hay usuario logueado) -->
+                <div id="btn-navbar" class="redondes m-1">
+                    <a class="botones text-decoration-none p-1 d-flex align-items-center"
+                       onclick="location.href='{% url 'login_usuario' %}'">
+                        <img src="{% static 'img/usuario.png' %}" width="24" height="24" class="me-2"
+                             alt="Icono cuenta">
+                        <p class="mb-1 fs-6 text-white">Mi cuenta</p>
+                    </a>
+                </div>
+            {% endif %}
         </div>
-    </div>
+    </nav>
 
-    <!-- Logo -->
-    <figure class="navbar-brand m-0">
-        <img id="logo-claro" class="logo-navbar" src="{% static 'img/Umami_house_logo.png' %}" height="150"
-             alt="Logo claro" onclick="location.href='{% url 'home' %}'"/>
-        <img id="logo-oscuro" class="logo-navbar" src="{% static 'img/Umami_house_logo_dark.png' %}" height="150"
-             alt="Logo oscuro" style="display: none;"/>
-    </figure>
+    <!-- Scripts (se mantienen igual) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js"
+            integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+"
+            crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const switchInput = document.getElementById('modeSwitch');
+            const body = document.getElementById('body');
+            const navbar = document.getElementById('navbar');
+            const logoClaro = document.getElementById('logo-claro');
+            const logoOscuro = document.getElementById('logo-oscuro');
+            const div = document.getElementById('btn-navbar');
+            const footer = document.getElementById('footer');
+            const botonMenu = document.getElementById('btn-menu');
+            const iconos_footer = document.querySelectorAll('.iconos_footer');
 
-    <!-- Botón cuenta (MODIFICADO PARA LOGOUT) -->
-    <div class="d-md-flex align-items-center">
-        {% if user.is_authenticated %}
-            <!-- Botón Cerrar Sesión (visible cuando hay usuario logueado) -->
-            <div id="btn-navbar" class="redondes m-1">
-                <a class="botones text-decoration-none p-1 d-flex align-items-center"
-                   href="{% url 'logout' %}"
-                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <img src="{% static 'img/usuario.png' %}" width="24" height="24" class="me-2" alt="Icono cuenta">
-                    <p class="mb-1 fs-6 text-white">Cerrar sesión</p>
-                </a>
-                <form id="logout-form" action="{% url 'logout' %}" method="POST" style="display: none;">
-                    {% csrf_token %}
-                </form>
-            </div>
-        {% else %}
-            <!-- Botón Mi Cuenta (visible cuando NO hay usuario logueado) -->
-            <div id="btn-navbar" class="redondes m-1">
-                <a class="botones text-decoration-none p-1 d-flex align-items-center"
-                   onclick="location.href='{% url 'login_usuario' %}'">
-                    <img src="{% static 'img/usuario.png' %}" width="24" height="24" class="me-2" alt="Icono cuenta">
-                    <p class="mb-1 fs-6 text-white">Mi cuenta</p>
-                </a>
-            </div>
-        {% endif %}
-    </div>
-</nav>
-
-<!-- Scripts (se mantienen igual) -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js"
-        integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+"
-        crossorigin="anonymous"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const switchInput = document.getElementById('modeSwitch');
-        const body = document.getElementById('body');
-        const navbar = document.getElementById('navbar');
-        const logoClaro = document.getElementById('logo-claro');
-        const logoOscuro = document.getElementById('logo-oscuro');
-        const div = document.getElementById('btn-navbar');
-        const footer = document.getElementById('footer');
-        const botonMenu = document.getElementById('btn-menu');
-        const iconos_footer = document.querySelectorAll('.iconos_footer');
-
-        if (localStorage.getItem('darkMode') === 'true') {
-            switchInput.checked = true;
-            setDarkMode(true);
-        }
-
-        switchInput.addEventListener('change', () => {
-            const isDark = switchInput.checked;
-            setDarkMode(isDark);
-            localStorage.setItem('darkMode', isDark);
-        });
-
-        function setDarkMode(enabled) {
-            if (enabled) {
-                body.classList.remove('body-claro');
-                body.classList.add('body-oscuro');
-                navbar.classList.remove('navbar-claro');
-                navbar.classList.add('navbar-oscuro');
-                logoClaro.style.display = 'none';
-                logoOscuro.style.display = 'block';
-                div.classList.remove('redondes');
-                div.classList.add('redondes-oscuro');
-
-                if (footer) {
-                    footer.classList.remove('footer-claro');
-                    footer.classList.add('footer-oscuro');
-                }
-                if (botonMenu) {
-                    botonMenu.classList.remove('button-menu');
-                    botonMenu.classList.add('button-menu-oscuro');
-                }
-
-                iconos_footer.forEach(icono => {
-                    icono.style.filter = 'none';
-                });
-            } else {
-                body.classList.remove('body-oscuro');
-                body.classList.add('body-claro');
-                navbar.classList.remove('navbar-oscuro');
-                navbar.classList.add('navbar-claro');
-                logoClaro.style.display = 'block';
-                logoOscuro.style.display = 'none';
-                div.classList.remove('redondes-oscuro');
-                div.classList.add('redondes');
-
-                if (footer) {
-                    footer.classList.remove('footer-oscuro');
-                    footer.classList.add('footer-claro');
-                }
-                if (botonMenu) {
-                    botonMenu.classList.remove('button-menu-oscuro');
-                    botonMenu.classList.add('button-menu');
-                }
-
-                iconos_footer.forEach(icono => {
-                    icono.style.filter = 'invert(1)';
-                });
+            if (localStorage.getItem('darkMode') === 'true') {
+                switchInput.checked = true;
+                setDarkMode(true);
             }
-        }
-    });
-</script>
+
+            switchInput.addEventListener('change', () => {
+                const isDark = switchInput.checked;
+                setDarkMode(isDark);
+                localStorage.setItem('darkMode', isDark);
+            });
+
+            function setDarkMode(enabled) {
+                if (enabled) {
+                    body.classList.remove('body-claro');
+                    body.classList.add('body-oscuro');
+                    navbar.classList.remove('navbar-claro');
+                    navbar.classList.add('navbar-oscuro');
+                    logoClaro.style.display = 'none';
+                    logoOscuro.style.display = 'block';
+                    div.classList.remove('redondes');
+                    div.classList.add('redondes-oscuro');
+
+                    if (footer) {
+                        footer.classList.remove('footer-claro');
+                        footer.classList.add('footer-oscuro');
+                    }
+                    if (botonMenu) {
+                        botonMenu.classList.remove('button-menu');
+                        botonMenu.classList.add('button-menu-oscuro');
+                    }
+
+                    iconos_footer.forEach(icono => {
+                        icono.style.filter = 'none';
+                    });
+                } else {
+                    body.classList.remove('body-oscuro');
+                    body.classList.add('body-claro');
+                    navbar.classList.remove('navbar-oscuro');
+                    navbar.classList.add('navbar-claro');
+                    logoClaro.style.display = 'block';
+                    logoOscuro.style.display = 'none';
+                    div.classList.remove('redondes-oscuro');
+                    div.classList.add('redondes');
+
+                    if (footer) {
+                        footer.classList.remove('footer-oscuro');
+                        footer.classList.add('footer-claro');
+                    }
+                    if (botonMenu) {
+                        botonMenu.classList.remove('button-menu-oscuro');
+                        botonMenu.classList.add('button-menu');
+                    }
+
+                    iconos_footer.forEach(icono => {
+                        icono.style.filter = 'invert(1)';
+                    });
+                }
+            }
+        });
+    </script>
 {% endblock %}

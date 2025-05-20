@@ -27,14 +27,14 @@ class LoginForm(AuthenticationForm):
     username = forms.EmailField(label="Correo")
 
 
-# Formulario para Eliminar,Modificar y Aregar PLATO
+# Formulario para Eliminar, Modificar y Agregar PLATO
 class PlatoForm(forms.ModelForm):
     class Meta:
         model = Plato
         fields = ['nombre', 'descripcion', 'precio', 'imagen', 'tipo_plato']
 
 
-# Formulario de usuario para modicarlos
+# Formulario de usuario para modificarlos
 
 class UsuarioForm(forms.ModelForm):
     class Meta:

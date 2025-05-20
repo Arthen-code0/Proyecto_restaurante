@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
             carrito.push(productoInfo);
         }
 
-        mostrarNotificacion(`€${productoInfo.nombre} añadido al carrito`);
+        mostrarNotificacion(`${productoInfo.nombre} añadido al carrito`);
         actualizarCarrito();
     }
 
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 item.innerHTML = `
                     <div>
                         <h6>${producto.nombre}</h6>
-                        <p class="mb-0">€${producto.precio.toFixed(2)}</p>
+                        <p class="mb-0">${producto.precio.toFixed(2)}€</p>
                     </div>
                     <div class="d-flex align-items-center">
                         <div class="controles-cantidad">
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        totalElemento.textContent = `€${total.toFixed(2)}`;
+        totalElemento.textContent = `${total.toFixed(2)}€`;
         agregarEventosBotones();
     }
 
