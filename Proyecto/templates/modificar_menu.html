@@ -36,7 +36,17 @@
                             <!-- Botones de acción -->
                             <div class="d-flex justify-content-around mt-3">
                                 <a href="{% url 'editar_plato' plato.id %}" class="btn btn-sm">Modificar</a>
-                                <a href="{% url 'eliminar_plato' plato.id %}" class="btn btn-sm">Eliminar</a>
+                                {% if plato.estado_plato %}
+                                    <a href="{% url 'eliminar_plato' plato.id %}" class="btn btn-sm"
+                                       onclick="return confirm('¿Seguro que quieres deshabilitar este plato?');">
+                                        Deshabilitar
+                                    </a>
+                                {% else %}
+                                    <a href="{% url 'eliminar_plato' plato.id %}" class="btn btn-sm"
+                                       onclick="return confirm('¿Seguro que quieres habilitar este plato?');">
+                                        Habilitar
+                                    </a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -50,7 +60,6 @@
 
 
 </div>
-
 
 
 {% include "footer.html" %}

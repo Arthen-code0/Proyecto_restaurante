@@ -113,7 +113,7 @@ def camarero(request):
 
 
 def pagina_menu(request):
-    platos = Plato.objects.all().order_by('tipo_plato')
+    platos = Plato.objects.filter(estado_plato=1).order_by('tipo_plato')
     return render(request, 'pagina_menu.html', {'platos': platos})
 
 
@@ -151,9 +151,10 @@ def editar_plato(request, plato_id, ):
     return render(request, 'Crea_p.html', {'form': form})
 
 
-def eliminar_plato(request, plato_id):
+def estado_plato(request, plato_id):
     plato = get_object_or_404(Plato, pk=plato_id)
-    plato.delete()
+    plato.estado_plato = 0 if plato.estado_plato == 1 else 1
+    plato.save()
     return redirect('menu')
 
 
@@ -169,9 +170,10 @@ def editar_usuario(request, user_id):
     return render(request, 'editar_usuario.html', {'form': form})
 
 
-def eliminar_usuario(request, user_id):
+def alta_usuario(request, user_id):
     usuario = get_object_or_404(User, id=user_id)
-    usuario.delete()
+    usuario.alta_usuario = 0 if usuario.alta_usuario == 1 else 1
+    usuario.save()
     return redirect('ver_usuarios')
 
 

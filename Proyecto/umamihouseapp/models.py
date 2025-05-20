@@ -45,7 +45,7 @@ class Plato(models.Model):
         default=TipoPlato.ENTRANTE,
     )
     estado_plato = models.BooleanField(default=True)
-    fecha_creacion = models.DateTimeField(default=timezone.now)  # Cambiado de auto_now_add
+    fecha_creacion = models.DateTimeField(default=timezone.now)
     fecha_modificacion = models.DateTimeField(auto_now=True)
 
     def __str__(self):
@@ -168,7 +168,7 @@ class PedidoLinea(models.Model):
     plato = models.ForeignKey(Plato, on_delete=models.DO_NOTHING)
     cantidad = models.IntegerField()
     precio_unitario = models.DecimalField(max_digits=5, decimal_places=2)  # Precio por 1 plato
-    precio_total = models.DecimalField(max_digits=5, decimal_places=2, editable=False)  # Se calcula automáticamente
+    precio_total = models.DecimalField(max_digits=5, decimal_places=2, editable=False, default=0.00)
     fecha_creacion = models.DateTimeField(default=timezone.now)
     fecha_modificacion = models.DateTimeField(auto_now=True)
 
