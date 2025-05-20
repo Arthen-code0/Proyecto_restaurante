@@ -156,6 +156,7 @@ class Pedido(models.Model):
     fecha_creacion = models.DateTimeField(default=timezone.now)
     fecha_modificacion = models.DateTimeField(auto_now=True)
 
+
     def __str__(self):
         return str(self.codigo) + " " + str(self.fecha) + " " + str(self.cliente.nombreUsuario)
 
@@ -164,9 +165,14 @@ class PedidoLinea(models.Model):
     pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
     plato = models.ForeignKey(Plato, on_delete=models.DO_NOTHING)
     cantidad = models.IntegerField()
-    precio_compra = models.DecimalField(max_digits=5, decimal_places=2)
+    precio_unitario = models.DecimalField(max_digits=5, decimal_places=2)  # Precio por 1 plato
+    precio_total = models.DecimalField(max_digits=5, decimal_places=2, editable=False)  # Se calcula automáticamente
     fecha_creacion = models.DateTimeField(default=timezone.now)
     fecha_modificacion = models.DateTimeField(auto_now=True)
 
+    def save(self, *args, **kwargs):
+        self.precio_total = self.cantidad * self.precio_unitario
+        super().save(*args, **kwargs)
+
     def __str__(self):
-        return str(self.plato.nombre) + " " + str(self.cantidad) + " " + str(self.precio_compra)
+        return f"{self.plato.nombre} {self.cantidad} {self.precio_total}"

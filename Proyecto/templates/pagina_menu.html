@@ -65,7 +65,8 @@
             {% endfor %}
         </div>
 
-        <a class="btn btn-primary mt-3 btn_custom" onclick="location.href='{% static 'pdf/menu_umamihouse.pdf' %}'" target="_blank">Abrir PDF</a>
+        <a class="btn btn-primary mt-3 btn_custom" onclick="location.href='{% static 'pdf/menu_umamihouse.pdf' %}'"
+           target="_blank">Abrir PDF</a>
 
     </div>
 </div>
@@ -76,7 +77,8 @@
         <div class="modal-content">
             <div class="modal-header" style="background-color: #E0B5C6; color: white;">
                 <h5 class="modal-title">Tu Pedido</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div id="carrito-lista">
@@ -90,7 +92,9 @@
                     <form id="pedido-form" method="post" action="{% url 'crear_pedido' %}">
                         {% csrf_token %}
                         <input type="hidden" name="carrito" id="carrito-data">
-                        <button type="submit" class="btn btn-primary w-100 mt-3" id="finalizar-pedido">Finalizar Pedido</button>
+                        <button type="submit" class="btn btn-primary w-100 mt-3" id="finalizar-pedido">Finalizar
+                            Pedido
+                        </button>
                     </form>
                 </div>
             </div>
