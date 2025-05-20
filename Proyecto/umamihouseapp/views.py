@@ -113,7 +113,16 @@ def camarero(request):
 
 
 def pagina_menu(request):
-    platos = Plato.objects.all().order_by('tipo_plato')
+    ORDEN_TIPO = {
+        'ENTRANTE': 1,
+        'SUSHI': 2,
+        'PLATO_PRINCIPAL': 3,
+        'POSTRE': 4,
+        'BEBIDA': 5,
+    }
+
+    platos = Plato.objects.all()
+    platos_ordenados = sorted(platos, key=lambda p: ORDEN_TIPO.get(p.tipo_plato, 99))
     return render(request, 'pagina_menu.html', {'platos': platos})
 
 

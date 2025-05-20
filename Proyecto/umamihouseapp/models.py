@@ -48,9 +48,6 @@ class Plato(models.Model):
     fecha_creacion = models.DateTimeField(default=timezone.now)  # Cambiado de auto_now_add
     fecha_modificacion = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
-        return self.nombre
-
 
 class UserManager(BaseUserManager):
     def create_user(self, email, nombreUsuario, rol, password=None):
@@ -101,9 +98,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ['nombre', 'rol']
 
 
-    def __str__(self):
-        return f"{self.email} - {self.nombreUsuario} ({self.rol})"
-
     class Meta:
         verbose_name = _('user')
         verbose_name_plural = _('users')
@@ -133,8 +127,6 @@ class Empleado(models.Model):
     fecha_creacion = models.DateTimeField(default=timezone.now)  # Cambiado de auto_now_add
     fecha_modificacion = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
-        return str(self.id) + " " + self.nombreCompleto
 
 
 class Pedido(models.Model):
