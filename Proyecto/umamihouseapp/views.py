@@ -234,6 +234,11 @@ def cambiar_estado(request, mesa_id):
             mesa.save()
     return redirect('mesas')
 
+@login_required
+def mis_pedidos(request):
+    pedidos = Pedido.objects.filter(cliente=request.user).order_by('-fecha')
+    return render(request, 'mis_pedidos.html', {'pedidos': pedidos})
+
 
 #def add_carrito(request, id):
 #    carrito = request.session.get('carrito', 0)
