@@ -44,6 +44,7 @@ class Plato(models.Model):
         choices=TipoPlato.choices,
         default=TipoPlato.ENTRANTE,
     )
+    estado_plato = models.BooleanField(default=True)
     fecha_creacion = models.DateTimeField(default=timezone.now)  # Cambiado de auto_now_add
     fecha_modificacion = models.DateTimeField(auto_now=True)
 
@@ -92,6 +93,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     fecha_creacion = models.DateTimeField(default=timezone.now)
     fecha_modificacion = models.DateTimeField(auto_now=True)
+    alta_usuario = models.BooleanField(default=True)
 
     objects = UserManager()
 
