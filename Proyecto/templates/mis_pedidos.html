@@ -13,23 +13,18 @@
 {% if pedidos %}
     <ul>
         {% for pedido in pedidos %}
-        <li>
-            <strong>Código:</strong> {{pedido.id}}
-        </li>
             <li>
                 <strong>Código:</strong> {{ pedido.id }}
                 <br>
                 <strong>Fecha:</strong> {{ pedido.fecha }}
-                <br>
-                <strong>Total:</strong> {{ pedido.total }}
-
                 <ul>
                     {% for linea in pedido.pedidolinea_set.all %}
                         <li>
-                            {{ linea.plato.nombre }} X{{ linea.cantidad }} -Precio: {{ linea.precio }}€
+                            {{ linea.plato.nombre }} X{{ linea.cantidad }} -Precio: {{ linea.precio_compra }}€
                         </li>
                     {% endfor %}
                 </ul>
+                <strong>Total:</strong>
             </li>
         {% endfor %}
     </ul>

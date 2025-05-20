@@ -82,19 +82,16 @@ def cerrar_sesion(request):
 
 
 # @user_passes_test(es_admin)
-def crear_plato(request):
-    return render(request, 'crear_plato.html')
-
-
-# @user_passes_test(es_admin)
 def modificar_menu(request):
     platos = Plato.objects.all()
     return render(request, 'modificar_menu.html', {'platos': platos})
+
 
 @login_required
 def formulario_pago(request, pedido_id):
     pedido = get_object_or_404(Pedido, id=pedido_id, cliente=request.user)
     return render(request, 'formulario_pago.html', {'pedido': pedido})
+
 
 @login_required
 def tu_pedido(request):
@@ -116,7 +113,7 @@ def camarero(request):
 
 
 def pagina_menu(request):
-    platos = Plato.objects.all()
+    platos = Plato.objects.all().order_by('tipo_plato')
     return render(request, 'pagina_menu.html', {'platos': platos})
 
 
@@ -134,16 +131,16 @@ def crear_plato(request):
             except IntegrityError as e:
                 error_msg = str(e)
                 print("Error guardando plato:", error_msg)
-                return render(request, 'Crea_p.html', {'form': form, 'error': error_msg})
+                return render(request, 'crear_plato.html', {'form': form, 'error': error_msg})
         else:
             print("Errores formulario:", form.errors)
     else:
         form = PlatoForm()
-    return render(request, 'Crea_p.html', {'form': form})
+    return render(request, 'crear_plato.html', {'form': form})
 
 
-def editar_plato(request, pk):
-    plato = get_object_or_404(Plato, pk=pk)
+def editar_plato(request, plato_id, ):
+    plato = get_object_or_404(Plato, pk=plato_id)
     if request.method == 'POST':
         form = PlatoForm(request.POST, request.FILES, instance=plato)
         if form.is_valid():
@@ -151,15 +148,13 @@ def editar_plato(request, pk):
             return redirect('menu')
     else:
         form = PlatoForm(instance=plato)
-    return render(request, 'crear_plato.html', {'form': form})
+    return render(request, 'Crea_p.html', {'form': form})
 
 
-def eliminar_plato(request, pk):
-    plato = get_object_or_404(Plato, pk=pk)
-    if request.method == 'POST':
-        plato.delete()
-        return redirect('pagina_menu')
-    return render(request, 'eliminar_producto', {'plato': plato})
+def eliminar_plato(request, plato_id):
+    plato = get_object_or_404(Plato, pk=plato_id)
+    plato.delete()
+    return redirect('menu')
 
 
 def editar_usuario(request, user_id):
@@ -182,11 +177,13 @@ def eliminar_usuario(request, user_id):
 
 def vista_usuarios(request):
     users = User.objects.all()
-    return render (request, 'Ver_usuarios.html', {'Users': users})
+    return render(request, 'Ver_usuarios.html', {'Users': users})
+
 
 def mesas(request):
     mesas = Mesa.objects.all()
     return render(request, 'mesas.html', {'mesas': mesas})
+
 
 @login_required
 def crear_pedido(request):
@@ -225,6 +222,7 @@ def crear_pedido(request):
 
     return JsonResponse({'success': False, 'error': 'Método no permitido'})
 
+
 def cambiar_estado(request, mesa_id):
     mesa = get_object_or_404(Mesa, id=mesa_id)
     if request.method == 'POST':
@@ -234,13 +232,13 @@ def cambiar_estado(request, mesa_id):
             mesa.save()
     return redirect('mesas')
 
+
 @login_required
 def mis_pedidos(request):
     pedidos = Pedido.objects.filter(cliente=request.user).order_by('-fecha')
     return render(request, 'mis_pedidos.html', {'pedidos': pedidos})
 
-
-#def add_carrito(request, id):
+# def add_carrito(request, id):
 #    carrito = request.session.get('carrito', 0)
 #    carrito = request.session.get(str(id), 0)
 #

@@ -46,26 +46,31 @@
 
 <div class="container my-5">
     <div class="row justify-content-center gx-4 gy-4">
+        {% regroup platos by tipo_plato as platos_por_tipo %}
 
-        <div class="row g-4">
-            {% for plato in platos %}
-                <div class="col-md-4">
-                    <div class="card shadow h-100" data-id="{{ plato.id }}">
-                        <img src="{{ plato.imagen }}" class="card-img-top imagen-ajustada" alt="{{ plato.nombre }}">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">{{ plato.nombre }}</h5>
-                            <p class="card-text">{{ plato.descripcion }}</p>
-                            <p class="text-danger fw-bold">Precio: €{{ plato.precio }}</p>
-                            <a href="#" class="btn btn-primary mt-3 btn_custom">Añadir al carrito</a>
+        {% for grupo in platos_por_tipo %}
+            <div id="{{ grupo.grouper|slugify }}" class="row g-4 mb-5">
+                <h2 class="text-center my-4">{{ grupo.grouper }}</h2>
+                {% for plato in grupo.list %}
+                    <div class="col-md-4">
+                        <div class="card shadow h-100" data-id="{{ plato.id }}">
+                            <img src="{{ plato.imagen }}" class="card-img-top imagen-ajustada" alt="{{ plato.nombre }}">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">{{ plato.nombre }}</h5>
+                                <p class="card-text">{{ plato.descripcion }}</p>
+                                <p class="text-danger fw-bold">Precio: €{{ plato.precio }}</p>
+                                <a href="#" class="btn btn-primary mt-3 btn_custom">Añadir al carrito</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% empty %}
-                <p>No hay platos disponibles.</p>
-            {% endfor %}
-        </div>
+                {% empty %}
+                    <p>No hay platos disponibles.</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
 
-        <a class="btn btn-primary mt-3 btn_custom" onclick="location.href='{% static 'pdf/menu_umamihouse.pdf' %}'" target="_blank">Abrir PDF</a>
+        <a class="btn btn-primary mt-3 btn_custom" onclick="location.href='{% static 'pdf/menu_umamihouse.pdf' %}'"
+           target="_blank">Abrir PDF</a>
 
     </div>
 </div>
@@ -76,7 +81,8 @@
         <div class="modal-content">
             <div class="modal-header" style="background-color: #E0B5C6; color: white;">
                 <h5 class="modal-title">Tu Pedido</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div id="carrito-lista">
@@ -90,7 +96,9 @@
                     <form id="pedido-form" method="post" action="{% url 'crear_pedido' %}">
                         {% csrf_token %}
                         <input type="hidden" name="carrito" id="carrito-data">
-                        <button type="submit" class="btn btn-primary w-100 mt-3" id="finalizar-pedido">Finalizar Pedido</button>
+                        <button type="submit" class="btn btn-primary w-100 mt-3" id="finalizar-pedido">Finalizar
+                            Pedido
+                        </button>
                     </form>
                 </div>
             </div>

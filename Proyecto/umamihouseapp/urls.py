@@ -21,8 +21,8 @@ urlpatterns = [
     # PRODUCTOS Modificar, Eliminar y Agregar
     path('modificar_menu/', modificar_menu, name='modificar_menu'),
     path('agregar_plato/', crear_plato, name='crear_plato'),
-    path('agregar_plato/<int:user_id>/', editar_plato, name='editar_plato'),
-    path('eliminar_plato/<int:user_id>/', eliminar_plato, name='eliminar_plato'),
+    path('editar_plato/<int:plato_id>/', editar_plato, name='editar_plato'),
+    path('eliminar_plato/<int:plato_id>/', eliminar_plato, name='eliminar_plato'),
 
     # Usuarios, modificar y eliminar
     path('ver_usuarios/', vista_usuarios, name='ver_usuarios'),

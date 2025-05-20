@@ -25,24 +25,24 @@
         <!-- Tarjeta 1 -->
         <div class="row g-4">
             {% for plato in platos %}
-            <div class="col-md-4">
-                <div class="card shadow h-100">
-                    <img src="{{ plato.imagen }}" class="card-img-top imagen-ajustada" alt="{{ plato.nombre }}">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">{{ plato.nombre }}</h5>
-                        <p class="card-text">{{ plato.descripcion }}</p>
-                        <p class="text-danger fw-bold">Precio: ${{ plato.precio }}</p>
+                <div class="col-md-4">
+                    <div class="card shadow h-100">
+                        <img src="{{ plato.imagen }}" class="card-img-top imagen-ajustada" alt="{{ plato.nombre }}">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ plato.nombre }}</h5>
+                            <p class="card-text">{{ plato.descripcion }}</p>
+                            <p class="text-danger fw-bold">Precio: ${{ plato.precio }}</p>
 
-                        <!-- Botones de acción -->
-                        <div class="d-flex justify-content-around mt-3">
-                            <a href="{% url 'crear_plato' %}" class = "btn btn-sm">Modificar</a>
-                            <a href="{% url 'crear_plato' %}" class="btn btn-sm">Eliminar</a>
+                            <!-- Botones de acción -->
+                            <div class="d-flex justify-content-around mt-3">
+                                <a href="{% url 'editar_plato' plato.id %}" class="btn btn-sm">Modificar</a>
+                                <a href="{% url 'eliminar_plato' plato.id %}" class="btn btn-sm">Eliminar</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             {% empty %}
-            <p>No hay platos disponibles.</p>
+                <p>No hay platos disponibles.</p>
             {% endfor %}
         </div>
 
@@ -50,7 +50,7 @@
 
 
 </div>
-</div>
+
 
 
 {% include "footer.html" %}
