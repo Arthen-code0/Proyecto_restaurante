@@ -30,7 +30,8 @@ class Rol(models.TextChoices):
 
 class Mesa(models.Model):
     EstadoMesa = models.CharField(max_length=50, choices=EstadoMesa.choices, default=EstadoMesa.DISPONIBLE)
-
+    fecha_creacion = models.DateTimeField(default=timezone.now)
+    fecha_modificacion = models.DateTimeField(auto_now=True)
 
 
 class Plato(models.Model):
@@ -169,4 +170,3 @@ class PedidoLinea(models.Model):
 
     def __str__(self):
         return str(self.plato.nombre) + " " + str(self.cantidad) + " " + str(self.precio_compra)
-
