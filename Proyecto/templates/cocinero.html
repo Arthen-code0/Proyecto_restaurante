@@ -1,122 +1,56 @@
-<!DOCTYPE html>
 {% load static %}
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos</title>
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     {% load django_bootstrap5 %}
     {% bootstrap_css %}
-    {% bootstrap_javascript %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'css/moviles.css' %}">
-    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
-    <title>Cocinero</title>
 </head>
 <body>
 {% include "navbar.html" %}
-<header>
-    <h1 class="px-4 pt-4">Cocinero</h1>
-    <h5 class="px-4">Paco del Rocio</h5>
 
-    <!-- Centrarlo todo -->
-    <div class="container-fluid ">
-        <div class="container">
-            <div class="row text-center text-start p-4">
-                <!-- Cosas centrar -->
-                <div class="col-12 col-md-4 mb-3 mx-auto text-center">
-                    <p class="sobre-p fw-bold"></p>
-                    <ul class="list-unstyled">
-                        <li class="fs-4">Mesa 1</li>
-                        <li class="fs-4">Tardanza · 54 Minutos</li>
+<div class="container mt-4">
+    <h2 class="mb-4">Listado de Pedidos</h2>
+    <table class="table table-bordered table-hover align-middle text-center">
+        <thead class="table-dark">
+        <tr>
+            <th>Código</th>
+            <th>Cliente</th>
+            <th>Fecha</th>
+            <th>Detalles</th>
+            <th>Total</th>
+            <th>Estado</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for pedido in pedidos %}
+            <tr>
+                <td>{{ pedido.codigo }}</td>
+                <td>{{ pedido.cliente.nombre }} {{ pedido.cliente.apellido }}</td>
+                <td>{{ pedido.fecha|date:"d/m/Y H:i" }}</td>
+                <td class="text-start">
+                    <ul class="list-unstyled mb-0">
+                        {% for linea in pedido.pedidolinea_set.all %}
+                            <li>{{ linea.plato.nombre }} x{{ linea.cantidad }} — €{{ linea.precio_compra }}</li>
+                        {% endfor %}
                     </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</header>
-
-<main class="p-4">
-
-    <!-- Tarjeta contenedora -->
-    <div class="container bg-light p-4 rounded shadow-sm mb-4">
-        <div class="row align-items-start">
-
-            <!-- Imagen a la izquierda -->
-            <div class="col-12 col-md-3 mb-3 mb-md-0">
-                <img src="{% static 'img/imagen_carrousel_3.jpg' %}" alt="Plato Edamame" class="img-fluid rounded">
-            </div>
-
-            <!-- Texto en el centro -->
-            <div class="col-12 col-md-8">
-                <h3 class="fs-5 fw-bold text-black">Origami</h3>
-                <p class="text-muted small mb-1">Category • $$ • 1.2 miles away</p>
-                <p class="text-secondary small">Supporting line text lorem ipsum dolor sit amet, consectetur.</p>
-            </div>
-
-            <!-- Imagen "X" (cerrar) a la derecha arriba -->
-            <div class="col-12 col-md-1 text-end">
-                <img src="{% static 'img/cheque.png' %}" alt="Cerrar" width="20" class="img-fluid">
-                <img src="{% static 'img/marca-x.png' %}" alt="Cerrar" width="20" class="img-fluid">
-            </div>
-        </div>
-
-    </div>
-
-
-    <!-- Tarjeta contenedora -->
-    <div class="container bg-light p-4 rounded shadow-sm mb-4">
-        <div class="row align-items-start">
-
-            <!-- Imagen a la izquierda -->
-            <div class="col-12 col-md-3 mb-3 mb-md-0">
-                <img src="{% static 'img/imagen_carrousel_3.jpg' %}" alt="Plato Edamame" class="img-fluid rounded">
-            </div>
-
-            <!-- Texto en el centro -->
-            <div class="col-12 col-md-8">
-                <h3 class="fs-5 fw-bold text-black">Origami</h3>
-                <p class="text-muted small mb-1">Category • $$ • 1.2 miles away</p>
-                <p class="text-secondary small">Supporting line text lorem ipsum dolor sit amet, consectetur.</p>
-            </div>
-
-            <!-- Imagen "X" (cerrar) a la derecha arriba -->
-            <div class="col-12 col-md-1 text-end">
-                <img src="{% static 'img/cheque.png' %}" alt="Cerrar" width="20" class="img-fluid">
-                <img src="{% static 'img/marca-x.png' %}" alt="Cerrar" width="20" class="img-fluid">
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Tarjeta contenedora -->
-    <div class="container bg-light p-4 rounded shadow-sm mb-4">
-        <div class="row align-items-start">
-
-            <!-- Imagen a la izquierda -->
-            <div class="col-12 col-md-3 mb-3 mb-md-0">
-                <img src="{% static 'img/imagen_carrousel_3.jpg' %}" alt="Plato Edamame" class="img-fluid rounded">
-            </div>
-
-            <!-- Texto en el centro -->
-            <div class="col-12 col-md-8">
-                <h3 class="fs-5 fw-bold text-black">Origami</h3>
-                <p class="text-muted small mb-1">Category • $$ • 1.2 miles away</p>
-                <p class="text-secondary small">Supporting line text lorem ipsum dolor sit amet, consectetur.</p>
-            </div>
-
-            <!-- Imagen "X" (cerrar) a la derecha arriba -->
-            <div class="col-12 col-md-1 text-end">
-                <img src="{% static 'img/cheque.png' %}" alt="Cerrar" width="20" class="img-fluid">
-                <img src="{% static 'img/marca-x.png' %}" alt="Cerrar" width="20" class="img-fluid">
-            </div>
-        </div>
-    </div>
-
-    <div class="buttonbox">
-        <button id="btn-menu" class="button-menu btn p-3 rounded-pill mt-4 fs-5 boton_menu" onclick="location.href='{% url 'menu' %}'" type="button">Pedido listo
-        </button>
-    </div>
-</main>
+                </td>
+                <td>€{{ pedido.calcular_total|floatformat:2 }}</td>
+                <td>
+                    {% if pedido.estado == 1 %}
+                        <span class="badge bg-warning text-dark">Preparando</span>
+                    {% elif pedido.estado == 2 %}
+                        <span class="badge bg-primary">En proceso</span>
+                    {% else %}
+                        <span class="badge bg-success">Finalizado</span>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
 </body>
-
+</html>

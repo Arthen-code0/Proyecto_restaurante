@@ -102,12 +102,12 @@ def mesas(request):
     return render(request, 'mesas.html')
 
 
-@user_passes_test(es_cocinero)
+#@user_passes_test(es_cocinero)
 def cocinero(request):
     return render(request, 'cocinero.html')
 
 
-@user_passes_test(es_camarero)
+#@user_passes_test(es_camarero)
 def camarero(request):
     return render(request, 'camarero.html')
 
@@ -237,6 +237,12 @@ def cambiar_estado(request, mesa_id):
 def mis_pedidos(request):
     pedidos = Pedido.objects.filter(cliente=request.user).order_by('-fecha')
     return render(request, 'mis_pedidos.html', {'pedidos': pedidos})
+
+def camarero_pedidos(request):
+    pedidos = Pedido.objects.filter(cliente=request.user).order_by('-fecha')
+    return render(request, 'camarero_pedidos.html', {'pedidos': pedidos})
+
+
 
 # def add_carrito(request, id):
 #    carrito = request.session.get('carrito', 0)
