@@ -30,7 +30,6 @@ urlpatterns = [
     path('eliminar_usuario/<int:user_id>/', alta_usuario, name='eliminar_usuario'),
     path('mesas/', mesas, name='mesas'),
     path('mesas/<int:mesa_id>/cambiar/', cambiar_estado, name='cambiar_estado'),
-    path('mesas/<int:mesa_id>/cambiar/', cambiar_estado, name='cambiar_estado'),
     path('mis_pedidos/', mis_pedidos, name='mis_pedidos'),
     path('camarero_pedidos/', camarero, name='camarero_pedidos'),
 ]

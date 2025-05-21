@@ -30,19 +30,17 @@
 
                     <!-- Opciones para ADMIN -->
                     {% if user.is_authenticated and user.rol == 'ADMIN' %}
-                        <li><a class="dropdown-item" onclick="location.href='{% url 'modificar_menu' %}'">Modificar
-                            carta</a></li>
-                        <li><a class="dropdown-item" onclick="location.href='{% url 'crear_plato' %}'">Crear plato</a>
-                        </li>
-                        <li><a class="dropdown-item" onclick="location.href='{% url 'ver_usuarios' %}'">Ver usuarios</a>
-                        </li>
+                        <li><a class="dropdown-item" onclick="location.href='{% url 'modificar_menu' %}'">Modificar carta</a></li>
+                        <li><a class="dropdown-item" onclick="location.href='{% url 'crear_plato' %}'">Crear plato</a></li>
+                        <li><a class="dropdown-item" onclick="location.href='{% url 'ver_usuarios' %}'">Ver usuarios</a></li>
                     {% endif %}
 
                     <!-- Opciones para CLIENTE -->
                     {% if user.is_authenticated and user.rol == 'CLIENTE' %}
                         <li><a class="dropdown-item" onclick="location.href='{% url 'tu_pedido' %}'">Tu Carrito</a></li>
-                        <li><a class="dropdown-item" onclick="location.href='{% url 'tu_pedido' %}'">Hacer Pedido</a>
-                        </li>
+                        <li><a class="dropdown-item" onclick="location.href='{% url 'tu_pedido' %}'">Hacer Pedido</a></li>
+                        <li><a class="dropdown-item" onclick="location.href='{% url 'ver_usuarios' %}'">Listado Usuarios</a></li>
+                        <li><a class="dropdown-item" onclick="location.href='{% url 'mis_pedidos' %}'">Listado Pedidos</a></li>
                     {% endif %}
 
                     <!-- Opciones para CAMARERO -->
