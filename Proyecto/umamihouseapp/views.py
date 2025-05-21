@@ -9,7 +9,7 @@ from django.core.exceptions import PermissionDenied
 from django.forms import modelformset_factory
 from django.shortcuts import render, redirect, get_object_or_404
 from pycparser.ply.yacc import Production
-from .forms import RegistroForm, LoginForm, PlatoForm, UsuarioForm
+from .forms import RegistroForm, LoginForm, PlatoForm, UsuarioForm, PedidoLineaForm
 from .models import User, Plato, Mesa
 from .forms import RegistroForm, LoginForm, PlatoForm
 from .models import User, Plato, Pedido, PedidoLinea
@@ -225,7 +225,7 @@ def crear_pedido(request):
                     pedido=pedido,
                     plato=plato,
                     cantidad=item['cantidad'],
-                    precio_compra=item['precio']
+                    precio_unitario=item['precio']
                 )
 
             # Redirigir al formulario de pago
@@ -254,35 +254,7 @@ def mis_pedidos(request):
 
 
 # Vista para añadir un pedido
-def camarero_añadir(request):
-    PedidoLineaFormSet = modelformset_factory(PedidoLinea, form=PedidoLineaForm, extra=1, can_delete=False)
-    if request.method == 'POST':
-        pedido_form = PedidoForm(request.POST)
-        formset = PedidoLineaFormSet(request.POST, queryset=PedidoLinea.objects.none())
-        if pedido_form.is_valid() and formset.is_valid():
-            pedido = pedido_form.save(commit=False)
-            pedido.cliente = request.user
-            pedido.fecha_creacion = timezone.now()
-            pedido.fecha_modificacion = timezone.now()
-            pedido.save()
-            for form in formset:
-                if form.cleaned_data:
-                    linea = form.save(commit=False)
-                    linea.pedido = pedido
-                    linea.save()
-            return redirect('camarero_pedidos')
-    else:
-        pedido_form = PedidoForm()
-        formset = PedidoLineaFormSet(queryset=PedidoLinea.objects.none())
-
-    return render(request, 'pedidos/formulario.html', {
-        'pedido_form': pedido_form,
-        'formset': formset,
-        'accion': 'Añadir',
-    })
-
-
-@login_required
+#@login_required
 def agregar_plato_pedido(request, pedido_id):
     pedido = get_object_or_404(Pedido, id=pedido_id)
 
@@ -302,7 +274,7 @@ def agregar_plato_pedido(request, pedido_id):
     })
 
 
-@login_required
+#@login_required
 def eliminar_plato_pedido(request, pedido_linea_id):
     linea = get_object_or_404(PedidoLinea, id=pedido_linea_id)
     pedido_id = linea.pedido.id
@@ -310,4 +282,4 @@ def eliminar_plato_pedido(request, pedido_linea_id):
         linea.delete()
         return redirect('camarero_pedidos')  # O a la edición del pedido
 
-    return render(request, 'confirmar_eliminacion_plato.html', {'linea': linea})
+    return render(request, 'camarero_pedidos.html', {'linea': linea})

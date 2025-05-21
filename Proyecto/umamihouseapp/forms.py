@@ -60,4 +60,4 @@ class MesaForm(forms.ModelForm):
 class PedidoLineaForm(forms.ModelForm):
     class Meta:
         model = PedidoLinea
-        fields = ['plato', 'cantidad', 'precio_unitario']
+        fields = ['plato', 'cantidad']
