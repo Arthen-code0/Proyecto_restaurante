@@ -223,7 +223,7 @@ def crear_pedido(request):
                     pedido=pedido,
                     plato=plato,
                     cantidad=item['cantidad'],
-                    precio_compra=item['precio']
+                    precio_unitario=item['precio']
                 )
 
             # Redirigir al formulario de pago
