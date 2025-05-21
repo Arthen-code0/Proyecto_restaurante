@@ -1,36 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
 {% load static %}
+<!DOCTYPE html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <title>Mis pedidos</title>
+    <title>Vista de Usuarios</title>
+    <link rel="stylesheet" href="{% static 'css/ver_usuarios.css' %}">
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
 {% include "navbar.html" %}
-<h2>Mis pedidos</h2>
-
-{% if pedidos %}
-    <ul>
-        {% for pedido in pedidos %}
-            <li>
-                <strong>Código:</strong> {{ pedido.id }}
-                <br>
-                <strong>Fecha:</strong> {{ pedido.fecha }}
-                <ul>
-                    {% for linea in pedido.pedidolinea_set.all %}
-                        <li>
-                            {{ linea.plato.nombre }} X{{ linea.cantidad }} -Precio: {{ linea.precio_compra }}€
-                        </li>
-                    {% endfor %}
-                </ul>
-                <strong>Total:</strong>
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>No hay pedidos anteriores.</p>
-{% endif %}
+{% for pedido in pedidos %}
+    <div>
+        <h3>Pedido {{ pedido.codigo }} - {{ pedido.cliente.nombre }}</h3>
+        <ul>
+            {% for linea in pedido.pedidolinea_set.all %}
+                <li>
+                    {{ linea.plato.nombre }} - {{ linea.cantidad }}
+                    <a href="{% url 'eliminar_plato_pedido' linea.id %}">🗑️</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'agregar_plato_pedido' pedido.id %}">➕ Agregar Plato</a>
+    </div>
+{% endfor %}
 </body>
 </html>

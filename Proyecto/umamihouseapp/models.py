@@ -170,3 +170,4 @@ class PedidoLinea(models.Model):
 
     def __str__(self):
         return f"{self.plato.nombre} {self.cantidad} {self.precio_total}"
+

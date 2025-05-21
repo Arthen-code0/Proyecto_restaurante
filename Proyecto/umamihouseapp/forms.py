@@ -56,3 +56,8 @@ class MesaForm(forms.ModelForm):
         widgets = {
             'EstadoMesa': forms.RadioSelect(choices=EstadoMesa.choices),
         }
+
+class PedidoLineaForm(forms.ModelForm):
+    class Meta:
+        model = PedidoLinea
+        fields = ['plato', 'cantidad', 'precio_unitario']

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <title>Mis pedidos</title>
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+</head>
+<body>
+{% include "navbar.html" %}
+<h2>Agregar plato al pedido: {{ pedido.codigo }}</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Agregar</button>
+</form>
+<a href="{% url 'camarero_pedidos' %}">Volver</a>
+</body>
+</html>
+
+
