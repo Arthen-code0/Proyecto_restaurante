@@ -6,6 +6,7 @@ from sqlite3 import IntegrityError
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.exceptions import PermissionDenied
+from django.forms import modelformset_factory
 from django.shortcuts import render, redirect, get_object_or_404
 from pycparser.ply.yacc import Production
 from .forms import RegistroForm, LoginForm, PlatoForm, UsuarioForm
@@ -102,14 +103,15 @@ def mesas(request):
     return render(request, 'mesas.html')
 
 
-#@user_passes_test(es_cocinero)
+# @user_passes_test(es_cocinero)
 def cocinero(request):
     return render(request, 'cocinero.html')
 
 
-#@user_passes_test(es_camarero)
-def camarero(request):
-    return render(request, 'camarero.html')
+# @user_passes_test(es_camarero)
+def camarero_pedidos(request):
+    pedidos = Pedido.objects.all().order_by('-fecha')
+    return render(request, 'camarero_pedidos.html', {'pedidos': pedidos})
 
 
 def pagina_menu(request):
@@ -250,51 +252,62 @@ def mis_pedidos(request):
     pedidos = Pedido.objects.filter(cliente=request.user).order_by('-fecha')
     return render(request, 'mis_pedidos.html', {'pedidos': pedidos})
 
-def camarero_pedidos(request):
-    pedidos = Pedido.objects.filter(cliente=request.user).order_by('-fecha')
-    return render(request, 'camarero_pedidos.html', {'pedidos': pedidos})
+
+# Vista para añadir un pedido
+def camarero_añadir(request):
+    PedidoLineaFormSet = modelformset_factory(PedidoLinea, form=PedidoLineaForm, extra=1, can_delete=False)
+    if request.method == 'POST':
+        pedido_form = PedidoForm(request.POST)
+        formset = PedidoLineaFormSet(request.POST, queryset=PedidoLinea.objects.none())
+        if pedido_form.is_valid() and formset.is_valid():
+            pedido = pedido_form.save(commit=False)
+            pedido.cliente = request.user
+            pedido.fecha_creacion = timezone.now()
+            pedido.fecha_modificacion = timezone.now()
+            pedido.save()
+            for form in formset:
+                if form.cleaned_data:
+                    linea = form.save(commit=False)
+                    linea.pedido = pedido
+                    linea.save()
+            return redirect('camarero_pedidos')
+    else:
+        pedido_form = PedidoForm()
+        formset = PedidoLineaFormSet(queryset=PedidoLinea.objects.none())
+
+    return render(request, 'pedidos/formulario.html', {
+        'pedido_form': pedido_form,
+        'formset': formset,
+        'accion': 'Añadir',
+    })
 
 
+@login_required
+def agregar_plato_pedido(request, pedido_id):
+    pedido = get_object_or_404(Pedido, id=pedido_id)
 
-# def add_carrito(request, id):
-#    carrito = request.session.get('carrito', 0)
-#    carrito = request.session.get(str(id), 0)
-#
-#    if producto_en_carrito == 0:
-#        #NO
-#        carrito[str(id)] = 1
-#    else:
-#        carrito[str(id)] += 1
-#
-#    request.session['carrito'] = carrito
-#    return redirect('tienda')
+    if request.method == 'POST':
+        form = PedidoLineaForm(request.POST)
+        if form.is_valid():
+            linea = form.save(commit=False)
+            linea.pedido = pedido
+            linea.save()
+            return redirect('camarero_pedidos')  # O donde muestres los pedidos
+    else:
+        form = PedidoLineaForm()
+
+    return render(request, 'agregar_plato.html', {
+        'form': form,
+        'pedido': pedido
+    })
 
 
-# def ver_carrito(request):
-#    carrito = {}
-#    carrito_session = request.session.get('carrito', {})
+@login_required
+def eliminar_plato_pedido(request, pedido_linea_id):
+    linea = get_object_or_404(PedidoLinea, id=pedido_linea_id)
+    pedido_id = linea.pedido.id
+    if request.method == 'POST':
+        linea.delete()
+        return redirect('camarero_pedidos')  # O a la edición del pedido
 
-#    for k, v in carrito.session.items():
-#        producto = Producto.objects.get(id=k)
-#        carrito[producto] = v
-#        total += prodcuto.precio * v
-#
-# return render(request, 'carrito.html', {'carrito', })
-
-# def compra(request):
-#    nuevo_pedido = Pedido()
-#    nuevo_pedido.codigo = 'CP0001' #Codigo aleatorio (hablar con jose para la creacion de un trigger)
-#    nuevo_pedido.fecha = datetime.now()
-#    nuevo_pedido.cliente = request.user
-
-#    for k, v in carrito_session.items():
-#        linea_pedido = LineaPedido()
-
-#        producto = Producto.objects.get(id=k)
-#        linea_pedido.producto = producto
-#        linea_pedido.precio = producto.precio
-#        linea_pedido.cantidad = v
-#        linea_pedido.pedido = nuevo_pedido
-#        linea_pedido.save()
-
-#    linea_pedido.save()
+    return render(request, 'confirmar_eliminacion_plato.html', {'linea': linea})
