@@ -3,7 +3,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Vista de Usuarios</title>
+    <title>Vista de los Pedidos</title>
     <link rel="stylesheet" href="{% static 'css/ver_usuarios.css' %}">
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     {% load django_bootstrap5 %}
@@ -14,18 +14,28 @@
 <body>
 {% include "navbar.html" %}
 {% for pedido in pedidos %}
-    <div>
-        <h3>Pedido {{ pedido.codigo }} - {{ pedido.cliente.nombre }}</h3>
-        <ul>
+    <div class="mb-4 p-3 border rounded">
+        <h3>Pedido {{ pedido.codigo }} - {{ pedido.cliente.nombre }} {{ pedido.cliente.apellido }}</h3>
+        <ul class="list-group">
             {% for linea in pedido.pedidolinea_set.all %}
-                <li>
-                    {{ linea.plato.nombre }} - {{ linea.cantidad }}
-                    <a href="{% url 'eliminar_plato_pedido' linea.id %}">🗑️</a>
+                <li class="list-group-item">
+                    Plato: {{ linea.plato.nombre }}<br>
+                    Cantidad: {{ linea.cantidad }} - Precio: {{ linea.precio_unitario }}€<br>
+                    Subtotal: <strong>{{ linea.total|floatformat:2 }}€</strong>
+                    <a href="{% url 'eliminar_plato' linea.id %}"
+                       class="btn btn-sm"
+                       onclick="return confirm('¿Seguro que quieres ELIMINAR este PLATO?');">
+                        <i class="bi bi-trash"></i> Eliminar Plato
+                    </a>
+
                 </li>
+                {% empty %}
+                <li class="list-group-item text-muted">No hay platos en este pedido.</li>
             {% endfor %}
         </ul>
-        <a href="{% url 'agregar_plato_pedido' pedido.id %}">➕ Agregar Plato</a>
+        <a href="{% url 'agregar_plato' pedido.id %}" class="btn mt-2">Agregar Plato</a>
     </div>
 {% endfor %}
+
 </body>
 </html>

@@ -1,22 +1,51 @@
+{% load static %}
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
-{% load static %}
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <title>Mis pedidos</title>
+    <title>Agregar Plato al Pedido</title>
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/registro_y_inicio_de_sesion.css' %}">
+    <link rel="icon" href="{% static 'img/Umami_house_logo.png' %}" type="image/x-icon">
 </head>
 <body>
 {% include "navbar.html" %}
-<h2>Agregar plato al pedido: {{ pedido.codigo }}</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Agregar</button>
-</form>
-<a href="{% url 'camarero_pedidos' %}">Volver</a>
+{% block content %}
+
+    <div class="form-container">
+        <h2 class="form-title">Pedido: {{ pedido.codigo }}</h2>
+        <p class="form-subtitle">Selecciona un plato y completa la información</p>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="form-group">
+                {{ form.plato.label_tag }}
+                {{ form.plato|add_class:"form-control" }}
+            </div>
+
+            <div class="form-group">
+                {{ form.cantidad.label_tag }}
+                {{ form.cantidad|add_class:"form-control" }}
+            </div>
+
+            <div class="form-group">
+                {{ form.precio_unitario.label_tag }}
+                {{ form.precio_unitario|add_class:"form-control" }}
+            </div>
+
+            <div style="text-align: center;">
+                <button type="submit" class="form-submit-button btn-custom my-3">Agregar</button>
+            </div>
+        </form>
+
+        <div style="text-align: center;">
+            <a href="{% url 'camarero_pedidos' %}" class="btn-custom">Volver</a>
+        </div>
+    </div>
+
+{% endblock %}
+{% include "footer.html" %}
 </body>
 </html>
-
-
