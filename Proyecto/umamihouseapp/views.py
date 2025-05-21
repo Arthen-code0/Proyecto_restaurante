@@ -113,6 +113,7 @@ def camarero(request):
 
 
 def pagina_menu(request):
+    platos = list(Plato.objects.filter(estado_plato=1))
     ORDEN_TIPO = {
         'ENTRANTE': 1,
         'SUSHI': 2,
@@ -121,10 +122,9 @@ def pagina_menu(request):
         'BEBIDA': 5,
     }
 
-    platos = Plato.objects.all()
-    platos_ordenados = sorted(platos, key=lambda p: ORDEN_TIPO.get(p.tipo_plato, 99))
-    platos = Plato.objects.filter(estado_plato=1).order_by('tipo_plato')
-    return render(request, 'pagina_menu.html', {'platos': platos})
+    platos_ordenados = sorted(platos, key=lambda p: ORDEN_TIPO.get(p.tipo_plato.strip(), 99))
+
+    return render(request, 'pagina_menu.html', {'platos': platos_ordenados})
 
 
 # Modificar, Eliminar y Agregar para la carta desde la vista de un administrador
@@ -155,7 +155,7 @@ def editar_plato(request, plato_id, ):
         form = PlatoForm(request.POST, request.FILES, instance=plato)
         if form.is_valid():
             form.save()
-            return redirect('menu')
+            return redirect('modificar_menu')
     else:
         form = PlatoForm(instance=plato)
     return render(request, 'Crea_p.html', {'form': form})

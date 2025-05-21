@@ -42,7 +42,7 @@ class Plato(models.Model):
     tipo_plato = models.CharField(
         max_length=50,
         choices=TipoPlato.choices,
-        default=TipoPlato.ENTRANTE,
+        default=TipoPlato.PLATO_PRINCIPAL,
     )
     estado_plato = models.BooleanField(default=True)
     fecha_creacion = models.DateTimeField(default=timezone.now)
