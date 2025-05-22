@@ -25,23 +25,23 @@
         </tr>
         </thead>
         <tbody>
-        {% for pedido in pedidos %}
+        {% for pedidos in pedido %}
             <tr>
-                <td>{{ pedido.codigo }}</td>
-                <td>{{ pedido.cliente.nombre }} {{ pedido.cliente.apellido }}</td>
-                <td>{{ pedido.fecha|date:"d/m/Y H:i" }}</td>
+                <td>{{ pedidos.codigo }}</td>
+                <td>{{ pedidos.cliente.nombre }} {{ pedidos.cliente.apellido }}</td>
+                <td>{{ pedidos.fecha|date:"d/m/Y H:i" }}</td>
                 <td class="text-start">
                     <ul class="list-unstyled mb-0">
-                        {% for linea in pedido.pedidolinea_set.all %}
-                            <li>{{ linea.plato.nombre }} x{{ linea.cantidad }} — €{{ linea.precio_compra }}</li>
+                        {% for linea in pedido.pedidolinea.all %}
+                            <li>{{ linea.plato.nombre }} x {{ linea.cantidad }} — {{ linea.precio_compra }}€</li>
                         {% endfor %}
                     </ul>
                 </td>
-                <td>€{{ pedido.calcular_total|floatformat:2 }}</td>
+                <td>€{{ pedidos.calcular_total|floatformat:2 }}</td>
                 <td>
-                    {% if pedido.estado == 1 %}
+                    {% if pedidos.estado == 1 %}
                         <span class="badge bg-warning text-dark">Preparando</span>
-                    {% elif pedido.estado == 2 %}
+                    {% elif pedidos.estado == 2 %}
                         <span class="badge bg-primary">En proceso</span>
                     {% else %}
                         <span class="badge bg-success">Finalizado</span>

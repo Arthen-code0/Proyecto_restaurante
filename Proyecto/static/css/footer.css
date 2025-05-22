@@ -1,3 +1,7 @@
+footer {
+    flex-direction: column-reverse;
+}
+
 .footer-claro {
     background-color: #E7C3D5;
     font-size: 14px;
