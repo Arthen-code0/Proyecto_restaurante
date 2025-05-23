@@ -122,14 +122,24 @@ class Pedido(models.Model):
 class PedidoLinea(models.Model):
     pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
     plato = models.ForeignKey(Plato, on_delete=models.DO_NOTHING)
-    cantidad = models.IntegerField()
-    precio_unitario = models.DecimalField(max_digits=5, decimal_places=2)  # Precio por 1 plato
+    cantidad = models.IntegerField(default=1)  # Añadido valor por defecto
+    precio_unitario = models.DecimalField(max_digits=5, decimal_places=2)
     precio_total = models.DecimalField(max_digits=5, decimal_places=2, editable=False, default=0.00)
 
     def save(self, *args, **kwargs):
+        # Asegurar que el precio_unitario tenga valor
+        if not self.precio_unitario and hasattr(self.plato, 'precio'):
+            self.precio_unitario = self.plato.precio
+
+        # Validar valores antes del cálculo
+        if self.cantidad is None or self.precio_unitario is None:
+            raise ValueError("Tanto cantidad como precio_unitario deben tener valores válidos")
+
+        # Calcular el total
         self.precio_total = self.cantidad * self.precio_unitario
+
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.plato.nombre} {self.cantidad} {self.precio_total}"
+        return f"{self.plato.nombre} x{self.cantidad} = {self.precio_total}€"
 

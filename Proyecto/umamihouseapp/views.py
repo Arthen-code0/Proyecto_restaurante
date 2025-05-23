@@ -5,6 +5,7 @@ from sqlite3 import IntegrityError
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib import messages
 from django.core.exceptions import PermissionDenied
 from django.forms import modelformset_factory
 from django.shortcuts import render, redirect, get_object_or_404
@@ -270,25 +271,37 @@ def agregar_plato_pedido(request, pedido_id):
     if request.method == 'POST':
         form = PedidoLineaForm(request.POST)
         if form.is_valid():
-            linea = form.save(commit=False)
-            linea.pedido = pedido
-            linea.save()
-            return redirect('camarero_pedidos')  # O donde muestres los pedidos
+            try:
+                linea = form.save(commit=False)
+                linea.pedido = pedido
+
+                # Si no se especificó precio, usar el del plato
+                if not linea.precio_unitario:
+                    linea.precio_unitario = linea.plato.precio
+
+                linea.save()
+                messages.add_message(request, messages.SUCCESS, "Plato agregado correctamente")
+                return redirect('camarero_pedidos')
+
+            except Exception as e:
+                messages.add_message(request, messages.ERROR, f"Error al guardar: {str(e)}")
     else:
         form = PedidoLineaForm()
 
-    return render(request, 'agregar_plato(camarero).html', {
+    return render(request, 'camarero_pedidos.html', {
         'form': form,
         'pedido': pedido
     })
 
-
 #@login_required
 def eliminar_plato_pedido(request, pedido_linea_id):
     linea = get_object_or_404(PedidoLinea, id=pedido_linea_id)
-    pedido_id = linea.pedido.id
     if request.method == 'POST':
         linea.delete()
-        return redirect('camarero_pedidos')  # O a la edición del pedido
+        return redirect('camarero_pedidos')
 
     return render(request, 'camarero_pedidos.html', {'linea': linea})
+
+def camarero_pedidos(request):
+    pedidos = Pedido.objects.all().order_by('-fecha')
+    return render(request, 'camarero_pedidos.html', {'pedidos': pedidos})
