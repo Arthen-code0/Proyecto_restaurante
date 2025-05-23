@@ -1,9 +1,7 @@
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
-from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
-from oracledb import defaults
 
 
 
@@ -30,8 +28,6 @@ class Rol(models.TextChoices):
 
 class Mesa(models.Model):
     EstadoMesa = models.CharField(max_length=50, choices=EstadoMesa.choices, default=EstadoMesa.DISPONIBLE)
-    fecha_creacion = models.DateTimeField(default=timezone.now)
-    fecha_modificacion = models.DateTimeField(auto_now=True)
 
 
 class Plato(models.Model):
@@ -45,8 +41,7 @@ class Plato(models.Model):
         default=TipoPlato.PLATO_PRINCIPAL,
     )
     estado_plato = models.BooleanField(default=True)
-    fecha_creacion = models.DateTimeField(default=timezone.now)
-    fecha_modificacion = models.DateTimeField(auto_now=True)
+
 
 
 class UserManager(BaseUserManager):
@@ -88,8 +83,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         choices=Rol.choices,
         default=Rol.CLIENTE,
     )
-    fecha_creacion = models.DateTimeField(default=timezone.now)
-    fecha_modificacion = models.DateTimeField(auto_now=True)
     alta_usuario = models.BooleanField(default=True)
 
     objects = UserManager()
@@ -101,33 +94,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = _('user')
         verbose_name_plural = _('users')
-
-
-class Cliente(models.Model):
-    nombre = models.CharField(max_length=100)
-    apellido = models.CharField(max_length=150)
-    fecha_nacimiento = models.DateField(null=False)
-    mail = models.EmailField(max_length=150)
-    imagen_url = models.CharField(max_length=1000)
-    user = models.ForeignKey(User, on_delete=models.DO_NOTHING, default=None)
-    fecha_creacion = models.DateTimeField(default=timezone.now)
-    fecha_modificacion = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return str(self.id) + " " + self.nombre + "," + self.apellido
-
-
-class Empleado(models.Model):
-    nombreCompleto = models.CharField(max_length=500)
-    fecha_nacimiento = models.DateField(null=False)
-    mail = models.EmailField(max_length=150)
-    imagen_url = models.CharField(max_length=1000)
-    user = models.OneToOneField(User, null=True, on_delete=models.DO_NOTHING)
-    rol = models.CharField(max_length=50, choices=Rol.choices, default=Rol.COCINERO)
-    fecha_creacion = models.DateTimeField(default=timezone.now)  # Cambiado de auto_now_add
-    fecha_modificacion = models.DateTimeField(auto_now=True)
-
-
 
 class Pedido(models.Model):
     PREPARANDO = 1
@@ -147,8 +113,6 @@ class Pedido(models.Model):
         choices=ESTADO_CHOICES,
         default=PREPARANDO
     )
-    fecha_creacion = models.DateTimeField(default=timezone.now)
-    fecha_modificacion = models.DateTimeField(auto_now=True)
 
 
     def __str__(self):
@@ -161,8 +125,6 @@ class PedidoLinea(models.Model):
     cantidad = models.IntegerField()
     precio_unitario = models.DecimalField(max_digits=5, decimal_places=2)  # Precio por 1 plato
     precio_total = models.DecimalField(max_digits=5, decimal_places=2, editable=False, default=0.00)
-    fecha_creacion = models.DateTimeField(default=timezone.now)
-    fecha_modificacion = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
         self.precio_total = self.cantidad * self.precio_unitario

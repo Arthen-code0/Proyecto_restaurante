@@ -105,7 +105,7 @@ def mesas(request):
 
 # @user_passes_test(es_cocinero)
 def cocinero(request):
-    return render(request, 'cocinero.html')
+    return render(request, 'cocinero_pedidos.html')
 
 
 # @user_passes_test(es_camarero)
@@ -160,7 +160,7 @@ def editar_plato(request, plato_id, ):
             return redirect('modificar_menu')
     else:
         form = PlatoForm(instance=plato)
-    return render(request, 'Crea_p.html', {'form': form})
+    return render(request, 'modificar_plato.html', {'form': form})
 
 
 def estado_plato(request, plato_id):
@@ -191,7 +191,7 @@ def alta_usuario(request, user_id):
 
 def vista_usuarios(request):
     users = User.objects.all()
-    return render(request, 'Ver_usuarios.html', {'Users': users})
+    return render(request, 'ver_usuarios.html', {'Users': users})
 
 
 def mesas(request):
@@ -268,7 +268,7 @@ def agregar_plato_pedido(request, pedido_id):
     else:
         form = PedidoLineaForm()
 
-    return render(request, 'agregar_plato.html', {
+    return render(request, 'agregar_plato(camarero).html', {
         'form': form,
         'pedido': pedido
     })

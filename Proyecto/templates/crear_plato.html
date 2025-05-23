@@ -30,9 +30,19 @@
                     {{ form.nombre|add_class:"form-control" }}
                 </div>
 
+                 <div class="form-group">
+                    {{ form.descripcion.label_tag }}
+                    {{ form.descripcion|add_class:"form-control" }}
+                </div>
+
                 <div class="form-group">
                     {{ form.imagen.label_tag }}
                     {{ form.imagen|add_class:"form-control" }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.precio.label_tag }}
+                    {{ form.precio|add_class:"form-control" }}
                 </div>
 
                 <div class="form-group">
