@@ -117,7 +117,6 @@ class Pedido(models.Model):
         default=PREPARANDO
     )
 
-
     def __str__(self):
         return str(self.codigo) + " " + str(self.fecha) + " " + str(self.cliente.nombreUsuario)
 
