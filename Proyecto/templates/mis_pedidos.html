@@ -3,34 +3,39 @@
 {% load static %}
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
     <title>Mis pedidos</title>
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/registro_y_inicio_de_sesion.css' %}">
 </head>
 <body>
 {% include "navbar.html" %}
-<h2>Mis pedidos</h2>
+<div >
+    <h2 class="form-title">Mis pedidos</h2>
 
-{% if pedidos %}
-    <ul>
-        {% for pedido in pedidos %}
-            <li>
-                <strong>Código:</strong> {{ pedido.id }}
+    {% if pedidos %}
+
+        {% for item in pedidos %}
+            <div class="card">
+
+                <strong>Código:</strong> {{ item.pedido.codigo }}
                 <br>
-                <strong>Fecha:</strong> {{ pedido.fecha }}
+                <strong>Fecha:</strong> {{ item.pedido.fecha }}
+                <strong>Platos:</strong>
                 <ul>
-                    {% for linea in pedido.pedidolinea_set.all %}
+                    {% for linea in item.pedido.pedidolinea_set.all %}
                         <li>
-                            {{ linea.plato.nombre }} X{{ linea.cantidad }} -Precio: {{ linea.precio_compra }}€
+                            {{ linea.plato.nombre }} X{{ linea.cantidad }} - Precio: {{ linea.precio_unitario }}€
                         </li>
                     {% endfor %}
                 </ul>
-                <strong>Total:</strong>
-            </li>
+                <strong>Total:</strong> {{ item.total }}€
+
+            </div>
         {% endfor %}
-    </ul>
-{% else %}
-    <p>No hay pedidos anteriores.</p>
-{% endif %}
+
+    {% else %}
+        <p>No hay pedidos anteriores.</p>
+    {% endif %}
+</div>
 </body>
 </html>

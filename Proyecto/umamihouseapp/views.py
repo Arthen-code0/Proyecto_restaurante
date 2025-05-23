@@ -250,7 +250,16 @@ def cambiar_estado(request, mesa_id):
 @login_required
 def mis_pedidos(request):
     pedidos = Pedido.objects.filter(cliente=request.user).order_by('-fecha')
-    return render(request, 'mis_pedidos.html', {'pedidos': pedidos})
+
+    pedidos_con_totales = []
+    for pedido in pedidos:
+        total = sum(linea.precio_unitario * linea.cantidad for linea in pedido.pedidolinea_set.all())
+        pedidos_con_totales.append({
+            'pedido': pedido,
+            'total': total
+        })
+
+    return render(request, 'mis_pedidos.html', {'pedidos': pedidos_con_totales})
 
 
 # Vista para añadir un pedido
