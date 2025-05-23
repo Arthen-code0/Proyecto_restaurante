@@ -4,15 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Editar Usuario</title>
-    <link rel="stylesheet" href="{% static 'css/editar_usuario.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/registro_y_inicio_de_sesion.css' %}">
 </head>
 <body>
 {% include "navbar.html" %}
-<h2>Editar Usuario</h2>
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Guardar</button>
-</form>
+<div class="form-container">
+    <h2 class="form-title">Editar Usuario</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div style="text-align: center;">
+            <button type="submit" class="form-submit-button btn-custom my-3">Guardar</button>
+        </div>
+    </form>
+</div>
 </body>
 </html>
