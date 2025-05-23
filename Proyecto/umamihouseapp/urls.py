@@ -33,8 +33,8 @@ urlpatterns = [
 
     # Mis pedidos desde camarero para AGREGAR UN PLATO Y ELIMINAR DEL PEDIDO
     path('camarero_pedidos/', camarero_pedidos, name='camarero_pedidos'),
-    path('eliminar_plato_pedido/<int:pedido_linea_id>/', eliminar_plato_pedido, name='eliminar_plato'),
-    path('agregar_plato_pedido/<int:pedido_id>/', agregar_plato_pedido, name='agregar_plato'),
+    path('eliminar_plato_pedido/<int:pedido_linea_id>/', eliminar_plato_pedido, name='eliminar_plato_pedido'),
+    path('agregar_plato_pedido/<int:pedido_id>/', agregar_plato_pedido, name='agregar_plato_pedido'),
 
 
 ]
