@@ -42,6 +42,9 @@ class Plato(models.Model):
     )
     estado_plato = models.BooleanField(default=True)
 
+    def __str__(self):
+        return self.nombre
+
 
 
 class UserManager(BaseUserManager):

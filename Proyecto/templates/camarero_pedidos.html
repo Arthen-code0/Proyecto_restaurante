@@ -45,12 +45,20 @@
                                     <span class="badge bg-primary rounded-pill">
                                         {{ linea.precio_total|floatformat:2 }}€
                                     </span>
-                                    <a href="{% url 'eliminar_plato_pedido' linea.id %}"
-                                       class="btn btn-danger btn-sm ms-2"
-                                       onclick="return confirm('¿Seguro que quieres ELIMINAR {{ linea.plato.nombre|escapejs }}?');"
-                                       aria-label="Eliminar {{ linea.plato.nombre }}">
-                                        <i class="bi bi-trash"></i> <span class="d-none d-sm-inline">Eliminar</span>
-                                    </a>
+
+                                    <!-- FORMULARIO DE ELIMINAR -->
+                                    <form method="post"
+                                          action="{% url 'eliminar_plato_pedido' linea.id %}"
+                                          style="display:inline;">
+                                        {% csrf_token %}
+                                        <button type="submit"
+                                                class="btn btn-danger btn-sm ms-2"
+                                                onclick="return confirm('¿Seguro que quieres ELIMINAR {{ linea.plato.nombre|escapejs }}?');"
+                                                aria-label="Eliminar {{ linea.plato.nombre }}">
+                                            <i class="bi bi-trash"></i>
+                                            <span class="d-none d-sm-inline">Eliminar</span>
+                                        </button>
+                                    </form>
                                 </li>
                             {% empty %}
                                 <li class="list-group-item text-muted">No hay platos en este pedido.</li>
