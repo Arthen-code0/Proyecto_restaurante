@@ -31,14 +31,14 @@ def es_admin(user):
 
 # Para el usuario camarero
 def es_camarero(user):
-    if not user.is_authenticated or user.rol not in ['CAMARERO', 'ADMIN']:
+    if not user.is_authenticated or not user.rol == 'CAMARERO':
         raise PermissionDenied
     return True
 
 
 # Para el usuario cocinero
 def es_cocinero(user):
-    if not user.is_authenticated or user.rol not in ['COCINERO', 'ADMIN']:
+    if not user.is_authenticated or not user.rol == 'COCINERO':
         raise PermissionDenied
     return True
 
@@ -83,7 +83,7 @@ def cerrar_sesion(request):
     return redirect('home')
 
 
-@user_passes_test(es_admin)
+# @user_passes_test(es_admin)
 def modificar_menu(request):
     platos = Plato.objects.all()
     return render(request, 'modificar_menu.html', {'platos': platos})
@@ -100,12 +100,18 @@ def tu_pedido(request):
     return render(request, 'tu_pedido.html')
 
 
-# @user_passes_test(es_cocinero)
+def mesas(request):
+    return render(request, 'mesas.html')
+
+
+
+@user_passes_test(es_cocinero)
 def cocinero(request):
-    return render(request, 'cocinero_pedidos.html')
+    pedidos = Pedido.objects.exclude(estado=Pedido.FINALIZADO).order_by('-fecha')
+    return render(request, 'cocinero_pedidos.html', {'pedidos': pedidos})
 
 
-@user_passes_test(es_camarero)
+# @user_passes_test(es_camarero)
 def camarero_pedidos(request):
     pedidos = Pedido.objects.all().order_by('-fecha')
     return render(request, 'camarero_pedidos.html', {'pedidos': pedidos})
@@ -128,7 +134,6 @@ def pagina_menu(request):
 
 # Modificar, Eliminar y Agregar para la carta desde la vista de un administrador
 
-@user_passes_test(es_admin)
 def crear_plato(request):
     if request.method == 'POST':
         data = request.POST.copy()
@@ -148,7 +153,7 @@ def crear_plato(request):
         form = PlatoForm()
     return render(request, 'crear_plato.html', {'form': form})
 
-@user_passes_test(es_admin)
+
 def editar_plato(request, plato_id, ):
     plato = get_object_or_404(Plato, pk=plato_id)
     if request.method == 'POST':
@@ -167,7 +172,7 @@ def estado_plato(request, plato_id):
     plato.save()
     return redirect('menu')
 
-@user_passes_test(es_admin)
+
 def editar_usuario(request, user_id):
     usuario = get_object_or_404(User, id=user_id)
     if request.method == 'POST':
@@ -179,20 +184,19 @@ def editar_usuario(request, user_id):
         form = UsuarioForm(instance=usuario)
     return render(request, 'editar_usuario.html', {'form': form})
 
-@user_passes_test(es_admin)
+
 def alta_usuario(request, user_id):
     usuario = get_object_or_404(User, id=user_id)
     usuario.alta_usuario = 0 if usuario.alta_usuario == 1 else 1
     usuario.save()
     return redirect('ver_usuarios')
 
-@user_passes_test(es_admin)
+
 def vista_usuarios(request):
     users = User.objects.all()
     return render(request, 'ver_usuarios.html', {'Users': users})
 
 
-@user_passes_test(es_camarero)
 def mesas(request):
     mesas = Mesa.objects.all()
     return render(request, 'mesas.html', {'mesas': mesas})
@@ -249,16 +253,7 @@ def cambiar_estado(request, mesa_id):
 @login_required
 def mis_pedidos(request):
     pedidos = Pedido.objects.filter(cliente=request.user).order_by('-fecha')
-
-    pedidos_con_totales = []
-    for pedido in pedidos:
-        total = sum(linea.precio_unitario * linea.cantidad for linea in pedido.pedidolinea_set.all())
-        pedidos_con_totales.append({
-            'pedido': pedido,
-            'total': total
-        })
-
-    return render(request, 'mis_pedidos.html', {'pedidos': pedidos_con_totales})
+    return render(request, 'mis_pedidos.html', {'pedidos': pedidos})
 
 
 # Vista para añadir un pedido
@@ -286,7 +281,7 @@ def agregar_plato_pedido(request, pedido_id):
     else:
         form = PedidoLineaForm()
 
-    return render(request, 'agregar_plato(camarero).html', {
+    return render(request, 'camarero_pedidos.html', {
         'form': form,
         'pedido': pedido
     })
@@ -300,7 +295,21 @@ def eliminar_plato_pedido(request, pedido_linea_id):
 
     return render(request, 'camarero_pedidos.html', {'linea': linea})
 
-@user_passes_test(es_camarero)
 def camarero_pedidos(request):
     pedidos = Pedido.objects.all().order_by('-fecha')
     return render(request, 'camarero_pedidos.html', {'pedidos': pedidos})
+
+
+@user_passes_test(es_cocinero)
+def cambiar_estado_pedido(request, pedido_id):
+    pedido = get_object_or_404(Pedido, id=pedido_id)
+
+    if request.method == 'POST':
+        nuevo_estado = int(request.POST.get('nuevo_estado'))
+
+        if nuevo_estado in [Pedido.PREPARANDO, Pedido.EN_PROCESO, Pedido.FINALIZADO]:
+            pedido.estado = nuevo_estado
+            pedido.save()
+            messages.success(request, f'Estado del pedido {pedido.codigo} actualizado correctamente.')
+
+    return redirect('cocinero')
