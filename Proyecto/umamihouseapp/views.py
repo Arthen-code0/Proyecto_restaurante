@@ -104,9 +104,11 @@ def mesas(request):
     return render(request, 'mesas.html')
 
 
-# @user_passes_test(es_cocinero)
+
+@user_passes_test(es_cocinero)
 def cocinero(request):
-    return render(request, 'cocinero_pedidos.html')
+    pedidos = Pedido.objects.exclude(estado=Pedido.FINALIZADO).order_by('-fecha')
+    return render(request, 'cocinero_pedidos.html', {'pedidos': pedidos})
 
 
 # @user_passes_test(es_camarero)
@@ -296,3 +298,18 @@ def eliminar_plato_pedido(request, pedido_linea_id):
 def camarero_pedidos(request):
     pedidos = Pedido.objects.all().order_by('-fecha')
     return render(request, 'camarero_pedidos.html', {'pedidos': pedidos})
+
+
+@user_passes_test(es_cocinero)
+def cambiar_estado_pedido(request, pedido_id):
+    pedido = get_object_or_404(Pedido, id=pedido_id)
+
+    if request.method == 'POST':
+        nuevo_estado = int(request.POST.get('nuevo_estado'))
+
+        if nuevo_estado in [Pedido.PREPARANDO, Pedido.EN_PROCESO, Pedido.FINALIZADO]:
+            pedido.estado = nuevo_estado
+            pedido.save()
+            messages.success(request, f'Estado del pedido {pedido.codigo} actualizado correctamente.')
+
+    return redirect('cocinero')

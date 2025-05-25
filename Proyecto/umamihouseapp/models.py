@@ -114,9 +114,14 @@ class Pedido(models.Model):
         default=PREPARANDO
     )
 
-
     def __str__(self):
         return str(self.codigo) + " " + str(self.fecha) + " " + str(self.cliente.nombreUsuario)
+
+    def get_estado_display(self):
+        return dict(self.ESTADO_CHOICES).get(self.estado, 'Desconocido')
+
+    def get_total(self):
+        return sum(linea.precio_total for linea in self.pedidolinea_set.all())
 
 
 class PedidoLinea(models.Model):
