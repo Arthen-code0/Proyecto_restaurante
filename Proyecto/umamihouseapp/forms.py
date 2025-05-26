@@ -35,11 +35,13 @@ class PlatoForm(forms.ModelForm):
 
 
 # Formulario de usuario para modificarlos
-
 class UsuarioForm(forms.ModelForm):
     class Meta:
+        # Tabla en la que guardar los datos
         model = User
+        # Campos que se deben mostrar en el formulario
         fields = ['nombre', 'apellido', 'email', 'telefono', 'fecha_nacimiento', 'rol']
+        # Tipo de datos en los respectivos campos
         widgets = {
             'nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre'}),
             'apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Apellido'}),

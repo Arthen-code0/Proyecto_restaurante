@@ -11,7 +11,6 @@ urlpatterns = [
     path('inicio_sesion/', login_usuario, name='login_usuario'),
     path('crear_plato/', crear_plato, name='crear_plato'),
     path('formulario-pago/<int:pedido_id>/', formulario_pago, name='formulario_pago'),
-    path('tu_pedido/', tu_pedido, name='tu_pedido'),
     path('mesas/', mesas, name='mesas'),
     path('cocinero/', cocinero, name='cocinero'),
     path('logout/', cerrar_sesion, name='logout'),

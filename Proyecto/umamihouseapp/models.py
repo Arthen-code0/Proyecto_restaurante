@@ -117,6 +117,7 @@ class Pedido(models.Model):
         default=PREPARANDO
     )
 
+    # Metodo que devuelve los parametros en forma de string
     def __str__(self):
         return str(self.codigo) + " " + str(self.fecha) + " " + str(self.cliente.nombreUsuario)
 
