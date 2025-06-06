@@ -1,3 +1,4 @@
+
 /*HEADER*/
 .imagenfuera {
     width: 100%;
@@ -203,11 +204,6 @@ main {
     box-shadow: 1px 1px 1px black;
     overflow: hidden;
     transition: transform 0.5s;
-    text-decoration: none;
-    color: white;
-    cursor: default;
-    font-size: 30px;
-    background: #E0B5C6;
 }
 
 .botones_barra_navegacion:hover {
