@@ -43,6 +43,7 @@
                     <!-- Opciones para CAMARERO -->
                     {% if user.is_authenticated and user.rol == 'CAMARERO' %}
                         <li><a class="dropdown-item" onclick="location.href='{% url 'mesas' %}'">Mesas</a></li>
+                        <li><a class="dropdown-item" onclick="location.href='{% url 'camarero_pedidos' %}'">Camarero</a></li>
                     {% endif %}
 
                     <!-- Opciones para COCINERO -->
