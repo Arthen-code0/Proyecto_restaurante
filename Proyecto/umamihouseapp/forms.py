@@ -72,6 +72,15 @@ class ReservaMesaUsuarioForm(forms.ModelForm):
         widgets = {
             'fecha_reserva': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Fecha de la reserva', 'type': 'date'}),
             'hora_reserva': forms.TimeInput(attrs={'class': 'form-control', 'placeholder': 'Hora de la reserva', 'type': 'time'}),
-            'numero_personas': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Numero de personas'})
+            'numero_personas': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Numero de personas', 'type': 'number', 'min': 1, 'max': 20}),
         }
 
+
+class ResenaUsuarioForm(forms.ModelForm):
+    class Meta:
+        model = Resena
+        fields = ['comentario', 'puntuacion']
+        widgets = {
+            'comentario': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Comentario de la reseña', 'type': 'text'}),
+            'puntuacion': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Puntuacion de la reseña', 'type': 'number', 'min': 1, 'max': 5}),
+        }

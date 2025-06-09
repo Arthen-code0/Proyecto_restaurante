@@ -33,8 +33,16 @@ urlpatterns = [
     path('eliminar_plato_pedido/<int:pedido_linea_id>/', eliminar_plato_pedido, name='eliminar_plato_pedido'),
     path('agregar_plato_pedido/<int:pedido_id>/', agregar_plato_pedido, name='agregar_plato_pedido'),
     path('cocinero/cambiar-estado/<int:pedido_id>/', cambiar_estado_pedido, name='cambiar_estado_pedido'),
+
+    # Rutas defensa reserva
     path('crear_reserva/', crear_reserva, name='hacer_reserva'),
     path('editar_reserva/<int:reserva_id>/', editar_reserva, name='editar_reserva'),
+    path('eliminar_reserva/<int:reserva_id>/', eliminar_reserva, name='eliminar_reserva'),
     path('ver_reserva/', ver_reserva, name='ver_reserva'),
 
+    # Rutas defensa reserña
+    path('crear_resena/', crear_resena, name='crear_resena'),
+    path('editar_resena/<int:resena_id>/', editar_resena, name='editar_resena'),
+    path('eliminar_resena/<int:resena_id>/', eliminar_resena, name='eliminar_resena'),
+    path('ver_resena/', ver_resena, name='ver_resena'),
 ]

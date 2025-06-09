@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Mis pedidos</title>
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/registro_y_inicio_de_sesion.css' %}">
+</head>
+<body>
+{% include "navbar.html" %}
+<div>
+    <h2 class="form-title">Mis Resenas</h2>
+
+    {% if resenas %}
+        {% for item in resenas %}
+            <div class="card">
+                <strong>Fecha de la Reserva:</strong> {{ item.comentario }}
+                <br>
+                <strong>Hora de la Reserva:</strong> {{ item.puntuacion }}
+                <br>
+
+
+                <form method="post" action="{% url 'eliminar_resena' item.id %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-eliminar">Eliminar Reseña</button>
+                </form>
+
+                <a href="{% url 'editar_resena' item.id %}" class="btn-editar">Editar Reseña</a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No hay reseñas.</p>
+    {% endif %}
+</div>
+</body>
+</html>

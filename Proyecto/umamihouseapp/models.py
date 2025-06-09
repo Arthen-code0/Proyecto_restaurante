@@ -168,3 +168,18 @@ class Reserva(models.Model):
 
     def __str__(self):
         return self.fecha_reserva + " " + str(self.hora_reserva) + " " + str(self.usuario.nombreUsuario)
+
+class Resena(models.Model):
+    usuario_resena = models.ForeignKey(User, on_delete=models.CASCADE)
+    comentario = models.TextField(_('fecha_reserva'), null=True)
+    puntuacion = models.IntegerField(
+        default=1,
+        validators=[
+            MinValueValidator(1),
+            MaxValueValidator(5)
+        ]
+    )
+    fecha = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.comentario + " " + str(self.puntuacion)

@@ -11,8 +11,8 @@ from django.forms import modelformset_factory
 from django.shortcuts import render, redirect, get_object_or_404
 from pycparser.ply.yacc import Production
 from .forms import RegistroForm, LoginForm, PlatoForm, UsuarioForm, PedidoLineaForm, ReservaMesaUsuarioForm, \
-    ReservaMesaUsuarioForm
-from .models import User, Plato, Mesa, Reserva
+    ReservaMesaUsuarioForm, ResenaUsuarioForm
+from .models import User, Plato, Mesa, Reserva, Resena
 from .forms import RegistroForm, LoginForm, PlatoForm
 from .models import User, Plato, Pedido, PedidoLinea
 
@@ -315,6 +315,10 @@ def cambiar_estado_pedido(request, pedido_id):
 
     return redirect('cocinero')
 
+
+
+#Defensa reserva
+
 #@login_required
 def crear_reserva(request):
     if request.method == 'POST':
@@ -336,13 +340,63 @@ def editar_reserva(request, reserva_id):
         form = ReservaMesaUsuarioForm(request.POST, instance=reserva)
         if form.is_valid():
             form.save()
-            return redirect('editar_reserva')
+            return redirect('editar_reserva', reserva_id=reserva.id)
     else:
         form = ReservaMesaUsuarioForm(instance=reserva)
     return render(request, 'editar_reserva.html', {'form': form, 'reserva': reserva})
 
+#@login_required
+def eliminar_reserva(request, reserva_id):
+    reserva = get_object_or_404(Reserva, id=reserva_id)  # Corregido el modelo y variable
+    if request.method == 'POST':
+        reserva.delete()
+        return redirect('ver_reservas')  # Cambiado para redirigir a la lista de reservas
+
+    return render(request, 'ver_reservas.html', {'reserva': reserva})
 
 #@login_required
 def ver_reserva(request):
     reservas = Reserva.objects.filter(usuario=request.user).order_by('-fecha_reserva')
     return render(request, 'ver_reservas.html', {'reservas': reservas})
+
+#Defensa reseña
+
+#@login_required
+def crear_resena(request):
+    if request.method == 'POST':
+        form = ResenaUsuarioForm(request.POST)
+        if form.is_valid():
+            resena = form.save(commit=False)
+            resena.usuario_resena = request.user
+            resena.save()
+            return redirect('ver_resena')
+    else:
+        form = ResenaUsuarioForm()
+    return render(request, 'crear_resena.html', {'form': form})
+
+
+#@login_required
+def editar_resena(request, resena_id):
+    resena = get_object_or_404(Resena, id=resena_id, usuario_resena=request.user)
+    if request.method == 'POST':
+        form = ResenaUsuarioForm(request.POST, instance=resena)
+        if form.is_valid():
+            form.save()
+            return redirect('editar_resena', resena_id=resena.id)
+    else:
+        form = ResenaUsuarioForm(instance=resena)
+    return render(request, 'editar_resena.html', {'form': form, 'resena': resena})
+
+#@login_required
+def eliminar_resena(request, resena_id):
+    resena = get_object_or_404(Resena, id=resena_id, usuario_resena=request.user)
+    if request.method == 'POST':
+        resena.delete()
+        return redirect('ver_resena')  # Cambiado para redirigir a la lista de reservas
+
+    return render(request, 'ver_resena.html', {'resena': resena})
+
+#@login_required
+def ver_resena(request):
+    resenas = Resena.objects.filter(usuario_resena=request.user).order_by('-fecha')
+    return render(request, 'ver_resena.html', {'resenas': resenas})

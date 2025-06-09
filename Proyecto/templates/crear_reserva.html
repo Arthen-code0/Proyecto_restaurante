@@ -10,13 +10,13 @@
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'css/registro_y_inicio_de_sesion.css' %}">
     <link rel="icon" href="{% static 'img/Umami_house_logo.png' %}" type="image/x-icon">
-    <title>Registro</title>
+    <title>Reserva</title>
 </head>
 <body>
 {% include "navbar.html" %}
 <header>
     <div class="form-container">
-        <h2 class="form-title">Crea tu cuenta</h2>
+        <h2 class="form-title">Haz tu reserva</h2>
         <form method="POST">
             {% csrf_token %}
 
@@ -41,6 +41,8 @@
             <div class="mb-3">
                 <label for="{{ form.numero_personas.id_for_label }}" class="form-label">numero_personas</label>
                 <input type="number"
+                       min="1"
+                       max="20"
                        name="{{ form.numero_personas.name }}"
                        id="{{ form.numero_personas.id_for_label }}"
                        class="form-control"

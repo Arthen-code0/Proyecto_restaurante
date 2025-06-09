@@ -13,18 +13,22 @@
     <h2 class="form-title">Mis Reservas</h2>
 
     {% if reservas %}
-
         {% for item in reservas %}
             <div class="card">
-
                 <strong>Fecha de la Reserva:</strong> {{ item.fecha_reserva }}
                 <br>
                 <strong>Hora de la Reserva:</strong> {{ item.hora_reserva }}
-                <strong>Numero de personas:</strong> {{ item.numero_personas }}
+                <br>
+                <strong>Número de personas:</strong> {{ item.numero_personas }}
 
+                <form method="post" action="{% url 'eliminar_reserva' item.id %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-eliminar">Eliminar Reserva</button>
+                </form>
+
+                <a href="{% url 'editar_reserva' item.id %}" class="btn-editar">Editar Reserva</a>
             </div>
         {% endfor %}
-
     {% else %}
         <p>No hay reservas anteriores.</p>
     {% endif %}
