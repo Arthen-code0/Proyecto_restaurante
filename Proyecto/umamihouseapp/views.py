@@ -282,7 +282,7 @@ def agregar_plato_pedido(request, pedido_id):
     else:
         form = PedidoLineaForm()
 
-    return render(request, 'camarero_pedidos.html', {
+    return render(request, 'agregar_plato(camarero).html', {
         'form': form,
         'pedido': pedido
     })
