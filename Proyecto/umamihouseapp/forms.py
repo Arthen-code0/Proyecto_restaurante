@@ -61,3 +61,15 @@ class PedidoLineaForm(forms.ModelForm):
     class Meta:
         model = PedidoLinea
         fields = ['plato', 'cantidad']
+
+
+class ReservaMesaUsuarioForm(forms.ModelForm):
+    class Meta:
+        model = Reserva
+        fields = ['fecha_reserva', 'hora_reserva', 'numero_personas']
+        widgets = {
+            'fecha_reserva': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Fecha de la reserva', 'type': 'date'}),
+            'hora_reserva': forms.TimeInput(attrs={'class': 'form-control', 'placeholder': 'Hora de la reserva', 'type': 'time'}),
+            'numero_personas': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Numero de personas'})
+        }
+

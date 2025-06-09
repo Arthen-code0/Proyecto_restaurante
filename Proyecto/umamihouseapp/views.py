@@ -10,8 +10,9 @@ from django.core.exceptions import PermissionDenied
 from django.forms import modelformset_factory
 from django.shortcuts import render, redirect, get_object_or_404
 from pycparser.ply.yacc import Production
-from .forms import RegistroForm, LoginForm, PlatoForm, UsuarioForm, PedidoLineaForm
-from .models import User, Plato, Mesa
+from .forms import RegistroForm, LoginForm, PlatoForm, UsuarioForm, PedidoLineaForm, ReservaMesaUsuarioForm, \
+    ReservaMesaUsuarioForm
+from .models import User, Plato, Mesa, Reserva
 from .forms import RegistroForm, LoginForm, PlatoForm
 from .models import User, Plato, Pedido, PedidoLinea
 
@@ -257,7 +258,7 @@ def mis_pedidos(request):
 
 
 # Vista para añadir un pedido
-#@login_required
+@login_required
 def agregar_plato_pedido(request, pedido_id):
     pedido = get_object_or_404(Pedido, id=pedido_id)
 
@@ -313,3 +314,35 @@ def cambiar_estado_pedido(request, pedido_id):
             messages.success(request, f'Estado del pedido {pedido.codigo} actualizado correctamente.')
 
     return redirect('cocinero')
+
+#@login_required
+def crear_reserva(request):
+    if request.method == 'POST':
+        form = ReservaMesaUsuarioForm(request.POST)
+        if form.is_valid():
+            reserva = form.save(commit=False)
+            reserva.usuario = request.user
+            reserva.save()
+            return redirect('hacer_reserva')
+    else:
+        form = ReservaMesaUsuarioForm()
+    return render(request, 'crear_reserva.html', {'form': form})
+
+
+#@login_required
+def editar_reserva(request, reserva_id):
+    reserva = get_object_or_404(Reserva, id=reserva_id, usuario=request.user)
+    if request.method == 'POST':
+        form = ReservaMesaUsuarioForm(request.POST, instance=reserva)
+        if form.is_valid():
+            form.save()
+            return redirect('editar_reserva')
+    else:
+        form = ReservaMesaUsuarioForm(instance=reserva)
+    return render(request, 'editar_reserva.html', {'form': form, 'reserva': reserva})
+
+
+#@login_required
+def ver_reserva(request):
+    reservas = Reserva.objects.filter(usuario=request.user).order_by('-fecha_reserva')
+    return render(request, 'ver_reservas.html', {'reservas': reservas})

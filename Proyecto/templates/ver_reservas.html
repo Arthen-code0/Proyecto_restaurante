@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Mis pedidos</title>
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/registro_y_inicio_de_sesion.css' %}">
+</head>
+<body>
+{% include "navbar.html" %}
+<div>
+    <h2 class="form-title">Mis Reservas</h2>
+
+    {% if reservas %}
+
+        {% for item in reservas %}
+            <div class="card">
+
+                <strong>Fecha de la Reserva:</strong> {{ item.fecha_reserva }}
+                <br>
+                <strong>Hora de la Reserva:</strong> {{ item.hora_reserva }}
+                <strong>Numero de personas:</strong> {{ item.numero_personas }}
+
+            </div>
+        {% endfor %}
+
+    {% else %}
+        <p>No hay reservas anteriores.</p>
+    {% endif %}
+</div>
+</body>
+</html>

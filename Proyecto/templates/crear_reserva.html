@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <link rel="stylesheet" href="{% static 'css/pagina_principal.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/registro_y_inicio_de_sesion.css' %}">
+    <link rel="icon" href="{% static 'img/Umami_house_logo.png' %}" type="image/x-icon">
+    <title>Registro</title>
+</head>
+<body>
+{% include "navbar.html" %}
+<header>
+    <div class="form-container">
+        <h2 class="form-title">Crea tu cuenta</h2>
+        <form method="POST">
+            {% csrf_token %}
+
+            <!--Información personal-->
+            {% load widget_tweaks %}
+            <div class="mb-3">
+                <label for="{{ form.fecha_reserva.id_for_label }}" class="form-label">fecha_reserva</label>
+                <input type="date"
+                       name="{{ form.fecha_reserva.name }}"
+                       id="{{ form.fecha_reserva.id_for_label }}"
+                       class="form-control"
+                       {% if form.fecha_reserva.value %}value="{{ form.fecha_reserva.value }}"{% endif %}>
+            </div>
+            <div class="mb-3">
+                <label for="{{ form.hora_reserva.id_for_label }}" class="form-label">hora_reserva</label>
+                <input type="time"
+                       name="{{ form.hora_reserva.name }}"
+                       id="{{ form.hora_reserva.id_for_label }}"
+                       class="form-control"
+                       {% if form.hora_reserva.value %}value="{{ form.hora_reserva.value }}"{% endif %}>
+            </div>
+            <div class="mb-3">
+                <label for="{{ form.numero_personas.id_for_label }}" class="form-label">numero_personas</label>
+                <input type="number"
+                       name="{{ form.numero_personas.name }}"
+                       id="{{ form.numero_personas.id_for_label }}"
+                       class="form-control"
+                       {% if form.numero_personas.value %}value="{{ form.numero_personas.value }}"{% endif %}>
+            </div>
+
+            <!-- Botón de inicio de sesión -->
+            <div class="text-center">
+                <button type="submit" class="btn mt-2">Reservar</button>
+            </div>
+        </form>
+
+    </div>
+</header>
+{% include "footer.html" %}
+</body>
+</html>

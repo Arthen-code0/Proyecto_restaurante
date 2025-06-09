@@ -34,5 +34,8 @@ urlpatterns = [
     path('eliminar_plato_pedido/<int:pedido_linea_id>/', eliminar_plato_pedido, name='eliminar_plato_pedido'),
     path('agregar_plato_pedido/<int:pedido_id>/', agregar_plato_pedido, name='agregar_plato_pedido'),
     path('cocinero/cambiar-estado/<int:pedido_id>/', cambiar_estado_pedido, name='cambiar_estado_pedido'),
+    path('crear_reserva/', crear_reserva, name='hacer_reserva'),
+    path('editar_reserva/<int:reserva_id>/', editar_reserva, name='editar_reserva'),
+    path('ver_reserva/', ver_reserva, name='ver_reserva'),
 
 ]

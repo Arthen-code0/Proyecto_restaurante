@@ -1,5 +1,6 @@
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -149,5 +150,20 @@ class PedidoLinea(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.plato.nombre} x{self.cantidad} = {self.precio_total}€"
+        return f"{self.plato.nombre} x {self.cantidad} = {self.precio_total}€"
 
+class Reserva(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    fecha_reserva = models.DateField(_('fecha_reserva'), null=True)
+    hora_reserva = models.TimeField(_('hora_reserva'), null=True)
+    numero_personas = models.IntegerField(
+        default=1,
+        validators= [
+            MinValueValidator(1),
+            MaxValueValidator(20)
+        ]
+    )
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.fecha_reserva + " " + str(self.hora_reserva) + " " + str(self.usuario.nombreUsuario)

@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar reserva</title>
+    <link rel="stylesheet" href="{% static 'css/pagina_principal.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/registro_y_inicio_de_sesion.css' %}">
+    <link rel="icon" href="{% static 'img/Umami_house_logo.png' %}" type="image/x-icon">
+    {% load widget_tweaks %}
+</head>
+<body>
+{% include "navbar.html" %}
+{% block content %}
+
+    {% csrf_token %}
+    <div class="form-container">
+        <h2 class="form-title">Modificar Reserva</h2>
+        <p class="form-subtitle">Rellena los campos para modificar su reserva</p>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-group">
+                {{ form.fecha_reserva.label_tag }}
+                {{ form.fecha_reserva|add_class:"form-control" }}
+            </div>
+
+            <div class="form-group">
+                {{ form.hora_reserva.label_tag }}
+                {{ form.hora_reserva|add_class:"form-control" }}
+            </div>
+
+            <div class="form-group">
+                {{ form.numero_personas.label_tag }}
+                {{ form.numero_personas|add_class:"form-control" }}
+            </div>
+
+            <div style="text-align: center;">
+                <button type="submit" class="form-submit-button btn-custom my-3">Guardar Reserva</button>
+            </div>
+
+            {% if error %}
+                <div class="form-error">{{ error }}</div>
+            {% endif %}
+        </form>
+    </div>
+
+{% endblock %}
+{% include "footer.html" %}
+</body>
+</html>
